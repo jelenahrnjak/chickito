@@ -13,6 +13,8 @@ import {ApiService} from './services/api.service';
 import {AuthService} from './services/auth.service';
 import {UserService} from './services/user.service';
 import {ConfigService} from './services/config.service';
+import { ToastrModule} from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import {ConfigService} from './services/config.service';
     CommonModule,
     HttpClientModule,
     CoreRoutingModule,
+    ToastrModule.forRoot(),
   ],
   providers: [ 
     {
@@ -34,7 +37,7 @@ import {ConfigService} from './services/config.service';
     AuthService,
     ApiService,
     UserService,
-    ConfigService,
+    ConfigService, 
   ],
 })
 export class CoreModule { }
