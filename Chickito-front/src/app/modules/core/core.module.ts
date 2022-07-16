@@ -13,7 +13,7 @@ import {ApiService} from './services/api.service';
 import {AuthService} from './services/auth.service';
 import {UserService} from './services/user.service';
 import {ConfigService} from './services/config.service';
-import { ToastrModule} from 'ngx-toastr';
+import { ToastNoAnimationModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import { ToastrModule} from 'ngx-toastr';
     CommonModule,
     HttpClientModule,
     CoreRoutingModule,
-    ToastrModule.forRoot(),
+    ToastNoAnimationModule.forRoot(),
   ],
   providers: [ 
     {

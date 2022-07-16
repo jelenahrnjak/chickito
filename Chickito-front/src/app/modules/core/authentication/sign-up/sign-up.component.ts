@@ -19,7 +19,9 @@ export class SignUpComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.toastr.info('Are you the 6 fingered man?')
   }
 
+  onSubmit(){ 
+    this.toastr.success('Are you the 6 fingered man?')
+  }
 }
