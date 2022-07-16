@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private RoleService roleService;
-    
+
     @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElseGet(null);
