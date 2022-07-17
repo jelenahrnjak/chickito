@@ -11,26 +11,39 @@
 
             <h4 class="text-dark mb-5" style="margin-top: 2%;">Registracija</h4>
         </div>  
-        <form>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
             <div class="row">
 
         <div class="input-group mb-3">
-            <input class="form-control" type="text" placeholder="Ime">
+            <input class="form-control" type="text" formControlName="firstName" placeholder="Ime">
             </div>
             <div class="input-group mb-3">
-            <input class="form-control" type="text" placeholder="Prezime">
+            <input class="form-control" type="text" formControlName="lastName" placeholder="Prezime">
             </div>
             <div class="input-group mb-3">
-            <input class="form-control" type="text" placeholder="Korisničko ime">
+            <input class="form-control" type="text"  formControlName="username"placeholder="Korisničko ime">
             </div>
             <div class="input-group mb-3">
-            <input class="form-control" type="text" placeholder="Email">
+            <input class="form-control" type="text" formControlName="email" placeholder="Email">
             </div>
             <div class="input-group mb-3">
-            <input class="form-control" type="password" placeholder="Lozinka">
+            <input class="form-control" type="password" formControlName="password" placeholder="Lozinka" title="Mora da sadži najmanje 8 karaktera, malo, veliko slovo, cifru i specijalni karakter.">
             </div>
             <div class="input-group mb-4">
-            <input class="form-control" type="password" placeholder="Ponovite lozinku">
+            <input class="form-control" type="password" formControlName="repeatedPassword" placeholder="Ponovite lozinku">
+            </div>
+            <div class="input-group mb-4">
+                <label for="roleCheck">Da li ste rukovodilac?</label>
+                <input id="roleCheck" type="checkbox" style="margin-left: 10px; accent-color: #00553e" formControlName="role" placeholder="Ponovite lozinku">
+            </div>
+            <div class="input-group mb-4"> 
+                <select class="form-control" formControlName="sector" placeholder="Izaberite sektor u kom ste zaposleni" required>
+                    <option value="" disabled selected>Izaberite sektor u kom ste zaposleni</option>
+                    <option value="0">Održavanje i energetika</option>
+                    <option value="1">Klanica i pakeraj</option>
+                    <option value="2">Prerada</option>
+                    <option value="3">Kontrola kvaliteta</option>
+                </select>
             </div>
 
             <div class="col-md-12 text-center">
@@ -40,14 +53,14 @@
  
                 </div>
 
-                <button type="submit" class="btn btn-lg btn-block mb-4 btn-green" (click)="onSubmit()">Registruj se</button>
+                <button type="submit" class="btn btn-lg btn-block mb-4 btn-green" [disabled]="!form.valid">Registruj se</button>
 
                 <p>Imate nalog?
                 <a class="green" href="login">Prijavite se</a>
                 </p>
             </div>
             </div>
-        </form>
+        </form> 
         </div>
     </div>
     </div>

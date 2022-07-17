@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { ApiService } from './api.service';
-import { UserService } from './user.service';
+import { ApiService } from './api.service'; 
 import { ConfigService } from './config.service';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs';
 import { _throw } from 'rxjs/observable/throw';
+import jwt_decode from "jwt-decode";
 
 @Injectable()
 export class AuthService {
 
   constructor(
-    private apiService: ApiService,
-    private userService: UserService,
+    private apiService: ApiService, 
     private config: ConfigService,
     private router: Router
   ) {
@@ -27,16 +26,20 @@ export class AuthService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    // const body = `username=${user.username}&password=${user.password}`;
+    
     const body = {
       'username': user.username,
       'password': user.password
     };
     return this.apiService.post(this.config.login_url, JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
-        console.log('Login success');
+        console.log('Login success'); 
         this.access_token = res.accessToken;
-        localStorage.setItem("jwt", res.accessToken)
+        let decoded: any = jwt_decode(res.accessToken) 
+        sessionStorage.setItem("user", decoded.sub)
+        sessionStorage.setItem("role", decoded.role)
+        sessionStorage.setItem("jwt", res.accessToken);
+        sessionStorage.setItem("refreshToken", res.expiresIn);  
       }));
   }
 
@@ -51,9 +54,9 @@ export class AuthService {
       }));
   }
 
-  logout() {
-    this.userService.currentUser = null;
-    this.access_token = null;
+  logout() { 
+    this.access_token = null; ;
+    sessionStorage.clear(); 
     this.router.navigate(['/login']);
   }
 

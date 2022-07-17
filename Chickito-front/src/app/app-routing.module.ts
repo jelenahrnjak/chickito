@@ -8,17 +8,7 @@ const routes: Routes = [
   {
     path: 'auth',
     component: CoreComponent,
-    loadChildren: () => import('./modules/core/core.module').then(m => m.CoreModule)
-    // children : [
-    //   {
-    //     path: 'login',
-    //     component: LoginComponent, 
-    //   },
-    //   {
-    //     path: 'sign-up',
-    //     component: SignUpComponent, 
-    //   },
-    // ]
+    loadChildren: () => import('./modules/core/core.module').then(m => m.CoreModule) 
  
   },
  

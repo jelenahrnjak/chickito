@@ -10,11 +10,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 
 import {ApiService} from './services/api.service'; 
-import {AuthService} from './services/auth.service';
-import {UserService} from './services/user.service';
+import {AuthService} from './services/auth.service'; 
 import {ConfigService} from './services/config.service';
 import { ToastNoAnimationModule} from 'ngx-toastr';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,8 @@ import { ToastNoAnimationModule} from 'ngx-toastr';
     HttpClientModule,
     CoreRoutingModule,
     ToastNoAnimationModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [ 
     {
@@ -35,8 +37,7 @@ import { ToastNoAnimationModule} from 'ngx-toastr';
       multi: true
     }, 
     AuthService,
-    ApiService,
-    UserService,
+    ApiService, 
     ConfigService, 
   ],
 })

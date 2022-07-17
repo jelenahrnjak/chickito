@@ -3,14 +3,11 @@ package com.ftn.Chickito.service.impl;
 import com.ftn.Chickito.dto.auth.UserRequest;
 import com.ftn.Chickito.model.Role;
 import com.ftn.Chickito.model.User;
+import com.ftn.Chickito.model.enums.Sectors;
 import com.ftn.Chickito.repository.UserRepository;
 import com.ftn.Chickito.service.RoleService;
 import com.ftn.Chickito.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +36,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }
@@ -50,15 +52,18 @@ public class UserServiceImpl implements UserService{
         u.setUsername(userRequest.getUsername());
         u.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 
-        u.setFirstName(userRequest.getFirstname());
-        u.setLastName(userRequest.getLastname());
-//        u.setEnabled(true);
+        u.setFirstName(userRequest.getFirstName());
         u.setEmail(userRequest.getEmail());
+        u.setLastName(userRequest.getLastName());
+        u.setActive(false);
+        u.setDeleted(false);
+        u.setSector(Sectors.values()[userRequest.getSector()]);
+        Role role = roleService.findByName("ROLE_WORKER");
+        if(userRequest.getRole()){
+            role = roleService.findByName("ROLE_LEADER");
+        }
+        u.setRole(role);
 
-        // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
-        //TODO: modifikovati
-        List<Role> roles = roleService.findByName("ROLE_USER");
-        u.setRoles(roles);
 
         return this.userRepository.save(u);
     }

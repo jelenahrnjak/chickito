@@ -46,6 +46,9 @@ public class AuthenticationController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         User user = (User) authentication.getPrincipal();
+        if(!user.isEnabled() || user.isDeleted()){
+            return ResponseEntity.ok(null);
+        }
         String jwt = tokenUtils.generateToken(user.getUsername());
         int expiresIn = tokenUtils.getExpiredIn();
 
@@ -58,7 +61,13 @@ public class AuthenticationController {
         User existUser = this.userService.findByUsername(userRequest.getUsername());
 
         if (existUser != null) {
-            throw new ResourceConflictException(userRequest.getId(), "Username already exists");
+            throw new ResourceConflictException(userRequest.getId(), "Korisničko ime već postoji!");
+        }
+
+        User existUserEmail = this.userService.findByEmail(userRequest.getUsername());
+
+        if (existUser != null) {
+            throw new ResourceConflictException(userRequest.getId(), "Email već postoji!");
         }
 
         User user = this.userService.save(userRequest);

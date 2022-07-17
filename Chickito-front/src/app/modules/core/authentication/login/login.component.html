@@ -12,14 +12,14 @@
            <h4 class="text-dark mb-5" style="margin-top: 5%;">Prijava</h4>
           </div> 
           
-          <form>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="form">
             <div class="row">
               <div class="form-group col-md-12 mb-4">
-                <input type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Korisničko ime">
+                <input type="text" formControlName="username" class="form-control input-lg" id="username" placeholder="Korisničko ime" required>
               </div>
 
               <div class="form-group col-md-12 ">
-                <input type="password" class="form-control input-lg" id="password" placeholder="Lozinka">
+                <input type="password"  formControlName="password" class="form-control input-lg" id="password" placeholder="Lozinka" required>
               </div>
 
               <div class="col-md-12 text-center">
@@ -30,7 +30,7 @@
                   <p><a class="green" href="#">Zaboravili ste lozinku?</a></p>
                 </div>
 
-                <button type="submit" class="btn btn-lg btn-block mb-4 btn-green">Prijavi se</button>
+                <button type="submit" class="btn btn-lg btn-block mb-4 btn-green" [disabled]="!form.valid">Prijavi se</button>
 
                 <p>Još uvek nemate nalog?
                   <a class="green" href="sign-up">Registrujte se</a>
