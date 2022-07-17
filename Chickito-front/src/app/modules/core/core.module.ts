@@ -15,12 +15,14 @@ import {ConfigService} from './services/config.service';
 import { ToastNoAnimationModule} from 'ngx-toastr';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
     CoreComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ErrorPageComponent
   ],
   imports: [
     CommonModule,

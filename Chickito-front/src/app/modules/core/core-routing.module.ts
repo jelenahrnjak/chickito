@@ -5,6 +5,7 @@ import {ModuleWithProviders} from '@angular/core';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component'; 
 import { CoreComponent } from './core.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 const routes: Routes = [
 
@@ -18,7 +19,7 @@ const routes: Routes = [
         path: 'signup',
         component: SignUpComponent, 
       },
-      // { path: '**', component: Page404leavesComponent }
+      { path: '**', component: ErrorPageComponent }
     ]
   }
 ];
