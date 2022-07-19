@@ -8,6 +8,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 import {ApiService} from './services/api.service'; 
 import {AuthService} from './services/auth.service'; 
@@ -38,6 +39,8 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
       useClass: TokenInterceptor,
       multi: true
     }, 
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
     AuthService,
     ApiService, 
     ConfigService, 

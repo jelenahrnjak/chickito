@@ -38,6 +38,7 @@ export class AuthService {
         let decoded: any = jwt_decode(res.accessToken) 
         sessionStorage.setItem("user", decoded.sub)
         sessionStorage.setItem("role", decoded.role)
+        console.dir(decoded.role)
         sessionStorage.setItem("jwt", res.accessToken);
         sessionStorage.setItem("refreshToken", res.expiresIn);  
       }));

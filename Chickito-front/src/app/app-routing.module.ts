@@ -6,11 +6,16 @@ import { CoreComponent } from './modules/core/core.component';
 
 const routes: Routes = [
   {
-    path: 'auth',
-    component: CoreComponent,
-    loadChildren: () => import('./modules/core/core.module').then(m => m.CoreModule) 
- 
+    path: "",
+    redirectTo: "auth/login",
+    pathMatch: "full", 
   },
+  // {
+  //   path: 'auth',
+  //   component: CoreComponent,
+  //   loadChildren: () => import('./modules/core/core.module').then(m => m.CoreModule) 
+ 
+  // },
  
 ];
 

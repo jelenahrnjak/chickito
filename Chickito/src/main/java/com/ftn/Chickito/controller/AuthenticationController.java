@@ -49,7 +49,7 @@ public class AuthenticationController {
         if(!user.isEnabled() || user.isDeleted()){
             return ResponseEntity.ok(null);
         }
-        String jwt = tokenUtils.generateToken(user.getUsername());
+        String jwt = tokenUtils.generateToken(user.getUsername(), user.getRole().getName());
         int expiresIn = tokenUtils.getExpiredIn();
 
         return ResponseEntity.ok(new UserTokenState(jwt, (long) expiresIn));

@@ -55,12 +55,12 @@ public class UserServiceImpl implements UserService{
         u.setFirstName(userRequest.getFirstName());
         u.setEmail(userRequest.getEmail());
         u.setLastName(userRequest.getLastName());
-        u.setActive(false);
+        u.setActive(true);
         u.setDeleted(false);
         u.setSector(Sectors.values()[userRequest.getSector()]);
-        Role role = roleService.findByName("ROLE_WORKER");
+        Role role = roleService.findByName("WORKER");
         if(userRequest.getRole()){
-            role = roleService.findByName("ROLE_LEADER");
+            role = roleService.findByName("LEADER");
         }
         u.setRole(role);
 

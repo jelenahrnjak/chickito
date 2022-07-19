@@ -36,7 +36,24 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.form.value)
       .subscribe(data => { 
-          this.router.navigate(['']);
+        const role = sessionStorage.getItem("role");
+        console.log(role)
+        switch(role){
+          case "ADMIN":
+            this.router.navigate(["admin-home"]); 
+            break;
+          case "DIRECTOR":
+            this.router.navigate(["director-home"]);
+            break;
+          case "LEADER":
+            this.router.navigate(["leader-home"]);
+            break;
+          case "WORKER":
+            this.router.navigate(["worker-home"]);
+            break;
+          default:
+              this.router.navigate(["auth/login"])
+          } 
         },
         error => { 
           this.toastr.error('Pogrešno korisničko ime ili lozinka')
