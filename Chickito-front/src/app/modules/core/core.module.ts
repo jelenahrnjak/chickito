@@ -17,13 +17,15 @@ import { ToastNoAnimationModule} from 'ngx-toastr';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     CoreComponent,
     LoginComponent,
     SignUpComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    // HeaderComponent
   ],
   imports: [
     CommonModule,

@@ -32,9 +32,17 @@
             <div class="input-group mb-4">
             <input class="form-control" type="password" formControlName="repeatedPassword" placeholder="Ponovite lozinku">
             </div>
-            <div class="input-group mb-4">
+            <!-- <div class="input-group mb-4">
                 <label for="roleCheck">Da li ste rukovodilac?</label>
                 <input id="roleCheck" type="checkbox" style="margin-left: 10px; accent-color: #00553e" formControlName="role" placeholder="Ponovite lozinku">
+            </div> --> 
+            <div class="input-group mb-4"> 
+                <select class="form-control" formControlName="role" placeholder="Izaberite vrstu zaposlenog" required>
+                    <option value="" disabled selected>Izaberite vrstu zaposlenog</option>
+                    <option value="2">Direktor</option>
+                    <option value="3">Rukovodilac</option>
+                    <option value="4">Radnik</option> 
+                </select>
             </div>
             <div class="input-group mb-4"> 
                 <select class="form-control" formControlName="sector" placeholder="Izaberite sektor u kom ste zaposleni" required>

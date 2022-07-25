@@ -33,8 +33,6 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<UserTokenState> createAuthenticationToken(
@@ -55,23 +53,5 @@ public class AuthenticationController {
         return ResponseEntity.ok(new UserTokenState(jwt, (long) expiresIn));
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
 
-        User existUser = this.userService.findByUsername(userRequest.getUsername());
-
-        if (existUser != null) {
-            throw new ResourceConflictException(userRequest.getId(), "Korisničko ime već postoji!");
-        }
-
-        User existUserEmail = this.userService.findByEmail(userRequest.getUsername());
-
-        if (existUser != null) {
-            throw new ResourceConflictException(userRequest.getId(), "Email već postoji!");
-        }
-
-        User user = this.userService.save(userRequest);
-
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
 }

@@ -58,10 +58,7 @@ public class UserServiceImpl implements UserService{
         u.setActive(true);
         u.setDeleted(false);
         u.setSector(Sectors.values()[userRequest.getSector()]);
-        Role role = roleService.findByName("WORKER");
-        if(userRequest.getRole()){
-            role = roleService.findByName("LEADER");
-        }
+        Role role = roleService.findById(userRequest.getRole());
         u.setRole(role);
 
 

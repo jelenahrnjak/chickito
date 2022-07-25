@@ -5,16 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ftn.Chickito.dto.auth.UserRequest;
+import com.ftn.Chickito.exception.ResourceConflictException;
 import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,16 +38,24 @@ public class UserController {
         return this.userService.findAll();
     }
 
-    @GetMapping("/whoami")
-    @PreAuthorize("hasRole('USER')")
-    public User user(Principal user) {
-        return this.userService.findByUsername(user.getName());
-    }
+    @PostMapping("/addUser")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
 
-    @GetMapping("/foo")
-    public Map<String, String> getFoo() {
-        Map<String, String> fooObj = new HashMap<>();
-        fooObj.put("foo", "bar");
-        return fooObj;
+        User existUser = this.userService.findByUsername(userRequest.getUsername());
+
+        if (existUser != null) {
+            throw new ResourceConflictException(userRequest.getId(), "Korisničko ime već postoji!");
+        }
+
+        User existUserEmail = this.userService.findByEmail(userRequest.getUsername());
+
+        if (existUserEmail != null) {
+            throw new ResourceConflictException(userRequest.getId(), "Email već postoji!");
+        }
+
+        User user = this.userService.save(userRequest);
+
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }

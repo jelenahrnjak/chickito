@@ -32,13 +32,13 @@ export class SignUpComponent implements OnInit {
       firstName: ['', Validators.compose([Validators.required, Validators.maxLength(64)])],
       lastName: ['', Validators.compose([Validators.required, Validators.maxLength(64)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
-      role : [false, Validators.compose([Validators.required])],
+      role : ['', Validators.compose([Validators.required])],
       sector : ['', Validators.compose([Validators.required])],
     });
   } 
 
   onSubmit(){  
-    alert(this.form.get('role')?.value)
+    
     if(this.form.get('password')?.value != this.form.get('repeatedPassword')?.value){
       this.toastr.error('Lozinke se ne poklapaju')
       return
