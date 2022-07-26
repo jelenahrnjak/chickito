@@ -2,22 +2,20 @@
 <app-side-bar *ngIf="role != undefined"></app-side-bar>
 <app-header *ngIf="role != undefined"></app-header>
 
-<div class="content-wrap">
+<div class="content-wrap" style="margin-left: 250px;">
     <div class="main">
         <div class="container-fluid">
                 
             <!-- /# row -->
-            <section id="main-content">
+            <section id="main-content"> 
                 
-                <router-outlet></router-outlet>
-                
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="footer">
-                            <p>2022 © Admin Board. - <a href="#">example.com</a></p>
+                            <router-outlet ></router-outlet>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 
             </section>
         </div>

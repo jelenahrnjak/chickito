@@ -40,16 +40,16 @@ export class LoginComponent implements OnInit {
         console.log(role)
         switch(role){
           case "ADMIN":
-            this.router.navigate(["admin-home"]); 
+            this.router.navigate(["admin"]); 
             break;
           case "DIRECTOR":
-            this.router.navigate(["director-home"]);
+            this.router.navigate(["director"]);
             break;
           case "LEADER":
-            this.router.navigate(["leader-home"]);
+            this.router.navigate(["leader"]);
             break;
           case "WORKER":
-            this.router.navigate(["worker-home"]);
+            this.router.navigate(["worker"]);
             break;
           default:
               this.router.navigate(["auth/login"])
