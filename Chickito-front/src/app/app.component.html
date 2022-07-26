@@ -1,2 +1,27 @@
-<app-header></app-header> 
-<router-outlet></router-outlet>
+ 
+<app-side-bar *ngIf="role != undefined"></app-side-bar>
+<app-header *ngIf="role != undefined"></app-header>
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+                
+            <!-- /# row -->
+            <section id="main-content">
+                
+                <router-outlet></router-outlet>
+                
+                <!-- <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer">
+                            <p>2022 © Admin Board. - <a href="#">example.com</a></p>
+                        </div>
+                    </div>
+                </div> -->
+                
+            </section>
+        </div>
+    </div>
+</div>
+
+    
