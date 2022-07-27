@@ -3,16 +3,14 @@ package com.ftn.Chickito.service.impl;
 import com.ftn.Chickito.model.Role;
 import com.ftn.Chickito.repository.RoleRepository;
 import com.ftn.Chickito.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public Role findById(Long id) {

@@ -1,9 +1,6 @@
 package com.ftn.Chickito.controller;
 
-import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.ftn.Chickito.dto.auth.UserRequest;
 import com.ftn.Chickito.exception.ResourceConflictException;
@@ -11,11 +8,9 @@ import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/api/users")

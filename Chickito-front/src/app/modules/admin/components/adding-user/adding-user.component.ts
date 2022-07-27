@@ -31,7 +31,7 @@ export class AddingUserComponent implements OnInit {
       lastName: ['', Validators.compose([Validators.required, Validators.maxLength(64)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
       role : ['', Validators.compose([Validators.required])],
-      sector : ['', Validators.compose([Validators.required])],
+      sector : [''],
     });
   }
 

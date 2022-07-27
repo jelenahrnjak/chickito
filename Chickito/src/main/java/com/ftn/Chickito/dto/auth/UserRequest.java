@@ -18,6 +18,6 @@ public class UserRequest {
     private String lastName;
     private String email;
     private Long role;
-    private Integer sector;
+    private Long sector;
 
 }

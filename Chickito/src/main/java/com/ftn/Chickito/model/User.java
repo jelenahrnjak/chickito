@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.ftn.Chickito.model.enums.Sectors;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +31,6 @@ public class User implements UserDetails {
 
     @Column(name = "username", unique = true, nullable = false)
     private String username;
-
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
@@ -46,8 +44,15 @@ public class User implements UserDetails {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "sector")
-    private Sectors sector;
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @Column(nullable = false)
+    private Address address;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private Sector sector;
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted;
@@ -59,7 +64,7 @@ public class User implements UserDetails {
     private Timestamp lastPasswordResetDate;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-//    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public void setPassword(String password) {

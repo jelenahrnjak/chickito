@@ -3,27 +3,24 @@ package com.ftn.Chickito.service.impl;
 import com.ftn.Chickito.dto.auth.UserRequest;
 import com.ftn.Chickito.model.Role;
 import com.ftn.Chickito.model.User;
-import com.ftn.Chickito.model.enums.Sectors;
+import com.ftn.Chickito.repository.SectorRepository;
 import com.ftn.Chickito.repository.UserRepository;
 import com.ftn.Chickito.service.RoleService;
 import com.ftn.Chickito.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    public PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private RoleService roleService;
+    private final UserRepository userRepository;
+    private final SectorRepository sectorRepository;
+    public final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     @Override
     public User findById(Long id) {
@@ -57,7 +54,7 @@ public class UserServiceImpl implements UserService{
         u.setLastName(userRequest.getLastName());
         u.setActive(true);
         u.setDeleted(false);
-        u.setSector(Sectors.values()[userRequest.getSector()]);
+        u.setSector(sectorRepository.findById(userRequest.getSector()).orElse(null)); //TODO: fix
         Role role = roleService.findById(userRequest.getRole());
         u.setRole(role);
 
