@@ -15,6 +15,7 @@ import { ToastNoAnimationModule} from 'ngx-toastr';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ErrorPageComponent } from './components/error-page/error-page.component'; 
+import { TokenInterceptor } from '../../interceptors/TokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     ReactiveFormsModule,
   ],
   providers: [  
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     AuthService,

@@ -59,7 +59,7 @@ public class User implements UserDetails {
     private Timestamp lastPasswordResetDate;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role_id")
+//    @JoinColumn(name = "role_id")
     private Role role;
 
     public void setPassword(String password) {

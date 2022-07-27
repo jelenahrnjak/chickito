@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @PostMapping()
-//    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest) {
 
         User existUser = this.userService.findByUsername(userRequest.getUsername());
 
