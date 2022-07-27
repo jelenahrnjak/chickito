@@ -40,7 +40,7 @@ public class UserController {
 
     @PostMapping()
 //    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
 
         User existUser = this.userService.findByUsername(userRequest.getUsername());
 
@@ -48,7 +48,7 @@ public class UserController {
             throw new ResourceConflictException(userRequest.getId(), "Korisničko ime već postoji!");
         }
 
-        User existUserEmail = this.userService.findByEmail(userRequest.getUsername());
+        User existUserEmail = this.userService.findByEmail(userRequest.getEmail());
 
         if (existUserEmail != null) {
             throw new ResourceConflictException(userRequest.getId(), "Email već postoji!");
@@ -56,6 +56,6 @@ public class UserController {
 
         User user = this.userService.save(userRequest);
 
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

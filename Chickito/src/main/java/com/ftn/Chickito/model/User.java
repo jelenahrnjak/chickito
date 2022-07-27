@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Setter
 @Entity
 @Table(name="users")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
@@ -57,8 +58,8 @@ public class User implements UserDetails {
     @Column(name = "last_password_reset_date")
     private Timestamp lastPasswordResetDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "role_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public void setPassword(String password) {

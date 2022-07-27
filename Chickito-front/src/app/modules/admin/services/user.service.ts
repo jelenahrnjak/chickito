@@ -19,7 +19,8 @@ export class UserService {
   createUser(user : any) {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     return this.apiService.post(this.config.user_url, JSON.stringify(user), headers)
