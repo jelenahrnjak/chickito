@@ -36,8 +36,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.form.value)
       .subscribe(data => { 
-        const role = sessionStorage.getItem("role");
-        console.log(role)
+        const role = sessionStorage.getItem("role"); 
         switch(role){
           case "ADMIN":
             this.router.navigate(["admin"]); 

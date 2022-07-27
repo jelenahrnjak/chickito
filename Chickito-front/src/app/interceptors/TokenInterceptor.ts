@@ -4,8 +4,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpEvent
-} from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
+} from '@angular/common/http'; 
 
 import { Observable, } from 'rxjs/Observable';
 
@@ -13,13 +12,13 @@ import { _throw } from 'rxjs/observable/throw';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public auth: AuthService) { }
+  constructor() { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.auth.tokenIsPresent()) {
+    if (localStorage.getItem("jwt") != null) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.auth.getToken()}` 
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}` 
         }
       });
     }

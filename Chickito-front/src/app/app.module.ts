@@ -10,6 +10,9 @@ import { AdminModule } from './modules/admin/admin.module'
 import { HeaderComponent } from './modules/core/components/header/header.component'
 import { SideBarComponent } from './modules/core/components/side-bar/side-bar.component'
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/TokenInterceptor';
+
 @NgModule({
   declarations: [
     AppComponent,   
@@ -24,7 +27,12 @@ import { SideBarComponent } from './modules/core/components/side-bar/side-bar.co
     FormsModule,
     ReactiveFormsModule, 
   ],
-  providers: [ 
+  providers: [     
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

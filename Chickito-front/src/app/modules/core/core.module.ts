@@ -5,9 +5,7 @@ import {HttpClientModule} from '@angular/common/http'; ;
 import { CoreRoutingModule } from './core-routing.module';
 
 import { LoginComponent } from './authentication/login/login.component';
-import { SignUpComponent } from './authentication/sign-up/sign-up.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 import {ApiService} from './services/api.service'; 
@@ -22,7 +20,6 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
   declarations: [
     CoreComponent,
     LoginComponent,
-    SignUpComponent,
     ErrorPageComponent, 
   ],
   imports: [
@@ -33,12 +30,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ 
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }, 
+  providers: [  
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     AuthService,

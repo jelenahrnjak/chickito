@@ -41,23 +41,12 @@ export class AuthService {
         sessionStorage.setItem("jwt", res.accessToken);
         sessionStorage.setItem("refreshToken", res.expiresIn);  
       }));
-  }
-
-  signup(user : any) {
-    const signupHeaders = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });
-    return this.apiService.post(this.config.signup_url, JSON.stringify(user), signupHeaders)
-      .pipe(map(() => {
-        console.log('Sign up success');
-      }));
-  }
+  } 
 
   logout() { 
     this.access_token = null; ;
     sessionStorage.clear(); 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   tokenIsPresent() {

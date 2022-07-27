@@ -3,11 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component'
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import { RoleguardService as RoleGuard } from '../core/guards/roleguard.service';
+import { AddingUserComponent } from './components/adding-user/adding-user.component';
 
 const routes: Routes = [
   {
     path: 'admin', 
-    component: HomeAdminComponent,
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: HomeAdminComponent, 
+      },
+      {
+        path: 'new-user',
+        component: AddingUserComponent, 
+      },
+    ], 
   }
 ];
 

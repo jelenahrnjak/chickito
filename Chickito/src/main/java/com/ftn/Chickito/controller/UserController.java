@@ -18,28 +18,28 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin
+@RequestMapping(value = "/api/users")
+//@CrossOrigin()
 public class UserController {
 
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/{userId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/{userId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public User loadById(@PathVariable Long userId) {
         return this.userService.findById(userId);
     }
 
-    @GetMapping("/user/all")
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<User> loadAll() {
         return this.userService.findAll();
     }
 
-    @PostMapping("/addUser")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping()
+//    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
 
         User existUser = this.userService.findByUsername(userRequest.getUsername());
