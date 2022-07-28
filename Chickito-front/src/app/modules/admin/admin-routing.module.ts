@@ -5,6 +5,7 @@ import { HomeAdminComponent } from './components/home-admin/home-admin.component
 import { RoleguardService as RoleGuard } from '../core/guards/roleguard.service';
 import { AddingUserComponent } from './components/adding-user/adding-user.component';
 import { AddingCompanyComponent } from './components/adding-company/adding-company.component';
+import { AddingBuildingComponent } from './components/adding-building/adding-building.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'new-company',
         component: AddingCompanyComponent, 
+      },
+      {
+        path: 'new-building',
+        component: AddingBuildingComponent, 
       },
     ], 
   }

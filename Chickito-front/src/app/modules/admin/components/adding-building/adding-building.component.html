@@ -1,0 +1,56 @@
+<div class="container d-flex align-items-center justify-content-center ">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-10">
+        <div class="card"> 
+            <div class="card-body p-5" >
+                
+            <div class="text-center">
+                <a href="" style="text-decoration: none; color: #00553e; font-size: 18px; ">
+                <img  src="assets\logos\circle-border.png" width="100" height="100"> 
+                </a> 
+    
+                <h4 class="text-dark mb-5" style="margin-top: 2%;">Kreiranje novog objekta</h4>
+            </div>  
+            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                <div class="row">
+
+                    <div class="input-group mb-4"> 
+                        <select class="form-control" formControlName="company" placeholder="Izaberite preduzeće" required>
+                            <option value="" disabled selected>Preduzeće</option>
+                            <option *ngFor="let company of allCompanies" value="{{company.id}}">{{company.name}}</option> 
+                        </select>
+                    </div> 
+                    <div class="input-group mb-3">
+                    <input class="form-control" type="text" formControlName="street" placeholder="Ulica">
+                    </div>
+                    <div class="input-group mb-3">
+                    <input class="form-control" type="text" formControlName="number" placeholder="Broj">
+                    </div>
+                    <div class="input-group mb-3">
+                    <input class="form-control" type="text"  formControlName="city"placeholder="Grad">
+                    </div>
+                    <div class="input-group mb-3">
+                    <input class="form-control" type="text" formControlName="country" placeholder="Država">
+                    </div>
+                    <div class="input-group mb-4">
+                        <label for="roleCheck">Da li je sedište?</label>
+                        <input id="roleCheck" type="checkbox" style="margin-left: 10px; accent-color: #00553e" formControlName="headOffice">
+                    </div> 
+    
+                <div class="col-md-12 text-center">
+                    <div class="d-flex my-2 justify-content-between">
+                    <div class="d-inline-block mr-3"> 
+                    </div>
+     
+                    </div>
+    
+                    <button type="submit" class="btn btn-lg btn-block mb-4 btn-green" [disabled]="!form.valid">Kreiraj</button>
+     
+                </div>
+                </div>
+            </form> 
+            </div>
+        </div>
+        </div>
+    </div>
+    </div> 

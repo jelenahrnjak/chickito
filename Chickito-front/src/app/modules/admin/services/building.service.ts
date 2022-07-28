@@ -8,7 +8,7 @@ import {  map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class BuildingService {
 
 
   constructor(
@@ -17,19 +17,11 @@ export class CompanyService {
   ) {
   }
 
-  createCompany(company : any) { 
+  createBuilding(building : any) { 
 
-    return this.apiService.post(this.config.company_url, JSON.stringify(company))
+    return this.apiService.post(this.config.building_url, JSON.stringify(building))
       .pipe(map(() => {
-        console.log('Creating company success');
+        console.log('Creating building success');
       }));
-  }
-
-  getAll() { 
-
-    return this.apiService.get(this.config.company_url)
-    .pipe(map(companies => { 
-      return companies;
-    }));
   }
 }
