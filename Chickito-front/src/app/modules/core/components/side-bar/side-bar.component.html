@@ -4,7 +4,12 @@
             <ul>
                 <div class="logo"><a href="index.html">
                         <img src="assets/logos/circle-border.png" alt="" width="48" height="48" /><span style="margin-left: 2%;">Chickito</span></a></div>
-                <li class="label">Main</li>
+                <li class="label" *ngIf="role == 'ADMIN'">Dodavanje entiteta</li>
+                
+                <li><a class="sidebar-sub-toggle" href="/admin/new-company"><i class="ti-user"></i> Novo preduzeće </a> </li>
+                <li><a class="sidebar-sub-toggle" href="/admin/new-building"><i class="ti-user"></i> Novi objekat </a> </li>
+                <li><a class="sidebar-sub-toggle" href="/admin/new-user"><i class="ti-user"></i> Novi korisnik </a> </li>
+
                 <!-- <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard <span
                             class="badge badge-primary">2</span> <span
                             class="sidebar-collapse-icon ti-angle-down"></span></a>
@@ -12,8 +17,8 @@
                         <li><a href="index.html">Dashboard 1</a></li>
                         <li><a href="index.html">Dashboard 2</a></li>
                     </ul>
-                </li>
-
+                </li> -->
+<!-- 
                 <li class="label">Apps</li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Charts <span
                             class="sidebar-collapse-icon ti-angle-down"></span></a>

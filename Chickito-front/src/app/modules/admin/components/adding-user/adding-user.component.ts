@@ -12,14 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddingUserComponent implements OnInit {
 
-  form!: FormGroup;  
-  private ngUnsubscribe: Subject<void> = new Subject<void>(); 
+  form!: FormGroup;   
 
   constructor( 
     private toastr: ToastrService, 
     private userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private router: Router, 
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -43,13 +41,12 @@ export class AddingUserComponent implements OnInit {
     }
 
     this.userService.createUser(this.form.value)
-      .subscribe(data => {
-        console.log(data); 
-        this.toastr.success('Uspešno dodat novi zaposleni!')  
+      .subscribe(data => { 
+        this.toastr.success('Novi zaposleni uspešno kreiran!')  
         this.router.navigate(['admin']);
       },
         error => { 
-          console.log('Sign up error');  
+          console.log('Adding user error');  
           this.toastr.error(error['error'].message)
         });
 

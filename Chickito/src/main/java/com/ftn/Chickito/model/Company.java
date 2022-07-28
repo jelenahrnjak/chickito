@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,5 +26,7 @@ public class Company {
 
     @Column(unique = true, nullable = false)
     private String pib;
+
+    private LocalDateTime establishmentDate;
 
 }

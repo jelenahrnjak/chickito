@@ -22,11 +22,9 @@ public class Building {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @Column(nullable = false)
     private Address address;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @Column(nullable = false)
     private Company company;
 
     @Column(nullable = false)

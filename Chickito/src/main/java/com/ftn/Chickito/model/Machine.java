@@ -30,7 +30,6 @@ public class Machine {
     private String serialNumber;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @Column(nullable = false)
     private Sector sector;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

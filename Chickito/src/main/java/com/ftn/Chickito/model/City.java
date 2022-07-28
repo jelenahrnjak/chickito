@@ -27,6 +27,5 @@ public class City {
     private String postalCode;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @Column(nullable = false)
     private Country country;
 }

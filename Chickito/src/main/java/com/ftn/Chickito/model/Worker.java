@@ -16,6 +16,5 @@ import javax.persistence.*;
 public class Worker extends User{
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @Column(nullable = false)
     private Sector sector;
 }

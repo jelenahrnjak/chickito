@@ -34,7 +34,6 @@ public class Address {
     private String latitude;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @Column(nullable = false)
     private City city;
 
 }

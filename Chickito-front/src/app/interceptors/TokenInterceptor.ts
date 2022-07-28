@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor() { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (localStorage.getItem("jwt") != null) {
+    if (sessionStorage.getItem("jwt") != null) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}` 

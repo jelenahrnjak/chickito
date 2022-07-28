@@ -8,13 +8,15 @@ import { HomeAdminComponent } from './components/home-admin/home-admin.component
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { TokenInterceptor } from '../../interceptors/TokenInterceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http'; 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AddingCompanyComponent } from './components/adding-company/adding-company.component'; 
 
 @NgModule({
   declarations: [
     AdminComponent,
     AddingUserComponent,
     HomeAdminComponent,
+    AddingCompanyComponent,
   ],
   imports: [
     CommonModule,

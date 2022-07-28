@@ -8,25 +8,20 @@ import {  map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
- 
+export class CompanyService {
+
+
   constructor(
     private apiService: ApiService, 
     private config: ConfigService, 
   ) {
   }
 
-  createUser(user : any) {
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
-    });
+  createCompany(company : any) { 
 
-    return this.apiService.post(this.config.user_url, JSON.stringify(user), headers)
+    return this.apiService.post(this.config.company_url, JSON.stringify(company))
       .pipe(map(() => {
-        console.log('Creating user success');
+        console.log('Creating company success');
       }));
   }
-
 }

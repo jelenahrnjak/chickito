@@ -10,9 +10,9 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name="leaders")
 public class Leader extends User{
+
+    public Leader() {super();}
 }

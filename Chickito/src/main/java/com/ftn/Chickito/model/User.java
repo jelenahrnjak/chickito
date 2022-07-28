@@ -44,11 +44,9 @@ public class User implements UserDetails {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String phoneNumber;
+    private String phoneNumber; 
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @Column(nullable = false)
     private Address address;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

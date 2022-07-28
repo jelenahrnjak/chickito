@@ -1,0 +1,10 @@
+package com.ftn.Chickito.repository;
+
+import com.ftn.Chickito.model.Company;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompanyRepository extends JpaRepository<Company, Long> {
+
+    Company findByName(String name);
+    Company findByPib(String pib);
+}

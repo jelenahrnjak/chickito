@@ -21,7 +21,6 @@ public class Suggestion {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @Column(nullable = false)
     private Worker worker;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
