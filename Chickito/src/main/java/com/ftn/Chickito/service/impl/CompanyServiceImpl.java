@@ -1,6 +1,7 @@
 package com.ftn.Chickito.service.impl;
 
-import com.ftn.Chickito.dto.companyDto.CreateCompanyDto;
+import com.ftn.Chickito.dto.company.CreateCompanyDto;
+import com.ftn.Chickito.mapper.CompanyMapper;
 import com.ftn.Chickito.model.Company;
 import com.ftn.Chickito.repository.CompanyRepository;
 import com.ftn.Chickito.service.CompanyService;
@@ -15,6 +16,7 @@ import java.util.List;
 public class CompanyServiceImpl implements CompanyService{
 
     private final CompanyRepository companyRepository;
+    private final CompanyMapper mapper;
 
     @Override
     public Company findById(Long id) {
@@ -39,11 +41,7 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company save(CreateCompanyDto request) {
 
-        Company newCompany = new Company();
-        newCompany.setName(request.getName());
-        newCompany.setPib(request.getPib());
-        newCompany.setEstablishmentDate(LocalDateTime.now());
-
+        Company newCompany = this.mapper.createCompanyDtoToCompany(request);
         return this.companyRepository.save(newCompany);
     }
 }

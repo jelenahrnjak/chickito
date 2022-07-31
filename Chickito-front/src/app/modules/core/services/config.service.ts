@@ -10,7 +10,7 @@ export class ConfigService {
   private _auth_url = this._api_url + '/api/auth';
   private _user_url = this._api_url + '/api/users';
   private _company_url = this._api_url + '/api/companies';
-  private _building_url = this._api_url + '/api/buildins';
+  private _building_url = this._api_url + '/api/buildings';
 
   private _login_url = this._auth_url + '/login';
 

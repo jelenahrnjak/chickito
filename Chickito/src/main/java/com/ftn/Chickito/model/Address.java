@@ -21,19 +21,19 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String street;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String number;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String longitude;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String latitude;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private City city;
 
 }

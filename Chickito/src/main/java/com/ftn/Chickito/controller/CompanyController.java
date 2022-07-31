@@ -1,12 +1,10 @@
 package com.ftn.Chickito.controller;
 
-import com.ftn.Chickito.dto.auth.UserRequest;
-import com.ftn.Chickito.dto.companyDto.CompanyDto;
-import com.ftn.Chickito.dto.companyDto.CreateCompanyDto;
+import com.ftn.Chickito.dto.company.CompanyDto;
+import com.ftn.Chickito.dto.company.CreateCompanyDto;
 import com.ftn.Chickito.exception.ResourceConflictException;
 import com.ftn.Chickito.mapper.CompanyMapper;
 import com.ftn.Chickito.model.Company;
-import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,9 +20,7 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
-
     private final CompanyMapper mapper;
-
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -40,7 +36,7 @@ public class CompanyController {
         return this.mapper.companyListToCompanyDtoList(companies) ;
     }
 
-    @PostMapping()
+    @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<CompanyDto> addCompany(@RequestBody CreateCompanyDto request) {
 

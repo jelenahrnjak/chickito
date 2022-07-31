@@ -4,4 +4,6 @@ export default interface Company {
     name : string;
     pib : string;
     establishmentDate : string;
+    headOfficeId : number;
+    headOfficeAddress : string;
 }

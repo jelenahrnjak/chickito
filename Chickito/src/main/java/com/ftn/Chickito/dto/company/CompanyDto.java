@@ -1,4 +1,4 @@
-package com.ftn.Chickito.dto.companyDto;
+package com.ftn.Chickito.dto.company;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateCompanyDto {
+public class CompanyDto {
 
     private Long id;
     private String name;
     private String pib;
+    private String establishmentDate;
+    private Long headOfficeId;
+    private String headOfficeAddress;
 }

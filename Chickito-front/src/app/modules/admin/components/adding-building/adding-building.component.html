@@ -15,7 +15,7 @@
                 <div class="row">
 
                     <div class="input-group mb-4"> 
-                        <select class="form-control" formControlName="company" placeholder="Izaberite preduzeće" required>
+                        <select class="form-control" formControlName="companyId" placeholder="Izaberite preduzeće" required>
                             <option value="" disabled selected>Preduzeće</option>
                             <option *ngFor="let company of allCompanies" value="{{company.id}}">{{company.name}}</option> 
                         </select>
@@ -28,6 +28,9 @@
                     </div>
                     <div class="input-group mb-3">
                     <input class="form-control" type="text"  formControlName="city"placeholder="Grad">
+                    </div>
+                    <div class="input-group mb-3">
+                    <input class="form-control" type="text"  formControlName="postalCode"placeholder="Poštanski broj">
                     </div>
                     <div class="input-group mb-3">
                     <input class="form-control" type="text" formControlName="country" placeholder="Država">
@@ -54,3 +57,21 @@
         </div>
     </div>
     </div> 
+
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Sedište već postoji</h4>
+                <button type="button" class="btn-close x-btn" aria-label="Close" (click)="display = 'none'"  ><i style="color: white;" class="fa fa-close" ></i></button>
+              </div>
+              <div class="modal-body">
+                <p>Preduzeće već poseduje sedište na adresi {{checkHeadOffice()}}. Da li želite da podesite novo sedište?</p>
+              </div>
+              <div class="modal-footer"> 
+                <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="leaveOldHeadOffice();this.create()">Odustani</button>
+                <button type="button" class="btn btn-green" style=" width: 35%;" (click)="this.create();" data-dismiss="modal">Potvrdi</button>
+              </div>
+        </div>
+        </div>
+    </div>
