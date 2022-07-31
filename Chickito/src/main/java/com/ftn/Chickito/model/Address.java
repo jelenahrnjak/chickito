@@ -33,7 +33,7 @@ public class Address {
     @Column(nullable = false)
     private String latitude;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private City city;
 
 }

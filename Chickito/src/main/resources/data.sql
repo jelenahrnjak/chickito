@@ -13,3 +13,8 @@ VALUES (1,1,0,'admin@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz
 
 INSERT INTO COMPANIES (id, establishment_date, name, pib)
 VALUES (1, '2022-07-31 20:21:07.253468' , 'PP-TOPIKO' , '24124142');
+
+-- insert into countries (name) values (?)
+-- insert into cities (country_id, name, postal_code) values (?, ?, ?)
+-- insert into addresses (city_id, latitude, longitude, number, street) values (?, ?, ?, ?, ?)
+-- insert into buildings (address_id, company_id, head_office) values (?, ?, ?)
