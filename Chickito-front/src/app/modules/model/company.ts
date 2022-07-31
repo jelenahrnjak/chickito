@@ -1,6 +1,6 @@
 export default interface Company {
 
-    id : string;
+    id : number;
     name : string;
     pib : string;
     establishmentDate : string;

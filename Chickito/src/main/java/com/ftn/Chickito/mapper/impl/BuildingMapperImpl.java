@@ -12,6 +12,9 @@ import com.ftn.Chickito.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class BuildingMapperImpl implements BuildingMapper {
@@ -35,8 +38,23 @@ public class BuildingMapperImpl implements BuildingMapper {
         dto.setAddress(this.addressMapper.addressToAddressDto(b.getAddress()));
         dto.setCompanyId(b.getCompany().getId());
         dto.setCompanyName(b.getCompany().getName());
-        dto.setHeadOffice(dto.isHeadOffice());
+        dto.setHeadOffice(b.isHeadOffice());
 
         return dto;
+    }
+
+    @Override
+    public List<BuildingDto> buildingListToBuildingDtoList(List<Building> buildings) {
+        List<BuildingDto> dtoList = new ArrayList<>();
+
+        if(buildings == null){
+            return dtoList;
+        }
+
+        for(Building b : buildings){
+            dtoList.add(buildingToBuildingDto(b));
+        }
+
+        return dtoList;
     }
 }

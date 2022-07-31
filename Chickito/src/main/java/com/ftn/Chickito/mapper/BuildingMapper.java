@@ -12,6 +12,6 @@ import java.util.List;
 public interface BuildingMapper {
 
     Building createBuildingDtoToBuilding(CreateBuildingDto dto);
-
     BuildingDto buildingToBuildingDto(Building b);
+    List<BuildingDto> buildingListToBuildingDtoList(List<Building> buildings);
 }

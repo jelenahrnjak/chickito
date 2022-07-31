@@ -1,1 +1,55 @@
-<p>admin works!</p> 
+<h1>Preduzeća</h1>
+<hr>
+
+<div class="row"> 
+    <div class="card"  *ngFor="let c of allCompanies">
+        <!-- <img :src="assets/Images/{{c.coverImage}}" class="card-img-top" sty alt="Missing image"> -->
+        <ul class="list-group list-group-flush" >
+            <li class = "list-group-item"  style="cursor: pointer;" (click)="selectCompany(c.id, c.name)">
+            <strong>{{c.name}}</strong>
+            </li>
+            <li style="height: 35px;" class="list-group-item">{{c.pib}}</li>  
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}€</li>    
+            <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
+            <!-- <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li>  -->
+            <li *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">
+                <a class="btn-green btn" href="admin/new-building">Dodaj sedište</a>  
+            </li>
+            <!-- <li class="list-group-item"> 
+                <button class="small-btn" (click)="unsubscribeCottage(c.id)">Unsubscribe</button>  
+            </li>  -->
+        </ul> 
+    </div>
+
+</div>
+ 
+<div class="card-body" *ngIf="showBuildings">
+    
+
+    <h1>Objekti {{currentCompany}}</h1>
+    <hr>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Adresa</th>
+                    <th>Grad</th>
+                    <th>Poštanski broj</th>
+                    <th>Država</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allBuildings"> 
+                    <td>{{item.address.street}} {{item.address.number}}</td>
+                    <td>{{item.address.city.name}}</td>
+                    <td>{{item.address.city.postalCode}}</td>
+                    <td>{{item.address.city.country}}</td>
+                    <!-- <td class="color-primary">$21.56</td>
+                    <td><span class="badge badge-primary">Sale</span></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

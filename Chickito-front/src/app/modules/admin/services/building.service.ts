@@ -24,4 +24,12 @@ export class BuildingService {
         console.log('Creating building success');
       }));
   }
+
+  findAllByCompany(companyId : any) { 
+
+    return this.apiService.get(this.config.building_url + '/findAllByCompany/' + companyId)
+    .pipe(map(buildings => { 
+      return buildings;
+    }));
+  }
 }

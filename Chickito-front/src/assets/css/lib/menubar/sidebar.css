@@ -94,7 +94,7 @@
 }
 
 .sidebar .nano-content>ul li>a:hover {
-  background: linear-gradient(to right, #5772FE , #6D85FB);
+  background: linear-gradient(to right, rgba(51, 56, 87, 0.2) , rgba(25, 29, 46, 0.2));
 }
 
 .sidebar .nano-content>ul li>a>.sidebar-collapse-icon {
