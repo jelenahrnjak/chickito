@@ -27,6 +27,7 @@ public class BuildingMapperImpl implements BuildingMapper {
         Building newBuilding = new Building();
         newBuilding.setAddress(this.addressMapper.addressDtoToAddress(dto.getAddress()));
         newBuilding.setCompany(this.companyRepository.findById(dto.getCompanyId()).orElseGet(null));
+        newBuilding.setDeleted(false);
         newBuilding.setHeadOffice(dto.isHeadOffice());
 
         return newBuilding;
@@ -35,6 +36,7 @@ public class BuildingMapperImpl implements BuildingMapper {
     @Override
     public BuildingDto buildingToBuildingDto(Building b) {
         BuildingDto dto = new BuildingDto();
+        dto.setId(b.getId());
         dto.setAddress(this.addressMapper.addressToAddressDto(b.getAddress()));
         dto.setCompanyId(b.getCompany().getId());
         dto.setCompanyName(b.getCompany().getName());

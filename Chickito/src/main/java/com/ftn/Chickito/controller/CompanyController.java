@@ -57,4 +57,10 @@ public class CompanyController {
         return new ResponseEntity<>(this.mapper.companyToCompanyDto(c), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void delete(@PathVariable Long id) {
+        this.companyService.delete(id);
+    }
+
 }

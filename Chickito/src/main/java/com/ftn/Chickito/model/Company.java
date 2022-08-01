@@ -29,4 +29,7 @@ public class Company {
 
     private LocalDateTime establishmentDate;
 
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted;
+
 }

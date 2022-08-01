@@ -12,5 +12,5 @@ public interface CompanyService {
     Company findByPib(String pib);
     List<Company> findAll ();
     Company save(CreateCompanyDto request);
-
+    void delete(Long id);
 }

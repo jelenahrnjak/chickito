@@ -28,7 +28,7 @@ public class City {
     @Column(unique = true, nullable = false)
     private String postalCode;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     private Country country;
 
 }

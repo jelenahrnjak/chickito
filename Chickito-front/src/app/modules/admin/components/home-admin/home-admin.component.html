@@ -6,14 +6,17 @@
         <!-- <img :src="assets/Images/{{c.coverImage}}" class="card-img-top" sty alt="Missing image"> -->
         <ul class="list-group list-group-flush" >
             <li class = "list-group-item"  style="cursor: pointer;" (click)="selectCompany(c.id, c.name)">
-            <strong>{{c.name}}</strong>
+            <strong>{{c.name}}</strong> 
             </li>
             <li style="height: 35px;" class="list-group-item">{{c.pib}}</li>  
             <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}€</li>    
             <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
             <!-- <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li>  -->
             <li *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">
-                <a class="btn-green btn" href="admin/new-building">Dodaj sedište</a>  
+                <a class="btn-green btn" href="admin/new-building" style=" margin-top: 3%;">Dodaj sedište</a>  
+            </li>            
+            <li style="height: 70px;" class="list-group-item">
+                <button class="btn-red btn" style=" margin-top: 3%;" (click)="deleteCompany(c.id, c.name)">Obriši</button>  
             </li>
             <!-- <li class="list-group-item"> 
                 <button class="small-btn" (click)="unsubscribeCottage(c.id)">Unsubscribe</button>  
@@ -38,6 +41,8 @@
                     <th>Grad</th>
                     <th>Poštanski broj</th>
                     <th>Država</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -46,8 +51,10 @@
                     <td>{{item.address.city.name}}</td>
                     <td>{{item.address.city.postalCode}}</td>
                     <td>{{item.address.city.country}}</td>
-                    <!-- <td class="color-primary">$21.56</td>
-                    <td><span class="badge badge-primary">Sale</span></td> -->
+                    <td *ngIf="item.headOffice != false"><span class="badge btn-red" (click)="changeHeadOffice(item.id)" style="float:right; cursor: pointer;">Ukloni kao sedište</span></td>
+                    <td *ngIf="item.headOffice == false"><span class="badge btn-green" (click)="changeHeadOffice(item.id)" style="float:right; cursor: pointer;">Postavi za sedište</span></td>
+                    <td><span class="badge btn-red" (click)="deleteBuilding(item.id)" style="cursor: pointer;">Obriši</span></td>
+                    <!-- <td class="color-primary">$21.56</td> -->
                 </tr>
             </tbody>
         </table>

@@ -10,4 +10,7 @@ public interface BuildingService {
     List<Building> findAllByCompany (Long companyId);
     Building save(CreateBuildingDto request);
     Building findHeadOfficeOfCompany(Long companyId);
+    void delete(Long id);
+    void deleteCompanyBuildings(Long companyId);
+    void changeHeadOffice(Long id);
 }

@@ -32,4 +32,20 @@ export class BuildingService {
       return buildings;
     }));
   }
+
+  
+  deleteBuilding(id : any) { 
+
+    return this.apiService.delete(this.config.building_url + "/" + id)
+      .pipe(map(() => {
+        console.log('Deleting building success');
+      }));
+  }
+
+  changeHeadOffice(id : any ){
+    return this.apiService.put(this.config.building_url + "/changeHeadOffice/" + id)
+    .pipe(map(() => {
+      console.log('Updating building success');
+    }));
+  }
 }

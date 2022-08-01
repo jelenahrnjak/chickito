@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BuildingDto {
 
+    private Long id;
     private Long companyId;
     private String companyName;
     private AddressDto address;

@@ -39,5 +39,17 @@ public class BuildingController {
         List<Building> buildings = this.buildingService.findAllByCompany(companyId);
 
         return this.mapper.buildingListToBuildingDtoList(buildings);
+    } 
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void delete(@PathVariable Long id) {
+        this.buildingService.delete(id);
+    }
+
+    @PutMapping("changeHeadOffice/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void changeHeadOffice(@PathVariable Long id) {
+        this.buildingService.changeHeadOffice(id);
     }
 }

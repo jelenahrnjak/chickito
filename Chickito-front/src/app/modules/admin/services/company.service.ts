@@ -32,4 +32,12 @@ export class CompanyService {
       return companies;
     }));
   }
+
+  deleteCompany(id : any) { 
+
+    return this.apiService.delete(this.config.company_url + "/" + id)
+      .pipe(map(() => {
+        console.log('Deleting company success');
+      }));
+  }
 }

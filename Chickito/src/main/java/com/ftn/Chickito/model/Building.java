@@ -29,4 +29,7 @@ public class Building {
 
     @Column(nullable = false)
     private boolean headOffice = false;
+
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted;
 }

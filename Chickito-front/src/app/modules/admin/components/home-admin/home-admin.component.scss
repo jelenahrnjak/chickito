@@ -71,9 +71,17 @@ input[type=number] {
 .btn-green{
   color: #fff698;
   background-color: #00553e;
-  margin-top: 3%;
 } 
 
 .btn-green:hover{
   background-color: #076b50;
+}
+
+.btn-red{
+  color: #fff698;
+  background-color: #b7222f; 
+} 
+
+.btn-red:hover{
+  background-color: #ca1d2c;
 }

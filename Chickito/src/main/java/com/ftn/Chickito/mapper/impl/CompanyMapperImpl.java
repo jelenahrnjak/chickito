@@ -51,6 +51,7 @@ public class CompanyMapperImpl implements CompanyMapper {
         company.setName(dto.getName());
         company.setPib(dto.getPib());
         company.setEstablishmentDate(LocalDateTime.now());
+        company.setDeleted(false);
         return company;
     }
 

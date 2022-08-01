@@ -13,9 +13,9 @@ import java.util.List;
 public interface BuildingRepository extends JpaRepository<Building, Long> {
 
     Page<Building> findAll(Pageable pageable);
-    @Query("select b from Building b where b.headOffice = true and b.company.id = :companyId")
+    @Query("select b from Building b where b.headOffice = true and b.company.id = :companyId and b.deleted = false")
     Building findHeadOfficeOfCompany(Long companyId);
 
-    @Query("select b from Building b where b.company.id = :companyId")
+    @Query("select b from Building b where b.company.id = :companyId and b.deleted = false")
     List<Building> findAllByCompany(Long companyId);
 }
