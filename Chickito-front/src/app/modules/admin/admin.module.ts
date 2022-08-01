@@ -11,7 +11,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TokenInterceptor } from '../../interceptors/TokenInterceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddingCompanyComponent } from './components/adding-company/adding-company.component';
-import { AddingBuildingComponent } from './components/adding-building/adding-building.component'; 
+import { AddingBuildingComponent } from './components/adding-building/adding-building.component';
+import { UsersViewComponent } from './components/users-view/users-view.component'; 
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AddingBuildingComponent } from './components/adding-building/adding-bui
     HomeAdminComponent,
     AddingCompanyComponent,
     AddingBuildingComponent,
+    UsersViewComponent,
   ],
   imports: [
     CommonModule,

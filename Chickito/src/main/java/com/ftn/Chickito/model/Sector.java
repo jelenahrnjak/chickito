@@ -21,10 +21,16 @@ public class Sector {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private SectorType type;
 
     @OneToOne
     private Leader leader;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private  Company company;
+
+    @Column(nullable = false)
+    private boolean deleted;
 
 }

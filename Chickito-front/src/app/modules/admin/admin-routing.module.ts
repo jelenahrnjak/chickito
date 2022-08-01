@@ -6,6 +6,7 @@ import { RoleguardService as RoleGuard } from '../core/guards/roleguard.service'
 import { AddingUserComponent } from './components/adding-user/adding-user.component';
 import { AddingCompanyComponent } from './components/adding-company/adding-company.component';
 import { AddingBuildingComponent } from './components/adding-building/adding-building.component';
+import { UsersViewComponent } from './components/users-view/users-view.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'new-building',
         component: AddingBuildingComponent, 
+      },
+      {
+        path: 'users',
+        component: UsersViewComponent, 
       },
     ], 
   }

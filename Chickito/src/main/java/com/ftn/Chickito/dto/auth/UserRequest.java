@@ -19,5 +19,6 @@ public class UserRequest {
     private String email;
     private Long role;
     private Long sector;
+    private int gender;
 
 }

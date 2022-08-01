@@ -121,7 +121,7 @@
 }
 
 .sidebar .nano-content>ul li.active>a::before {
-    background: #03A9F5;
+    background: #fffd9d;
     content: "";
     height: 100%;
     left: 0;
@@ -146,7 +146,7 @@ html.rtl .sidebar .nano-content>ul>li.label, html.rtl .sidebar .nano-content>ul>
 }
 
 .sidebar .nano-content>ul>li.active>a, .sidebar .nano-content>ul>li.open>a, .sidebar .nano-content>ul>li>ul {
-    background: linear-gradient(to right, #5772FE , #6D85FB);
+    background: linear-gradient(to right, #013f2f , #023a2b);
 }
 
 .sidebar .nano-content>ul>li>ul>li.label, .sidebar .nano-content>ul>li>ul>li.content, .sidebar .nano-content>ul>li>ul>li>a {

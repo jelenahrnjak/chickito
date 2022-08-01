@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.ftn.Chickito.model.enums.GenderType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -45,6 +46,9 @@ public class User implements UserDetails {
     private String email;
 
     private String phoneNumber; 
+
+    @Column(nullable = false)
+    private GenderType gender;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Address address;

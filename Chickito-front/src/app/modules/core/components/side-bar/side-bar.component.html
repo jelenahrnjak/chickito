@@ -2,12 +2,20 @@
     <div class="nano">
         <div class="nano-content" >
             <ul>
-                <div class="logo"><a href="index.html">
-                        <img src="assets/logos/circle-border.png" alt="" width="48" height="48" /><span style="margin-left: 2%;">Chickito</span></a></div>
+                <div class="logo">
+                    <button style="background-color: transparent; border: none;" (click)="goToHomePage()">
+                        <img src="assets/logos/Chickito.jpg" alt=""  width="70%" height="70%" />
+                        <!-- <span style="margin-left: 2%;">Chickito</span> -->
+                    </button>
+                </div>
+                
+                <li><a class="sidebar-sub-toggle" href="/admin"><i class="ti-home"></i> Pregled preduzeća </a> </li>
+                <li><a class="sidebar-sub-toggle" href="/admin/users"><i class="fa fa-users"></i> Pregled korisnika </a> </li>
+
                 <li class="label" *ngIf="role == 'ADMIN'">Dodavanje entiteta</li>
                 
-                <li><a class="sidebar-sub-toggle" href="/admin/new-company"><i class="ti-user"></i> Novo preduzeće </a> </li>
-                <li><a class="sidebar-sub-toggle" href="/admin/new-building"><i class="ti-user"></i> Novi objekat </a> </li>
+                <li><a class="sidebar-sub-toggle" href="/admin/new-company"><i class="fa fa-university"></i> Novo preduzeće </a> </li>
+                <li><a class="sidebar-sub-toggle" href="/admin/new-building"><i class="fa fa-building-o"></i> Novi objekat </a> </li>
                 <li><a class="sidebar-sub-toggle" href="/admin/new-user"><i class="ti-user"></i> Novi korisnik </a> </li>
 
                 <!-- <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard <span

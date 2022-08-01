@@ -4,8 +4,11 @@ import com.ftn.Chickito.dto.company.CreateCompanyDto;
 import com.ftn.Chickito.mapper.CompanyMapper;
 import com.ftn.Chickito.model.Building;
 import com.ftn.Chickito.model.Company;
+import com.ftn.Chickito.model.Sector;
+import com.ftn.Chickito.model.enums.SectorType;
 import com.ftn.Chickito.repository.BuildingRepository;
 import com.ftn.Chickito.repository.CompanyRepository;
+import com.ftn.Chickito.repository.SectorRepository;
 import com.ftn.Chickito.service.BuildingService;
 import com.ftn.Chickito.service.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,7 @@ public class CompanyServiceImpl implements CompanyService{
 
     private final CompanyRepository companyRepository;
     private final BuildingService buildingService;
+    private final SectorRepository sectorRepository;
     private final CompanyMapper mapper;
 
     @Override
@@ -45,8 +49,17 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company save(CreateCompanyDto request) {
 
-        Company newCompany = this.mapper.createCompanyDtoToCompany(request);
-        return this.companyRepository.save(newCompany);
+        Company toSave = this.mapper.createCompanyDtoToCompany(request);
+        Company newCompany = this.companyRepository.save(toSave);
+
+        for(SectorType type : SectorType.values()){
+            Sector sector = new Sector();
+            sector.setCompany(newCompany);
+            sector.setType(type);
+            this.sectorRepository.save(sector);
+        }
+
+        return newCompany;
     }
 
     @Override
