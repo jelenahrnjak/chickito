@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService, } from '../../services/user.service';  
 import { ToastrService } from 'ngx-toastr';  
+import { CompanyService } from '../../services/company.service';
+import Company from '../../../model/company';
 
 @Component({
   selector: 'app-adding-user',
@@ -11,16 +13,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddingUserComponent implements OnInit {
 
-  form!: FormGroup;   
+  form!: FormGroup; 
+  allCompanies : Company[] = []   
 
   constructor( 
     private toastr: ToastrService, 
     private userService: UserService,
     private router: Router, 
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private companyService: CompanyService,) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
+      companyId : ['', Validators.compose([Validators.required])],
       username: ['', Validators.compose([Validators.required, Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-+_!@#$%^&*.,?:;<>=`~\\]\x22\x27\(\)\{\}\|\/\[\\\\?]).{8,}$')])],
       repeatedPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-+_!@#$%^&*.,?:;<>=`~\\]\x22\x27\(\)\{\}\|\/\[\\\\?]).{8,}$')])],
@@ -30,6 +35,11 @@ export class AddingUserComponent implements OnInit {
       role : ['', Validators.compose([Validators.required])],
       sector : [''],
     });
+
+    
+    this.companyService.getAll().subscribe((data : Company[]) => {
+      this.allCompanies = data;
+    }); 
   }
 
   onSubmit(){  

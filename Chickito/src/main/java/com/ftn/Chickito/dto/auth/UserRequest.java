@@ -12,13 +12,14 @@ import lombok.Setter;
 public class UserRequest {
 
     private Long id;
+    private Long companyId;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private Long role;
-    private Long sector;
+    private int sector;
     private int gender;
 
 }

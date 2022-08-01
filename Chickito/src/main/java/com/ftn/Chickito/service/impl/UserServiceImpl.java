@@ -4,6 +4,7 @@ import com.ftn.Chickito.dto.auth.UserRequest;
 import com.ftn.Chickito.model.Role;
 import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.model.enums.GenderType;
+import com.ftn.Chickito.model.enums.SectorType;
 import com.ftn.Chickito.repository.SectorRepository;
 import com.ftn.Chickito.repository.UserRepository;
 import com.ftn.Chickito.service.RoleService;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService{
         u.setLastName(userRequest.getLastName());
         u.setActive(true);
         u.setDeleted(false);
-        u.setSector(sectorRepository.findById(userRequest.getSector()).orElse(null)); //TODO: fix
+        u.setSector(sectorRepository.findByCompanyAndType(userRequest.getCompanyId(), SectorType.values()[userRequest.getSector()]));
         Role role = roleService.findById(userRequest.getRole());
         u.setRole(role);
         u.setGender(GenderType.values()[userRequest.getGender()]);
