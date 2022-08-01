@@ -53,9 +53,6 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Address address;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Sector sector;
-
     @Column(name = "deleted", nullable = false)
     private boolean deleted;
 
@@ -66,8 +63,27 @@ public class User implements UserDetails {
     private Timestamp lastPasswordResetDate;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role_id")
     private Role role;
+
+    public User(User u) {
+        this.username = u.getUsername();
+        this.password = u.getPassword();
+        this.firstName = u.getFirstName();
+        this.lastName = u.getLastName();
+        this.email = u.getEmail();
+        this.phoneNumber = u.getPhoneNumber();
+        this.gender = u.getGender();
+        this.address = u.getAddress();
+        this.deleted = u.isDeleted();
+        this.active = u.isActive();
+        this.lastPasswordResetDate = u.getLastPasswordResetDate();
+        this.role = u.getRole();
+    }
+
+    public User() {
+
+    }
+
 
     public void setPassword(String password) {
         Timestamp now = new Timestamp(new Date().getTime());

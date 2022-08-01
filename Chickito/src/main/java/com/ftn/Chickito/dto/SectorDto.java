@@ -12,7 +12,7 @@ import lombok.Setter;
 public class SectorDto {
 
     private Long id;
-    private String type;
+    private int type;
     private String leader;
     private Long companyId;
 

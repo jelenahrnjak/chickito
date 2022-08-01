@@ -14,6 +14,7 @@ import { AddingCompanyComponent } from './components/adding-company/adding-compa
 import { AddingBuildingComponent } from './components/adding-building/adding-building.component';
 import { UsersViewComponent } from './components/users-view/users-view.component';  
 import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatIconModule} from '@angular/material/icon'; 
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [  
     {

@@ -35,10 +35,18 @@
                         <div class="input-group mb-3">
                         <input class="form-control" type="text" formControlName="phoneNumber" placeholder="Broj telefona">
                         </div>
+                        
+                        <div class="input-group mb-4"> 
+                            <select class="form-control" formControlName="gender" placeholder="Pol" required>
+                                <option value="" disabled selected>Pol</option>
+                                <option value="0">Ženski</option>
+                                <option value="1">Muški</option>  
+                            </select>
+                        </div>
                         <!-- <div class="input-group mb-4">
                             <label for="roleCheck">Da li ste rukovodilac?</label>
                             <input id="roleCheck" type="checkbox" style="margin-left: 10px; accent-color: #00553e" formControlName="role" placeholder="Ponovite lozinku">
-                        </div> --> 
+                        </div>  -->
                         <div class="input-group mb-4"> 
                             <select class="form-control" formControlName="role" placeholder="Izaberite vrstu zaposlenog" required>
                                 <option value="" disabled selected>Vrsta zaposlenog</option>
@@ -48,8 +56,8 @@
                             </select>
                         </div>
                         <div class="input-group mb-4"> 
-                            <select class="form-control" formControlName="sector" placeholder="Izaberite radnu jedinicu" required>
-                                <option value="" disabled selected>Radna jedinica</option>
+                            <select class="form-control" formControlName="sector" placeholder="Izaberite radnu jedinicu">
+                                <option value="" disabled selected>Sektor</option>
                                 <option value="0">Održavanje i energetika</option>
                                 <option value="1">Klanica i pakeraj</option>
                                 <option value="2">Prerada</option>
@@ -57,10 +65,8 @@
                             </select>
                         </div>
             
-                        <div class="input-group mb-3">
-
-                            <input class="form-control" [type]="show_button ? 'text' : 'password'" formControlName="password" placeholder="Lozinka" title="Mora da sadži najmanje 8 karaktera, malo, veliko slovo, cifru i specijalni karakter.">
-                            <i [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>     
+                        <div class="input-group mb-3"> 
+                            <input class="form-control" type="password" formControlName="password" placeholder="Lozinka" title="Mora da sadži najmanje 8 karaktera, malo, veliko slovo, cifru i specijalni karakter.">   
                         </div>
                         <div class="input-group mb-4">
                             <input class="form-control" type="password" formControlName="repeatedPassword" placeholder="Ponovite lozinku">
@@ -81,4 +87,4 @@
         </div>
         </div>
     </div>
-    </div> 
+    </div>  

@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core'; 
 import { ApiService } from '../../core/services/api.service'; 
 import { ConfigService } from '../../core/services/config.service'; 
 import { _throw } from 'rxjs/observable/throw'; 

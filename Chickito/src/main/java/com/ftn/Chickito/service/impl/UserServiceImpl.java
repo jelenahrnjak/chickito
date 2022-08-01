@@ -1,13 +1,13 @@
 package com.ftn.Chickito.service.impl;
 
 import com.ftn.Chickito.dto.auth.UserRequest;
-import com.ftn.Chickito.model.Role;
-import com.ftn.Chickito.model.User;
+import com.ftn.Chickito.mapper.UserMapper;
+import com.ftn.Chickito.model.*;
 import com.ftn.Chickito.model.enums.GenderType;
 import com.ftn.Chickito.model.enums.SectorType;
-import com.ftn.Chickito.repository.SectorRepository;
-import com.ftn.Chickito.repository.UserRepository;
+import com.ftn.Chickito.repository.*;
 import com.ftn.Chickito.service.RoleService;
+import com.ftn.Chickito.service.SectorService;
 import com.ftn.Chickito.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,9 +20,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final LeaderRepository leaderRepository;
+    private final DirectorRepository directorRepository;
+    private final WorkerRepository workerRepository;
     private final SectorRepository sectorRepository;
     public final PasswordEncoder passwordEncoder;
-    private final RoleService roleService;
+    private final UserMapper userMapper;
 
     @Override
     public User findById(Long id) {
@@ -47,25 +50,29 @@ public class UserServiceImpl implements UserService{
     @Override
     public User save(UserRequest userRequest) {
 
-        User u = new User();
-        u.setUsername(userRequest.getUsername());
-        u.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        User u = this.userMapper.userRequestToUser(userRequest);
 
-        u.setFirstName(userRequest.getFirstName());
-        u.setEmail(userRequest.getEmail());
-        u.setLastName(userRequest.getLastName());
-        u.setActive(true);
-        u.setDeleted(false);
-        Role role = roleService.findById(userRequest.getRole());
-        u.setRole(role);
-        u.setGender(GenderType.values()[userRequest.getGender()]);
-        u.setPhoneNumber(userRequest.getPhoneNumber());
 
-        if(role.getName() != "DIRECTOR"){
-            u.setSector(sectorRepository.findByCompanyAndType(userRequest.getCompanyId(), SectorType.values()[userRequest.getSector()]));
+        if(userRequest.getRole() == 2){
+
+            Director newUser = new Director(u);
+            return this.directorRepository.save(newUser);
+
+        }else if(userRequest.getRole() == 3){
+
+            Leader newUser = new Leader(u);
+            Sector sector = sectorRepository.findByCompanyAndType(userRequest.getCompanyId(), SectorType.values()[userRequest.getSector()]);
+            newUser.setSector(sector);
+            this.leaderRepository.save(newUser);
+            sector.setLeader(newUser);
+            this.sectorRepository.save(sector);
+            return newUser;
         }
 
 
-        return this.userRepository.save(u);
+        Worker newUser = new Worker(u);
+        Sector sector = sectorRepository.findByCompanyAndType(userRequest.getCompanyId(), SectorType.values()[userRequest.getSector()]);
+        newUser.setSector(sector);
+        return this.workerRepository.save(newUser);
     }
 }

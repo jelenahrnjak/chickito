@@ -15,6 +15,8 @@ import javax.persistence.*;
 @Table(name="workers")
 public class Worker extends User{
 
+    public Worker(User u){super(u);}
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Sector sector;
 }

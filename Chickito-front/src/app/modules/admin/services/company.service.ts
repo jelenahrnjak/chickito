@@ -13,9 +13,7 @@ export class CompanyService {
 
   constructor(
     private apiService: ApiService, 
-    private config: ConfigService, 
-  ) {
-  }
+    private config: ConfigService,) {}
 
   createCompany(company : any) { 
 
