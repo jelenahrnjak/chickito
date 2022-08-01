@@ -33,10 +33,7 @@
                         <input class="form-control" type="text" formControlName="email" placeholder="Email">
                         </div>
                         <div class="input-group mb-3">
-                        <input class="form-control" type="password" formControlName="password" placeholder="Lozinka" title="Mora da sadži najmanje 8 karaktera, malo, veliko slovo, cifru i specijalni karakter.">
-                        </div>
-                        <div class="input-group mb-4">
-                        <input class="form-control" type="password" formControlName="repeatedPassword" placeholder="Ponovite lozinku">
+                        <input class="form-control" type="text" formControlName="phoneNumber" placeholder="Broj telefona">
                         </div>
                         <!-- <div class="input-group mb-4">
                             <label for="roleCheck">Da li ste rukovodilac?</label>
@@ -60,6 +57,14 @@
                             </select>
                         </div>
             
+                        <div class="input-group mb-3">
+
+                            <input class="form-control" [type]="show_button ? 'text' : 'password'" formControlName="password" placeholder="Lozinka" title="Mora da sadži najmanje 8 karaktera, malo, veliko slovo, cifru i specijalni karakter.">
+                            <i [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>     
+                        </div>
+                        <div class="input-group mb-4">
+                            <input class="form-control" type="password" formControlName="repeatedPassword" placeholder="Ponovite lozinku">
+                        </div>
                         <div class="col-md-12 text-center">
                             <div class="d-flex my-2 justify-content-between">
                             <div class="d-inline-block mr-3"> 

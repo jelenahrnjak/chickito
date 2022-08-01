@@ -1,15 +1,15 @@
-package com.ftn.Chickito.dto.auth;
+package com.ftn.Chickito.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequest {
+@Getter
+@Setter
+public class UserDto {
 
     private Long id;
     private Long companyId;
@@ -19,8 +19,9 @@ public class UserRequest {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private Long role;
-    private int sector;
-    private int gender;
+    private String role;
+    private Long sectorId;
+    private String sectorType;
+    private String gender;
 
 }

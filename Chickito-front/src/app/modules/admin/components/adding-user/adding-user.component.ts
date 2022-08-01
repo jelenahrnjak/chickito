@@ -14,8 +14,10 @@ import Company from '../../../model/company';
 export class AddingUserComponent implements OnInit {
 
   form!: FormGroup; 
-  allCompanies : Company[] = []   
-
+  allCompanies : Company[] = []    
+  show_button: Boolean = false;
+  show_eye: Boolean = false;
+  
   constructor( 
     private toastr: ToastrService, 
     private userService: UserService,
@@ -32,14 +34,19 @@ export class AddingUserComponent implements OnInit {
       firstName: ['', Validators.compose([Validators.required, Validators.maxLength(64)])],
       lastName: ['', Validators.compose([Validators.required, Validators.maxLength(64)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
+      phoneNumber: ['', Validators.compose([Validators.required])],
       role : ['', Validators.compose([Validators.required])],
       sector : [''],
-    });
-
+    }); 
     
     this.companyService.getAll().subscribe((data : Company[]) => {
       this.allCompanies = data;
     }); 
+  } 
+
+  showPassword() {
+      this.show_button = !this.show_button;
+      this.show_eye = !this.show_eye;
   }
 
   onSubmit(){  

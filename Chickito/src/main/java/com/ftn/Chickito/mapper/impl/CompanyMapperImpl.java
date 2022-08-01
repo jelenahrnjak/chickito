@@ -4,10 +4,12 @@ import com.ftn.Chickito.dto.company.CompanyDto;
 import com.ftn.Chickito.dto.company.CreateCompanyDto;
 import com.ftn.Chickito.mapper.AddressMapper;
 import com.ftn.Chickito.mapper.CompanyMapper;
-import com.ftn.Chickito.model.Address;
+import com.ftn.Chickito.mapper.SectorMapper;
 import com.ftn.Chickito.model.Building;
 import com.ftn.Chickito.model.Company;
+import com.ftn.Chickito.model.Sector;
 import com.ftn.Chickito.repository.BuildingRepository;
+import com.ftn.Chickito.repository.SectorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +24,8 @@ public class CompanyMapperImpl implements CompanyMapper {
 
     private final BuildingRepository buildingRepository;
     private final AddressMapper addressMapper;
+    private final SectorMapper sectorMapper;
+    private final SectorRepository sectorRepository;
 
     @Override
     public CompanyDto companyToCompanyDto(Company company) {
@@ -41,6 +45,11 @@ public class CompanyMapperImpl implements CompanyMapper {
             dto.setHeadOfficeId(headOffice.getId());
             dto.setHeadOfficeAddress(this.addressMapper.getAddressString(headOffice.getAddress()));
         }
+        dto.setSectors(new ArrayList<>());
+        for(Sector s : this.sectorRepository.findByCompany(company.getId())){
+            dto.getSectors().add(this.sectorMapper.sectorToSectorDto(s));
+        }
+
         return dto;
     }
 

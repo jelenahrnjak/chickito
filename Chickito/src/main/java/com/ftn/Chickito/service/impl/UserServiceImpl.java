@@ -56,10 +56,14 @@ public class UserServiceImpl implements UserService{
         u.setLastName(userRequest.getLastName());
         u.setActive(true);
         u.setDeleted(false);
-        u.setSector(sectorRepository.findByCompanyAndType(userRequest.getCompanyId(), SectorType.values()[userRequest.getSector()]));
         Role role = roleService.findById(userRequest.getRole());
         u.setRole(role);
         u.setGender(GenderType.values()[userRequest.getGender()]);
+        u.setPhoneNumber(userRequest.getPhoneNumber());
+
+        if(role.getName() != "DIRECTOR"){
+            u.setSector(sectorRepository.findByCompanyAndType(userRequest.getCompanyId(), SectorType.values()[userRequest.getSector()]));
+        }
 
 
         return this.userRepository.save(u);
