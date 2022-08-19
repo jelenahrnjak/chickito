@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service'; 
+import {AuthService} from '../../../services/core/auth.service'; 
 import {Subject} from 'rxjs/Subject';
-import { ToastrService } from 'ngx-toastr';  
-import {takeUntil} from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';   
 
 @Component({
   selector: 'app-login',
@@ -20,8 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private toastr: ToastrService, 
     private authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private router: Router, 
     private formBuilder: FormBuilder
   ) { }
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Company from '../../../model/company'
 import Building from '../../../model/building'
-import { CompanyService } from '../../services/company.service';
-import { BuildingService } from '../../services/building.service';
+import { CompanyService } from '../../../services/company.service';
+import { BuildingService } from '../../../services/building.service';
 import { ToastrService } from 'ngx-toastr';  
 
 @Component({

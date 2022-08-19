@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { ApiService } from '../../core/services/api.service'; 
-import { ConfigService } from '../../core/services/config.service'; 
+import { ApiService } from '../services/core/api.service'; 
+import { ConfigService } from '../services/core/config.service'; 
 import { _throw } from 'rxjs/observable/throw'; 
 import {  map } from 'rxjs/operators';
 

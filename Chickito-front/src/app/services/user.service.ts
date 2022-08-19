@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
-import { ApiService } from '../../core/services/api.service'; 
-import { ConfigService } from '../../core/services/config.service'; 
+import { HttpHeaders } from '@angular/common/http'; 
 import { _throw } from 'rxjs/observable/throw'; 
 import {  map } from 'rxjs/operators';
+import { ApiService } from './core/api.service';
+import { ConfigService } from './core/config.service';
 
 @Injectable({
   providedIn: 'root'

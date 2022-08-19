@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BuildingService } from '../../services/building.service';  
+import { BuildingService } from '../../../services/building.service';  
 import { ToastrService } from 'ngx-toastr';  
 import Company from '../../../model/company'
-import { CompanyService } from '../../services/company.service';
+import { CompanyService } from '../../../services/company.service';
 
 @Component({
   selector: 'app-adding-building',
