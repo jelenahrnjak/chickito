@@ -11,7 +11,7 @@ export class RoleguardService {
   canActivate(route: ActivatedRouteSnapshot): boolean {
 
     const expectedRole = route.data['expectedRole'];
-    const token = sessionStorage.getItem('user');
+    const token = sessionStorage.getItem('jwt');
     let currentRole : any = "";
     
     if (token != null){

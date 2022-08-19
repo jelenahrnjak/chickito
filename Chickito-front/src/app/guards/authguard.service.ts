@@ -16,7 +16,7 @@ export class AuthguardService {
   }
  
   tokenIsPresent() {
-    return sessionStorage.getItem("user") != undefined && sessionStorage.getItem("user") != null;
+    return sessionStorage.getItem("jwt") != undefined && sessionStorage.getItem("jwt") != null;
   }
 
   roleIsPresent(){
@@ -24,8 +24,8 @@ export class AuthguardService {
   }
 
   tokenIsExpired(){
-    if (sessionStorage.getItem("user") != undefined && sessionStorage.getItem("user") != null)  {
-      let locStorageToken = sessionStorage.getItem("user") 
+    if (sessionStorage.getItem("jwt") != undefined && sessionStorage.getItem("jwt") != null)  {
+      let locStorageToken = sessionStorage.getItem("jwt") 
       if (!locStorageToken){
         return true;
       } 

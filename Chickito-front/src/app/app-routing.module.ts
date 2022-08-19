@@ -26,53 +26,69 @@ const routes: Routes = [
   }, 
   // { 
   //   path: '**', component: ErrorPageComponent 
+  // // },
+  // {
+  //   path: 'admin',
+  //   component: HomeAdminComponent,
+  //   children: [ 
+  //     {
+  //       path: 'new-user',
+  //       component: AddingUserComponent, 
+  //     },
+  //     {
+  //       path: 'new-company',
+  //       component: AddingCompanyComponent, 
+  //     },
+  //     {
+  //       path: 'new-building',
+  //       component: AddingBuildingComponent, 
+  //     },
+  //     {
+  //       path: 'users',
+  //       component: UsersViewComponent, 
+  //     }, 
+  //   ]
   // },
   {
     path: 'admin',
-    component: HomeAdminComponent,
+    component: HomeAdminComponent, 
     canActivate: [RoleGuard], 
     data: { 
       expectedRole: 'ADMIN'  
     },
-    children: [ 
-      {
-        path: 'new-user',
-        component: AddingUserComponent, 
-      },
-      {
-        path: 'new-company',
-        component: AddingCompanyComponent, 
-      },
-      {
-        path: 'new-building',
-        component: AddingBuildingComponent, 
-      },
-      {
-        path: 'users',
-        component: UsersViewComponent, 
-      }, 
-    ]
   },
-  // {
-  //   path: 'admin',
-  //   component: HomeAdminComponent, 
-  // },
-  // {
-  //   path: 'admin/new-user',
-  //   component: AddingUserComponent, 
-  // },
-  // {
-  //   path: 'admin/new-company',
-  //   component: AddingCompanyComponent, 
-  // },
-  // {
-  //   path: 'admin/new-building',
-  //   component: AddingBuildingComponent, 
-  // },
-  // {
-  //   path: 'admin/users',
-  //   component: UsersViewComponent, 
-  // },
+  {
+    path: 'admin/new-user',
+    component: AddingUserComponent,
+    canActivate: [RoleGuard], 
+    data: { 
+      expectedRole: 'ADMIN'  
+    }, 
+  },
+  {
+    path: 'admin/new-company',
+    component: AddingCompanyComponent, 
+    canActivate: [RoleGuard], 
+    data: { 
+      expectedRole: 'ADMIN'  
+    },
+  },
+  {
+    path: 'admin/new-building',
+    component: AddingBuildingComponent, 
+    canActivate: [RoleGuard], 
+    data: { 
+      expectedRole: 'ADMIN'  
+    },
+  },
+  {
+    path: 'admin/users',
+    component: UsersViewComponent, 
+    canActivate: [RoleGuard], 
+    data: { 
+      expectedRole: 'ADMIN'  
+    },
+  },
   
  
 ];
