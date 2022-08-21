@@ -1,9 +1,6 @@
 package com.ftn.Chickito.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,10 +8,11 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -28,13 +26,12 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private User reviewer;
 
-    @Column(nullable = false)
-    private boolean approved = false;
+    @Column
+    private Boolean approved;
 
     @Column(nullable = false)
     private Double price;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Machine> machines = new HashSet<>();
-
 }

@@ -33,7 +33,7 @@ public class CompanyController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<CompanyDto> loadAll() {
         List<Company> companies = this.companyService.findAll();
-        return this.mapper.companyListToCompanyDtoList(companies) ;
+        return this.mapper.companyListToCompanyDtoList(companies);
     }
 
     @PostMapping
@@ -54,7 +54,7 @@ public class CompanyController {
 
         Company c = this.companyService.save(request);
 
-        return new ResponseEntity<>(this.mapper.companyToCompanyDto(c), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.companyToCompanyDto(c), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

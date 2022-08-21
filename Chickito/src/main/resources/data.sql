@@ -17,6 +17,8 @@ INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (444, 3 , 111, false)
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender)
 VALUES (111,true,false,'admin@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'admin', 1, 1);
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id)
+VALUES (333,true,false,'leader@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'leader', 3, 1, 111);
 
 -- insert into countries (name) values (?)
 -- insert into cities (country_id, name, postal_code) values (?, ?, ?)

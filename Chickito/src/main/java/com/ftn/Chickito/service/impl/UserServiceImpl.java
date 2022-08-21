@@ -7,6 +7,7 @@ import com.ftn.Chickito.model.enums.SectorType;
 import com.ftn.Chickito.repository.*;
 import com.ftn.Chickito.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("No user found with username '%s'.", username)));
     }
 
     @Override
