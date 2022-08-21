@@ -21,7 +21,7 @@ public class MachineReport {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Leader author;
+    private User author;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Sector sector;

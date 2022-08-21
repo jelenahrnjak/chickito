@@ -32,4 +32,6 @@ public class Company {
     @Column(name = "deleted", nullable = false)
     private boolean deleted;
 
+    @OneToOne
+    private User director;
 }

@@ -23,8 +23,8 @@ public class WorkersReport {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Leader author;
+    private User author;
 
     @ManyToMany
-    private Set<Worker> workers = new HashSet<>();
+    private Set<User> workers = new HashSet<>();
 }

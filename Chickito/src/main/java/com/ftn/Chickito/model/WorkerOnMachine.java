@@ -21,7 +21,7 @@ public class WorkerOnMachine {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Worker worker;
+    private User worker;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Machine machine;

@@ -65,6 +65,9 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Role role;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private Sector sector;
+
     public User(User u) {
         this.username = u.getUsername();
         this.password = u.getPassword();
@@ -78,6 +81,7 @@ public class User implements UserDetails {
         this.active = u.isActive();
         this.lastPasswordResetDate = u.getLastPasswordResetDate();
         this.role = u.getRole();
+        this.sector = u.getSector();
     }
 
     public User() {

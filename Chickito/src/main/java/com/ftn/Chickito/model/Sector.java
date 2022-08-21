@@ -25,7 +25,7 @@ public class Sector {
     private SectorType type;
 
     @OneToOne
-    private Leader leader;
+    private User leader;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private  Company company;

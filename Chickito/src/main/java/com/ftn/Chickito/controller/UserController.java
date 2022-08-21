@@ -20,6 +20,7 @@ public class UserController {
 
     private final UserService userService;
 
+
     @GetMapping("/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public User loadById(@PathVariable Long userId) {
