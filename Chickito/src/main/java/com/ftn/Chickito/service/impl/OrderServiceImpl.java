@@ -123,6 +123,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Documentation getDocumentation(String documentation) {
+
+        if (documentation == null || documentation.equals("")) {
+            return null;
+        }
+
         return documentationRepository.findByText(documentation)
                 .orElse(documentationRepository.save(Documentation.builder().text(documentation).build()));
     }

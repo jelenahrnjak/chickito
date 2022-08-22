@@ -1,7 +1,7 @@
 package com.ftn.Chickito.dto.order;
 
-import com.ftn.Chickito.model.Machine;
-import com.ftn.Chickito.model.User;
+import com.ftn.Chickito.dto.UserDto;
+import com.ftn.Chickito.dto.machine.MachineDto;
 import lombok.*;
 
 import java.util.Set;
@@ -14,8 +14,8 @@ import java.util.Set;
 public class OrderDto {
 
     private Long id;
-    private User author;
-    private User reviewer;
+    private UserDto author;
+    private UserDto reviewer;
     private Double price;
-    private Set<Machine> machines;
+    private Set<MachineDto> machines;
 }

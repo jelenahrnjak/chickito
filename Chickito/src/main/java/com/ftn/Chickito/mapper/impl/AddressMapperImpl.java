@@ -15,6 +15,10 @@ public class AddressMapperImpl implements AddressMapper {
     @Override
     public AddressDto addressToAddressDto(Address address) {
 
+        if (address == null) {
+            return null;
+        }
+
         CityDto city = new CityDto();
         city.setName(address.getCity().getName());
         city.setPostalCode(address.getCity().getPostalCode());
@@ -32,6 +36,10 @@ public class AddressMapperImpl implements AddressMapper {
 
     @Override
     public Address addressDtoToAddress(AddressDto dto) {
+
+        if (dto == null) {
+            return null;
+        }
 
         Country country = new Country();
         country.setName(dto.getCity().getCountry());
@@ -53,6 +61,10 @@ public class AddressMapperImpl implements AddressMapper {
 
     @Override
     public String getAddressString(Address a) {
+
+        if (a == null) {
+            return "";
+        }
 
         String street = a.getStreet() + " " + a.getNumber();
         String city = a.getCity().getName() + " " + a.getCity().getPostalCode();
