@@ -7,8 +7,6 @@ import { AuthService } from '../../../services/core/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
- 
-  
 
   constructor(private authService : AuthService) { }
 

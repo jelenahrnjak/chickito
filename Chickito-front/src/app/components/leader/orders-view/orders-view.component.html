@@ -1,0 +1,32 @@
+<div class="card-body">
+    
+
+    <h1>Narudžbenice</h1>
+    <hr>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Broj</th>
+                    <th>Datum kreiranja</th>
+                    <th>Mašine</th>
+                    <th>Ukupna cena</th>
+                    <th>Odgovor</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allOrders"> 
+                    <td>#{{item.id}}</td>
+                    <td>{{item.creationDate}}</td>
+                    <td><span class="badge" (click)="showMachines(item.id)" style="cursor: pointer;">Prikaži mašine</span></td>
+                    <td>{{item.price}}</td>
+                    <td *ngIf="item.approved != false"><span class="badge btn-green" style="float:right;">Odobreno</span></td>
+                    <td *ngIf="item.approved == false"><span class="badge btn-red" style="float:right;">Odbijeno</span></td>
+                    <td *ngIf="item.approved == undefined"><span class="badge" style="float:right;">Bez odgovora</span></td>
+                    <!-- <td class="color-primary">$21.56</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

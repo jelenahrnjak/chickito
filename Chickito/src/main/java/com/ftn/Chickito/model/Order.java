@@ -3,6 +3,7 @@ package com.ftn.Chickito.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,4 +35,6 @@ public class Order {
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Machine> machines = new HashSet<>();
+    
+    private LocalDateTime creationDate;
 }

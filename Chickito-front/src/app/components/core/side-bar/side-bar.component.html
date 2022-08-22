@@ -4,19 +4,39 @@
             <ul>
                 <div class="logo">
                     <button style="background-color: transparent; border: none;" (click)="goToHomePage()">
-                        <img src="assets/logos/Chickito.jpg" alt=""  width="70%" height="70%" />
+                        <img src="assets/logos/Chickito.jpg" alt=""  width="80%" height="80%" />
                         <!-- <span style="margin-left: 2%;">Chickito</span> -->
                     </button>
                 </div>
-                
-                <li><a class="sidebar-sub-toggle" href="/admin"><i class="ti-home"></i> Pregled preduzeća </a> </li>
-                <li><a class="sidebar-sub-toggle" href="/admin/users"><i class="fa fa-users"></i> Pregled korisnika </a> </li>
+                 
+                <!--ADMIN-->
+                <li *ngIf="role == 'ADMIN'"><a class="sidebar-sub-toggle" href="/admin"><i class="ti-home"></i> Pregled preduzeća </a> </li>
+                <li *ngIf="role == 'ADMIN'"><a class="sidebar-sub-toggle" href="/admin/users"><i class="fa fa-users"></i> Pregled korisnika </a> </li>
 
-                <li class="label" *ngIf="role == 'ADMIN'">Dodavanje entiteta</li>
+                <li *ngIf="role == 'ADMIN'" class="label">Dodavanje entiteta</li>
                 
-                <li><a class="sidebar-sub-toggle" href="/admin/new-company"><i class="fa fa-university"></i> Novo preduzeće </a> </li>
-                <li><a class="sidebar-sub-toggle" href="/admin/new-building"><i class="fa fa-building-o"></i> Novi objekat </a> </li>
-                <li><a class="sidebar-sub-toggle" href="/admin/new-user"><i class="ti-user"></i> Novi korisnik </a> </li>
+                <li *ngIf="role == 'ADMIN'"><a class="sidebar-sub-toggle" href="/admin/new-company"><i class="fa fa-university"></i> Novo preduzeće </a> </li>
+                <li *ngIf="role == 'ADMIN'"><a class="sidebar-sub-toggle" href="/admin/new-building"><i class="fa fa-building-o"></i> Novi objekat </a> </li>
+                <li *ngIf="role == 'ADMIN'"><a class="sidebar-sub-toggle" href="/admin/new-user"><i class="ti-user"></i> Novi korisnik </a> </li>
+
+
+                <!--LEADER--> 
+                <li *ngIf="role == 'LEADER'" class="label">Mašine</li>
+                
+                <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/machines"><i class="fa fa-industry"></i> Pregled mašina </a> </li>  
+                <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/orders"><i class="fa fa-shopping-cart "></i> Narudžbenice </a> </li> 
+                <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/machine-reports"><i class="ti-files"></i> Izveštaji </a> </li>
+
+                <li *ngIf="role == 'LEADER'" class="label">Radnici</li>
+                
+                <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/workers"><i class="fa fa-users"></i> Pregled radnika </a> </li>  
+                <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/suggestions"><i class="fa fa-file-text-o  "></i> Predlozi </a> </li> 
+                <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/worker-reports"><i class="ti-files"></i> Izveštaji </a> </li>
+
+                
+                <li style="bottom: 0; position: fixed; width: 100%;">
+                    <a href="#" (click)="logout()"><i class="ti-close"></i> Odjava</a>
+                </li> 
 
                 <!-- <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard <span
                             class="badge badge-primary">2</span> <span

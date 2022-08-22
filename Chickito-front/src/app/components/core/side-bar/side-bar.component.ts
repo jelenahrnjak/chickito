@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import { AuthService } from '../../../services/core/auth.service';
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss']
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit { 
 
   role = sessionStorage.getItem('role')
+  
   constructor(
-    private router: Router,) { }
+    private router: Router,
+    private authService : AuthService) { }
 
   ngOnInit(): void {
   }
@@ -34,4 +37,7 @@ export class SideBarComponent implements OnInit {
       } 
   }
 
+  logout(){ 
+    this.authService.logout();
+  }
 }

@@ -33,6 +33,10 @@ import { AuthguardService } from './guards/authguard.service';
 import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
 import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
 import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
+import { NewOrderComponent } from './components/leader/new-order/new-order.component';
+import { OrdersViewComponent } from './components/leader/orders-view/orders-view.component';
+import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component';
+import { MyProfileComponent } from './components/shared/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,11 @@ import { HomeWorkerComponent } from './components/worker/home-worker/home-worker
     ErrorPageComponent,
     HomeLeaderComponent,
     HomeDirectorComponent,
-    HomeWorkerComponent, 
+    HomeWorkerComponent,
+    NewOrderComponent,
+    OrdersViewComponent,
+    MachinesViewComponent,
+    MyProfileComponent, 
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,8 @@ package com.ftn.Chickito.mapper.impl;
 
 import com.ftn.Chickito.dto.machine.MachineDto;
 import com.ftn.Chickito.dto.order.OrderDto;
+import com.ftn.Chickito.dto.order.OrderItemDto;
+import com.ftn.Chickito.dto.order.OrderViewDto;
 import com.ftn.Chickito.mapper.MachineMapper;
 import com.ftn.Chickito.mapper.OrderMapper;
 import com.ftn.Chickito.mapper.UserMapper;
@@ -10,6 +12,8 @@ import com.ftn.Chickito.model.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,5 +38,42 @@ public class OrderMapperImpl implements OrderMapper {
 
     private Set<MachineDto> mapMachines(Set<Machine> machines) {
         return machines.stream().map(machineMapper::machineToMachineDto).collect(Collectors.toSet());
+    }
+
+    @Override
+    public OrderViewDto orderToOrderViewDto(Order order) {
+
+        String formattedDateTime = "";
+        if(order.getCreationDate() != null){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            formattedDateTime = order.getCreationDate().format(formatter);
+        }
+
+        List<OrderItemDto> items = new ArrayList<>();
+
+        for(Machine machine : order.getMachines()){
+            items.add(machineToOrderItemDto(machine));
+        }
+
+        return OrderViewDto.builder()
+                .id(order.getId())
+                .orderItems(items)
+                .price(order.getPrice())
+                .author(order.getAuthor().getFirstName() + " " + order.getAuthor().getLastName())
+                .reviewer(order.getReviewer().getFirstName() + " " + order.getAuthor().getLastName())
+                .creationDate(formattedDateTime)
+                .approved(order.getApproved())
+                .build();
+    }
+
+    @Override
+    public OrderItemDto machineToOrderItemDto(Machine machine) {
+        return OrderItemDto.builder()
+                .name(machine.getName())
+                .model(machine.getModel())
+                .serialNumber(machine.getSerialNumber())
+                .documentation(machine.getDocumentation().getText())
+                .price(machine.getPrice())
+                .build();
     }
 }

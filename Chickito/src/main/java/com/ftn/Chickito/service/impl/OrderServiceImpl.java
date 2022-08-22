@@ -16,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -60,6 +62,7 @@ public class OrderServiceImpl implements OrderService {
                 .author(author)
                 .reviewer(reviewer)
                 .price(priceSum)
+                .creationDate(LocalDateTime.now())
                 .build();
 
         machines.forEach(machine -> machine.setOrder(order));
@@ -130,5 +133,10 @@ public class OrderServiceImpl implements OrderService {
 
         return documentationRepository.findByText(documentation)
                 .orElse(documentationRepository.save(Documentation.builder().text(documentation).build()));
+    }
+
+    @Override
+    public List<Order> findAllByAuthor(String authorUsername){
+        return this.orderRepository.findAllByAuthor(authorUsername);
     }
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'; 
 
+import { MyProfileComponent } from './components/shared/my-profile/my-profile.component';
+
 import { AddingBuildingComponent } from './components/admin/adding-building/adding-building.component';
 import { AddingCompanyComponent } from './components/admin/adding-company/adding-company.component';
 import { AddingUserComponent } from './components/admin/adding-user/adding-user.component';
@@ -11,24 +13,31 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
 
 import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
+import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
+import { OrdersViewComponent } from './components/leader/orders-view/orders-view.component'; 
+import { NewOrderComponent } from './components/leader/new-order/new-order.component'; 
 
 import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 
 import { AuthentificationGuard } from './guards/authentification.guard'
-import { RoleguardService as RoleGuard } from './guards/roleguard.service';
-
-//canActivate:[AuthentificationGuard] //OVO DODAVATI U PATH ZA SVE PUTANJE KOJIMA MOGU SVI REGISTROVANI DA PRISTUPE
+import { RoleguardService as RoleGuard } from './guards/roleguard.service'; 
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "login",
-    pathMatch: "full", 
-  },
+    path: '',
+    redirectTo : 'login', 
+    pathMatch : "full"
+  }, 
   {
     path: 'login',
     component: LoginComponent, 
   }, 
+
+  {
+    path: 'my-profile',
+    component: MyProfileComponent, 
+    canActivate:[AuthentificationGuard]
+  },
 
   {
     path: 'admin',
@@ -85,6 +94,19 @@ const routes: Routes = [
         path: '', 
         component: HomeLeaderComponent,
       },
+      {
+        path: 'machines', 
+        component: MachinesViewComponent,
+      },
+      {
+        path: 'orders', 
+        component: OrdersViewComponent,
+      },
+      {
+        path: 'new-order', 
+        component: NewOrderComponent,
+      },
+      
       ]
   },
 

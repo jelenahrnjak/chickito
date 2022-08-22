@@ -1,7 +1,6 @@
 package com.ftn.Chickito.repository;
 
 import com.ftn.Chickito.model.Building;
-import com.ftn.Chickito.model.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
