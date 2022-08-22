@@ -41,7 +41,7 @@ export class RoleguardService {
           this.router.navigate(["worker"]);
           break;
         default:
-            this.router.navigate(["auth/login"])
+            this.router.navigate(["login"])
         } 
       
       return false;

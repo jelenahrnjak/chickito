@@ -30,6 +30,9 @@ import { ApiService } from './services/core/api.service';
 import { AuthService } from './services/core/auth.service'; 
 import { ConfigService } from './services/core/config.service';
 import { AuthguardService } from './guards/authguard.service';
+import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
+import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
+import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { AuthguardService } from './guards/authguard.service';
     AddingBuildingComponent,
     UsersViewComponent,
     LoginComponent,
-    ErrorPageComponent, 
+    ErrorPageComponent,
+    HomeLeaderComponent,
+    HomeDirectorComponent,
+    HomeWorkerComponent, 
   ],
   imports: [
     CommonModule,

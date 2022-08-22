@@ -46,7 +46,7 @@ export class AuthService {
   logout() { 
     this.access_token = null; ;
     sessionStorage.clear(); 
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 
   tokenIsPresent() {

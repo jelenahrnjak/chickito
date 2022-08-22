@@ -6,8 +6,13 @@ import { AddingCompanyComponent } from './components/admin/adding-company/adding
 import { AddingUserComponent } from './components/admin/adding-user/adding-user.component';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
 import { UsersViewComponent } from './components/admin/users-view/users-view.component'; 
-import { LoginComponent } from './components/auth/login/login.component';
-import { ErrorPageComponent } from './components/core/error-page/error-page.component'; 
+import { LoginComponent } from './components/auth/login/login.component'; 
+
+import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
+
+import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
+
+import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 
 import { AuthentificationGuard } from './guards/authentification.guard'
 import { RoleguardService as RoleGuard } from './guards/roleguard.service';
@@ -17,77 +22,84 @@ import { RoleguardService as RoleGuard } from './guards/roleguard.service';
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "auth/login",
+    redirectTo: "login",
     pathMatch: "full", 
   },
   {
-    path: 'auth/login',
+    path: 'login',
     component: LoginComponent, 
   }, 
-  // { 
-  //   path: '**', component: ErrorPageComponent 
-  // // },
-  // {
-  //   path: 'admin',
-  //   component: HomeAdminComponent,
-  //   children: [ 
-  //     {
-  //       path: 'new-user',
-  //       component: AddingUserComponent, 
-  //     },
-  //     {
-  //       path: 'new-company',
-  //       component: AddingCompanyComponent, 
-  //     },
-  //     {
-  //       path: 'new-building',
-  //       component: AddingBuildingComponent, 
-  //     },
-  //     {
-  //       path: 'users',
-  //       component: UsersViewComponent, 
-  //     }, 
-  //   ]
-  // },
+
   {
     path: 'admin',
-    component: HomeAdminComponent, 
     canActivate: [RoleGuard], 
     data: { 
       expectedRole: 'ADMIN'  
     },
+    children: [
+      {
+        path: '', 
+        component: HomeAdminComponent,
+      },
+      {
+        path: 'new-user',
+        component: AddingUserComponent
+      }, 
+      {
+        path: 'new-company',
+        component: AddingCompanyComponent
+      }, 
+      {
+        path: 'new-building',
+        component: AddingBuildingComponent
+      }, 
+      {
+        path: 'users',
+        component: UsersViewComponent
+      }, 
+      ]
   },
+
   {
-    path: 'admin/new-user',
-    component: AddingUserComponent,
+    path: 'director',
     canActivate: [RoleGuard], 
     data: { 
-      expectedRole: 'ADMIN'  
-    }, 
-  },
-  {
-    path: 'admin/new-company',
-    component: AddingCompanyComponent, 
-    canActivate: [RoleGuard], 
-    data: { 
-      expectedRole: 'ADMIN'  
+      expectedRole: 'DIRECTOR'  
     },
+    children: [
+      {
+        path: '', 
+        component: HomeDirectorComponent,
+      },
+      ]
   },
+
   {
-    path: 'admin/new-building',
-    component: AddingBuildingComponent, 
+    path: 'leader',
     canActivate: [RoleGuard], 
     data: { 
-      expectedRole: 'ADMIN'  
+      expectedRole: 'LEADER'  
     },
+    children: [
+      {
+        path: '', 
+        component: HomeLeaderComponent,
+      },
+      ]
   },
+
   {
-    path: 'admin/users',
-    component: UsersViewComponent, 
+    path: 'worker',
     canActivate: [RoleGuard], 
     data: { 
-      expectedRole: 'ADMIN'  
+      expectedRole: 'WORKER'  
     },
+    children: [
+      {
+        path: '', 
+        component: HomeWorkerComponent,
+      },
+      ]
   },
   
  

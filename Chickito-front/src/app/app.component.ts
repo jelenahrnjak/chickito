@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
 
   showHeader(){
     
-    return this.router.url !== '/auth/login' && sessionStorage.getItem('role') !== undefined
+    return this.router.url !== '/login' && sessionStorage.getItem('role') !== undefined
   }
   
 }
