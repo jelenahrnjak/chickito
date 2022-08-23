@@ -1,7 +1,7 @@
 <div class="container d-flex align-items-center justify-content-center ">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" >
         <div class="col-lg-6 col-md-10">
-        <div class="card"> 
+        <div class="card" > 
             <div class="card-body p-5" >
                 
             <div class="text-center">
@@ -11,7 +11,7 @@
     
                 <h4 class="text-dark mb-5" style="margin-top: 2%;">Kreiranje novog objekta</h4>
             </div>  
-            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+            <form (ngSubmit)="onSubmit()" [formGroup]="form" >
                 <div class="row">
 
                     <div class="input-group mb-4"> 
@@ -20,21 +20,33 @@
                             <option *ngFor="let company of allCompanies" value="{{company.id}}">{{company.name}}</option> 
                         </select>
                     </div> 
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" *ngIf="!selectAddress">
                     <input class="form-control" type="text" formControlName="street" placeholder="Ulica">
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" *ngIf="!selectAddress">
                     <input class="form-control" type="text" formControlName="number" placeholder="Broj">
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" *ngIf="!selectAddress">
                     <input class="form-control" type="text"  formControlName="city"placeholder="Grad">
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" *ngIf="!selectAddress">
                     <input class="form-control" type="text"  formControlName="postalCode"placeholder="Poštanski broj">
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" *ngIf="!selectAddress">
                     <input class="form-control" type="text" formControlName="country" placeholder="Država">
+                    </div> 
+                    
+                    <div class="input-group mb-3" *ngIf="selectAddress">
+                        <label *ngIf="address ==''">Izaberite adresu na mapi povlačeći crvenu figuru.</label>
+                        <label *ngIf="address != ''">Adresa: {{address}}</label>
+                        <agm-map [zoom]="13" [latitude]="lat" [longitude]="lng">
+                            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                        </agm-map> 
                     </div>
+                    <div class="input-group mb-4">
+                        <button class="btn btn-lg btn-block mb-4 btn-green" *ngIf="selectAddress" (click)="selectAddress=false; resetAddress()">Ručni unos adrese</button>
+                        <button class="btn btn-lg btn-block mb-4 btn-green" *ngIf="!selectAddress" (click)="selectAddress=true; resetAddress()">Unos adrese pomoću mape</button>
+                    </div> 
                     <div class="input-group mb-4">
                         <label for="roleCheck">Da li je sedište?</label>
                         <input id="roleCheck" type="checkbox" style="margin-left: 10px; accent-color: #00553e" formControlName="headOffice">

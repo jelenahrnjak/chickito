@@ -38,6 +38,11 @@ import { OrdersViewComponent } from './components/leader/orders-view/orders-view
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component';
 import { MyProfileComponent } from './components/shared/my-profile/my-profile.component';
 import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
+import { AgmCoreModule } from '@agm/core';
+import {
+  MapsAPILoader
+} from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +76,9 @@ import { OrdersViewDirectorComponent } from './components/director/orders-view-d
     MatFormFieldModule,
     MatIconModule,
     NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyCX5DQFPxHlQlEeFkkWzTJ41PU6FehGzVs'
+    })
   ],
   providers: [     
     {

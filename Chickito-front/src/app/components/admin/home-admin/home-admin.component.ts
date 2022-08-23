@@ -3,7 +3,7 @@ import Company from '../../../model/company'
 import Building from '../../../model/building'
 import { CompanyService } from '../../../services/company.service';
 import { BuildingService } from '../../../services/building.service';
-import { ToastrService } from 'ngx-toastr';  
+import { ToastrService } from 'ngx-toastr';   
 
 @Component({
   selector: 'app-home-admin',
@@ -17,7 +17,8 @@ export class HomeAdminComponent implements OnInit {
   allBuildings : Building[] = []
   currentCompany : string = ""
   currentCompanyId : any = ""
-
+  display = 'none'
+  selectedAddress : any = ''; 
   constructor(
     private toastr: ToastrService, 
     private companyService: CompanyService,
@@ -85,5 +86,11 @@ export class HomeAdminComponent implements OnInit {
       }); 
     }
 
+  }
+
+  showMap(address){
+    this.selectedAddress = address
+    this.display = 'block'
+    
   }
 }
