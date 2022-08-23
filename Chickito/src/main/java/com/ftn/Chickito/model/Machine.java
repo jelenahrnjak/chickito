@@ -39,5 +39,8 @@ public class Machine {
     @Column(nullable = false)
     private boolean active = false;
 
+    @Column(nullable = false)
+    private Integer quantity;
+
     private Double price;
 }

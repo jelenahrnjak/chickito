@@ -80,6 +80,7 @@ public class OrderMapperImpl implements OrderMapper {
                 .serialNumber(machine.getSerialNumber())
                 .documentation(documentation)
                 .price(machine.getPrice())
+                .quantity(machine.getQuantity())
                 .build();
     }
 }

@@ -13,6 +13,9 @@ export class OrdersViewComponent implements OnInit {
   allOrders : Order[] = [] 
 
   display = "none";
+  displayDescription = "none"
+  selectedDocumentation = "";
+  selectedMachine = "";
   selectedOrder : any = "";
   orderItems : OrderItem[] = []
   constructor(

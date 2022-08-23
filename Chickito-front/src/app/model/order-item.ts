@@ -5,5 +5,6 @@ export default interface OrderItem {
     serialNumber : string;
     documentation : string;
     price : number; 
+    quantity : number; 
     
 }

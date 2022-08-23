@@ -80,6 +80,10 @@ const routes: Routes = [
         path: '', 
         component: HomeDirectorComponent,
       },
+      {
+        path: 'orders', 
+        component: OrdersViewComponent,
+      },
       ]
   },
 

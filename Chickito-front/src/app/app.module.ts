@@ -37,6 +37,7 @@ import { NewOrderComponent } from './components/leader/new-order/new-order.compo
 import { OrdersViewComponent } from './components/leader/orders-view/orders-view.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component';
 import { MyProfileComponent } from './components/shared/my-profile/my-profile.component';
+import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MyProfileComponent } from './components/shared/my-profile/my-profile.co
     NewOrderComponent,
     OrdersViewComponent,
     MachinesViewComponent,
-    MyProfileComponent, 
+    MyProfileComponent,
+    OrdersViewDirectorComponent, 
   ],
   imports: [
     CommonModule,

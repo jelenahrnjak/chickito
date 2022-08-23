@@ -17,6 +17,9 @@
                 <input class="form-control" type="number" formControlName="price" placeholder="Cena*">
                 </div> 
                 <div class="input-group mb-3">
+                <input class="form-control" type="number" formControlName="quantity" placeholder="Količina*">
+                </div>
+                <div class="input-group mb-3">
                 <textarea class="form-control" style="height: 15ch;" type="text"  formControlName="documentation" placeholder="Dokumentacija"></textarea>
                 </div>
                 
@@ -41,13 +44,14 @@
         <h4  style="width:95%; float: left;">Mašine</h4> 
     </div>   
 
-    <div class="table-responsive" style="margin-top : 1ch; height: 46ch;"> 
+    <div class="table-responsive" style="margin-top : 1ch; height: 53ch;"> 
         <table class="table" style=" margin-bottom: 4ch;">
             <thead>
                 <tr> 
                     <th>Naziv</th>
                     <th>Model</th>
                     <th>Cena</th>
+                    <th>Količina</th> 
                     <th>Dokumentacija</th> 
                     <th>/</th>
                 </tr>
@@ -57,6 +61,7 @@
                     <td  class="color-primary">{{item.name}}</td> 
                     <td  class="color-primary">{{item.model}}</td> 
                     <td>{{item.price}}€</td>
+                    <td>{{item.quantity}}</td>
                     <td *ngIf="!item.documentation">Nije navedena</td>
                     <td *ngIf="item.documentation"><span class="badge btn-green" style="cursor: pointer;" 
                         (click)="display='block'; selectedDocumentation = item.documentation; selectedMachine= item.name">Prikaži</span></td>

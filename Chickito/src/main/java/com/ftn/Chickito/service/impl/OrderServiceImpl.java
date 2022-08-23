@@ -43,10 +43,11 @@ public class OrderServiceImpl implements OrderService {
             Machine machine = Machine.builder()
                     .name(orderItemDto.getName())
                     .model(orderItemDto.getModel())
-                    .serialNumber(null) //TODO : sta s ovim?, kolicina
+                    .serialNumber(null)
                     .active(false)
                     .documentation(getDocumentation(orderItemDto.getDocumentation()))
                     .price(orderItemDto.getPrice())
+                    .quantity(orderItemDto.getQuantity())
                     .sector(author.getSector())
                     .build();
 

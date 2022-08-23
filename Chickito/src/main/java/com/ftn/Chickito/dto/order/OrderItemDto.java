@@ -14,4 +14,6 @@ public class OrderItemDto {
     private String serialNumber;
     private String documentation;
     private Double price;
+    private Integer quantity;
+
 }

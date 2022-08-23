@@ -30,6 +30,7 @@ export class NewOrderComponent implements OnInit {
       name : ['', Validators.compose([Validators.required])],
       model: ['', Validators.compose([Validators.required])],
       price: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])],
+      quantity: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])],
       documentation: [''],  
     }); 
   }
