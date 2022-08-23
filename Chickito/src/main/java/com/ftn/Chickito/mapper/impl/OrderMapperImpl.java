@@ -6,6 +6,7 @@ import com.ftn.Chickito.dto.order.OrderItemDto;
 import com.ftn.Chickito.dto.order.OrderViewDto;
 import com.ftn.Chickito.mapper.MachineMapper;
 import com.ftn.Chickito.mapper.OrderMapper;
+import com.ftn.Chickito.mapper.SectorMapper;
 import com.ftn.Chickito.mapper.UserMapper;
 import com.ftn.Chickito.model.Machine;
 import com.ftn.Chickito.model.Order;
@@ -24,6 +25,7 @@ public class OrderMapperImpl implements OrderMapper {
 
     private final MachineMapper machineMapper;
     private final UserMapper userMapper;
+    private final SectorMapper sectorMapper;
 
     @Override
     public OrderDto orderToOrderDto(Order order) {
@@ -61,7 +63,7 @@ public class OrderMapperImpl implements OrderMapper {
                 .price(order.getPrice())
                 .author(order.getAuthor().getFirstName() + " " + order.getAuthor().getLastName())
                 .reviewer(order.getReviewer().getFirstName() + " " + order.getAuthor().getLastName())
-                .sector(order.getAuthor().getSector().getType().toString())
+                .sector(sectorMapper.sectorTypeToString(order.getAuthor().getSector().getType()))
                 .creationDate(formattedDateTime)
                 .approved(order.getApproved())
                 .build();

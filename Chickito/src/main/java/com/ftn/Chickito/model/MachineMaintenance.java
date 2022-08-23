@@ -6,14 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="reports")
-public class MachineReport {
+@Table(name="machineMaintenances")
+public class MachineMaintenance {
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
@@ -28,5 +29,9 @@ public class MachineReport {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Machine machine;
+
+    private LocalDateTime creationDate;
+
+    private String text;
 
 }

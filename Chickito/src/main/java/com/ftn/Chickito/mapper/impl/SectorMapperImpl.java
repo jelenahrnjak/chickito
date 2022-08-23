@@ -22,4 +22,21 @@ public class SectorMapperImpl implements SectorMapper {
 
         return dto;
     }
+
+    @Override
+    public String sectorTypeToString(SectorType type) {
+
+        switch (type){
+            case PRERADA:
+                return "Prerada";
+            case KLANICA_I_PAKERAJ:
+                return "Klanica i pakeraj";
+            case KONTROLA_KVALITETA:
+                return "Kontrola kvaliteta";
+            default:
+                return "Održavanje i energetika";
+        }
+    }
+
+
 }
