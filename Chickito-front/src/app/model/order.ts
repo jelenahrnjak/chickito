@@ -8,6 +8,7 @@ export default interface Order {
     author : string,
     reviewer : string,
     orderItems : OrderItem[], 
-    approved : boolean;
+    approved : boolean,
+    sector : string,
     
 }

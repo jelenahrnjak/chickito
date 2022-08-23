@@ -69,4 +69,19 @@ public class OrderController {
 
         return new ResponseEntity<>(orderViews, HttpStatus.OK);
     }
+
+    @GetMapping("/findAllByDirector")
+    @PreAuthorize("hasAuthority('DIRECTOR')")
+    public ResponseEntity<List<OrderViewDto>> findAllByDirector(@RequestHeader("Authorization") String jwtToken) {
+
+        String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
+
+        List<Order> orders = orderService.findAllByDirector(username);
+        List<OrderViewDto> orderViews = new ArrayList<>();
+        for(Order order : orders){
+            orderViews.add(mapper.orderToOrderViewDto(order));
+        }
+
+        return new ResponseEntity<>(orderViews, HttpStatus.OK);
+    }
 }

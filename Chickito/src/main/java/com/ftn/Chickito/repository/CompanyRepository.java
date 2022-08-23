@@ -13,4 +13,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     @Query("select c from Company c where c.deleted = false")
     List<Company> findAllNotDeleted();
+
+    @Query("select c from Company c where c.director.username = :directorUsername")
+    Company findByDirector(String directorUsername);
 }

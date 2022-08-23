@@ -14,6 +14,7 @@ public class OrderViewDto {
     private Long id;
     private String author;
     private String reviewer;
+    private String sector;
     private Double price;
     private String creationDate;
     private Boolean approved;

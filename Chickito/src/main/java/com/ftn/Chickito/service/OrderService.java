@@ -13,4 +13,5 @@ public interface OrderService {
 
     boolean declineOrder(String reviewerUsername, Long id);
     List<Order> findAllByAuthor(String authorUsername);
+    List<Order> findAllByDirector(String directorUsername);
 }

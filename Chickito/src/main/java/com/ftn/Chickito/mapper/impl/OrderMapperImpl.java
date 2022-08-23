@@ -61,6 +61,7 @@ public class OrderMapperImpl implements OrderMapper {
                 .price(order.getPrice())
                 .author(order.getAuthor().getFirstName() + " " + order.getAuthor().getLastName())
                 .reviewer(order.getReviewer().getFirstName() + " " + order.getAuthor().getLastName())
+                .sector(order.getAuthor().getSector().getType().toString())
                 .creationDate(formattedDateTime)
                 .approved(order.getApproved())
                 .build();

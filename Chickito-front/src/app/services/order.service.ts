@@ -31,4 +31,27 @@ export class OrderService {
       }));
     } 
   
+    findAllByDirector() { 
+
+      return this.apiService.get(this.config.order_url + `/findAllByDirector`)
+      .pipe(map(orders => { 
+        return orders;
+      }));
+    } 
+
+    approveOrder(id : any) { 
+      
+      return this.apiService.post(this.config.order_url + `/${id}/approve`, {})
+        .pipe(map(() => {
+          console.log('Approving order success');
+        }));
+    }
+
+    declineOrder(id : any) { 
+      
+      return this.apiService.post(this.config.order_url + `/${id}/decline` , {})
+        .pipe(map(() => {
+          console.log('Approving order success');
+        }));
+    }
 }

@@ -20,6 +20,14 @@
                 <li *ngIf="role == 'ADMIN'"><a class="sidebar-sub-toggle" href="/admin/new-user"><i class="ti-user"></i> Novi korisnik </a> </li>
 
 
+                <!--DIRECTOR-->
+                <li *ngIf="role == 'DIRECTOR'" class="label">Mašine</li>
+                
+                <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/machines"><i class="fa fa-industry"></i> Pregled mašina </a> </li>  
+                <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/orders"><i class="fa fa-shopping-cart "></i> Narudžbenice </a> </li> 
+                <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/machine-reports"><i class="ti-files"></i> Izveštaji </a> </li>
+
+
                 <!--LEADER--> 
                 <li *ngIf="role == 'LEADER'" class="label">Mašine</li>
                 

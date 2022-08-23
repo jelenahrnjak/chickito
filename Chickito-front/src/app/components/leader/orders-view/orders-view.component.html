@@ -14,7 +14,7 @@
                     <th>Broj</th>
                     <th>Datum kreiranja</th>
                     <th>Mašine</th>
-                    <th>Ukupna cena</th>
+                    <th>Ukupna cena</th> 
                     <th>Odgovor</th> 
                 </tr>
             </thead>
@@ -23,10 +23,11 @@
                     <td>#{{item.id}}</td>
                     <td>{{item.creationDate}}</td>
                     <td><span class="badge btn-green" (click)="showMachines(item.id)" style="cursor: pointer;">Prikaži</span></td>
-                    <td>{{item.price}}€</td>
-                    <td *ngIf="item.approved == true"><span class="badge btn-green">Odobreno</span></td>
-                    <td *ngIf="item.approved == false"><span class="badge btn-red">Odbijeno</span></td>
-                    <td *ngIf="!item.approved"><span class="badge btn-red">Bez odgovora</span></td>
+                    <td>{{item.price}}€</td> 
+                    <td *ngIf="item.approved == true"><span class="badge"  style="color: #04664c;" >Odobreno</span></td>
+                    <td *ngIf="item.approved == false"><span class="badge" style="color: #b7222f;">Odbijeno</span></td>
+                    <td *ngIf="item.approved != true && item.approved != false"><span class="badge" style="color: gray;">Bez odgovora</span></td>
+                
                 </tr>
             </tbody>
         </table>
@@ -38,7 +39,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Pregled stavki narudžbenice broj {{selectedOrder}}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Pregled stavki narudžbenice broj #{{selectedOrder}}</h5>
         </div>  
         
         <div  class="container"> 

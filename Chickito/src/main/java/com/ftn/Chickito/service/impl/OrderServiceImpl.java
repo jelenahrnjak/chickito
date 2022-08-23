@@ -3,14 +3,8 @@ package com.ftn.Chickito.service.impl;
 import com.ftn.Chickito.dto.order.CreateOrderDto;
 import com.ftn.Chickito.exception.OrderAlreadyProccesedException;
 import com.ftn.Chickito.exception.WrongReviewerException;
-import com.ftn.Chickito.model.Documentation;
-import com.ftn.Chickito.model.Machine;
-import com.ftn.Chickito.model.Order;
-import com.ftn.Chickito.model.User;
-import com.ftn.Chickito.repository.DocumentationRepository;
-import com.ftn.Chickito.repository.MachineRepository;
-import com.ftn.Chickito.repository.OrderRepository;
-import com.ftn.Chickito.repository.UserRepository;
+import com.ftn.Chickito.model.*;
+import com.ftn.Chickito.repository.*;
 import com.ftn.Chickito.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +20,7 @@ import java.util.Set;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
+    private final CompanyRepository companyRepository;
     private final MachineRepository machineRepository;
     private final UserRepository userRepository;
     private final DocumentationRepository documentationRepository;
@@ -139,5 +134,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findAllByAuthor(String authorUsername){
         return this.orderRepository.findAllByAuthor(authorUsername);
+    }
+
+    @Override
+    public List<Order> findAllByDirector(String directorUsername) {
+
+        Company company = companyRepository.findByDirector(directorUsername);
+        return this.orderRepository.findAllByCompany(company.getId());
     }
 }

@@ -11,6 +11,7 @@ import { UsersViewComponent } from './components/admin/users-view/users-view.com
 import { LoginComponent } from './components/auth/login/login.component'; 
 
 import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
+import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
 
 import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
@@ -82,7 +83,7 @@ const routes: Routes = [
       },
       {
         path: 'orders', 
-        component: OrdersViewComponent,
+        component: OrdersViewDirectorComponent,
       },
       ]
   },
