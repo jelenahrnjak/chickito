@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface MachineRepository extends JpaRepository<Machine, Long> {
 
-    @Query("select m from Machine m where m.sector.id = :sectorId")
+    @Query("select m from Machine m where m.sector.id = :sectorId and m.active = true")
     List<Machine> findAllBySector(Long sectorId);
 }

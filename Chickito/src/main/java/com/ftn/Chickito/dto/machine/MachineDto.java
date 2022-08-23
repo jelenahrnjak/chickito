@@ -16,4 +16,5 @@ public class MachineDto {
     private Long sectorId;
     private String documentation;
     private Double price;
+    private Integer quantity;
 }

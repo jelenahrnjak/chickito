@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Machine from '../../../model/machine'
+import { MachineService } from '../../../services/machine.service';
 
 @Component({
   selector: 'app-machines-view',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MachinesViewComponent implements OnInit {
 
-  constructor() { }
+  allMachines : Machine[] = []
+  displayDescription = 'none'
+  selectedMachine : any = ''
+
+  constructor(
+    private machineService : MachineService
+  ) { }
 
   ngOnInit(): void {
+    this.getAllMachines()
   }
 
+  getAllMachines(){
+    this.allMachines = []
+    this.machineService.findAllByLeader().subscribe((data : Machine[]) => {
+      this.allMachines = data;
+    }); 
+  }
+
+  showWorkers(machine : Machine){
+    this.selectedMachine = machine;
+  }
 }

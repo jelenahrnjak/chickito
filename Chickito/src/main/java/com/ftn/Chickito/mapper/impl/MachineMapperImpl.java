@@ -21,6 +21,7 @@ public class MachineMapperImpl implements MachineMapper {
                 .documentation(machine.getDocumentation() == null ? "" : machine.getDocumentation().getText())
                 .sectorId(machine.getSector().getId())
                 .price(machine.getPrice())
+                .quantity(machine.getQuantity())
                 .build();
     }
 
