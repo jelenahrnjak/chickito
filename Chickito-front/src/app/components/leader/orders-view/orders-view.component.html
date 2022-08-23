@@ -1,10 +1,13 @@
 <div class="card-body">
     
+ 
+    <h1  style="width:95%; float: left;">Narudžbenice
+        <a class="btn-green btn" style="float: right; width: 15%;"  href="/leader/new-order">Nova narudžbenica <li class="fa fa-plus"></li></a> 
+    </h1> 
 
-    <h1>Narudžbenice</h1>
-    <hr>
 
     <div class="table-responsive">
+        <hr>
         <table class="table">
             <thead>
                 <tr> 
@@ -19,14 +22,55 @@
                 <tr *ngFor="let item of allOrders"> 
                     <td>#{{item.id}}</td>
                     <td>{{item.creationDate}}</td>
-                    <td><span class="badge" (click)="showMachines(item.id)" style="cursor: pointer;">Prikaži mašine</span></td>
-                    <td>{{item.price}}</td>
-                    <td *ngIf="item.approved != false"><span class="badge btn-green" style="float:right;">Odobreno</span></td>
-                    <td *ngIf="item.approved == false"><span class="badge btn-red" style="float:right;">Odbijeno</span></td>
-                    <td *ngIf="item.approved == undefined"><span class="badge" style="float:right;">Bez odgovora</span></td>
-                    <!-- <td class="color-primary">$21.56</td> -->
+                    <td><span class="badge btn-green" (click)="showMachines(item.id)" style="cursor: pointer;">Prikaži</span></td>
+                    <td>{{item.price}}€</td>
+                    <td *ngIf="item.approved == true"><span class="badge btn-green">Odobreno</span></td>
+                    <td *ngIf="item.approved == false"><span class="badge btn-red">Odbijeno</span></td>
+                    <td *ngIf="!item.approved"><span class="badge btn-red">Bez odgovora</span></td>
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<!-- Modal for seeing all machines -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Pregled stavki narudžbenice broj {{selectedOrder}}</h5>
+        </div>  
+        
+        <div  class="container"> 
+            
+            <table class="table">
+                <thead>
+                    <tr> 
+                        <th>Naziv</th>
+                        <th>Model</th>
+                        <th>Serijski broj</th>
+                        <th>Dokumentacija</th>
+                        <th>Cena</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of orderItems"> 
+                        <td>{{item.name}}</td>
+                        <td>{{item.model}}</td>
+                        <td>{{item.serialNumber}}</td>  
+                        <td><span class="badge" style="cursor: pointer;">Prikaži</span></td>
+                        <td class="color-primary">{{item.price}}€</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="display = 'none'">Zatvori</button>
+        </div>
+    </div>
     </div>
 </div>

@@ -68,11 +68,17 @@ public class OrderMapperImpl implements OrderMapper {
 
     @Override
     public OrderItemDto machineToOrderItemDto(Machine machine) {
+
+        String documentation = "";
+        if(machine.getDocumentation() != null){
+            documentation = machine.getDocumentation().getText();
+        }
+
         return OrderItemDto.builder()
                 .name(machine.getName())
                 .model(machine.getModel())
                 .serialNumber(machine.getSerialNumber())
-                .documentation(machine.getDocumentation().getText())
+                .documentation(documentation)
                 .price(machine.getPrice())
                 .build();
     }

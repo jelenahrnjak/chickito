@@ -24,7 +24,7 @@ public class Machine {
     @Column(nullable = false)
     private String model;
 
-    @Column(nullable = false, unique = true)
+    @Column( unique = true)
     private String serialNumber;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

@@ -13,9 +13,11 @@ export class OrderService {
     private apiService: ApiService, 
     private config: ConfigService,) {}
 
-    createOrder(createOrderDto : any[]) { 
-  
-      return this.apiService.post(this.config.order_url, JSON.stringify(createOrderDto))
+    createOrder(orderItems : any) { 
+      const body = {
+        'orderItems' : orderItems
+      }
+      return this.apiService.post(this.config.order_url, JSON.stringify(body))
         .pipe(map(() => {
           console.log('Creating order success');
         }));
@@ -23,9 +25,10 @@ export class OrderService {
 
     findAllByAuthor() { 
 
-      return this.apiService.get(this.config.order_url + `findAllByAuthor`)
+      return this.apiService.get(this.config.order_url + `/findAllByAuthor`)
       .pipe(map(orders => { 
         return orders;
       }));
-    }
+    } 
+  
 }

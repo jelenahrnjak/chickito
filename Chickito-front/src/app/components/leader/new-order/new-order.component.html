@@ -1,1 +1,98 @@
-<p>new-order works!</p>
+   
+<div class="cardcard-body p-5" style="float: left; width: 50%;">
+        
+    <div class="text-center"> 
+        <h4 class="text-dark mb-5">Dodavanje mašine u narudžbenicu</h4>
+    </div>  
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" style=" height: 50ch;">
+        <div class="row"> 
+
+            <div class="input-group mb-3">
+                <input class="form-control" type="text" formControlName="name" placeholder="Naziv*">
+                </div>
+                <div class="input-group mb-3">
+                <input class="form-control" type="text" formControlName="model" placeholder="Model*">
+                </div>
+                <div class="input-group mb-3">
+                <input class="form-control" type="number" formControlName="price" placeholder="Cena*">
+                </div> 
+                <div class="input-group mb-3">
+                <textarea class="form-control" style="height: 15ch;" type="text"  formControlName="documentation" placeholder="Dokumentacija"></textarea>
+                </div>
+                
+                <div class="col-md-12 text-center">
+                    <div class="d-flex my-2 justify-content-between">
+                    <div class="d-inline-block mr-3"> 
+                    </div>
+    
+                    </div>
+    
+                    <button style="margin-top: 4ch;" type="submit" class="btn btn-lg btn-block mb-4 btn-green" [disabled]="!form.valid">
+                        Dodaj <li class="fa fa-plus"></li></button>
+    
+                </div>
+        </div>
+    </form> 
+</div> 
+
+<div class="cardcard-body p-5"  style="float:right;width: 50%;">
+        
+    <div class="text-center"> 
+        <h4  style="width:95%; float: left;">Mašine</h4> 
+    </div>   
+
+    <div class="table-responsive" style="margin-top : 1ch; height: 46ch;"> 
+        <table class="table" style=" margin-bottom: 4ch;">
+            <thead>
+                <tr> 
+                    <th>Naziv</th>
+                    <th>Model</th>
+                    <th>Cena</th>
+                    <th>Dokumentacija</th> 
+                    <th>/</th>
+                </tr>
+            </thead>
+            <tbody style="scroll-behavior: auto;">
+                <tr *ngFor="let item of orderItems">  
+                    <td  class="color-primary">{{item.name}}</td> 
+                    <td  class="color-primary">{{item.model}}</td> 
+                    <td>{{item.price}}€</td>
+                    <td *ngIf="!item.documentation">Nije navedena</td>
+                    <td *ngIf="item.documentation"><span class="badge btn-green" style="cursor: pointer;" 
+                        (click)="display='block'; selectedDocumentation = item.documentation; selectedMachine= item.name">Prikaži</span></td>
+                    <td><span class="badge btn-red" style="cursor: pointer;" (click)="removeItem(item.name, item.model)">Ukloni</span></td>
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+
+    
+    <button class="btn btn-lg btn-block mb-4 btn-green"  style=" margin-top: 3ch;" [disabled]="orderItems.length == 0" (click)="createOrder()">
+        Kreiraj narudzbinu <li class="fa fa-plus"></li></button>
+</div> 
+ 
+   
+
+<!-- Modal for documentation view -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Dokumentacija za mašinu {{selectedMachine}}</h5>
+        </div> 
+
+        <div  class="container"> 
+             <p style="color:black; margin: 1%">
+                 {{selectedDocumentation}}
+             </p>
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="display = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>
