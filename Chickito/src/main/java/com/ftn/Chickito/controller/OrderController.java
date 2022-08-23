@@ -25,7 +25,6 @@ public class OrderController {
     private final OrderService orderService;
     private final TokenUtils tokenUtils;
     private final OrderMapper mapper;
-
     private static final String WHITESPACE = " ";
 
     @PostMapping
@@ -61,13 +60,7 @@ public class OrderController {
 
         String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
 
-        List<Order> orders = orderService.findAllByAuthor(username);
-        List<OrderViewDto> orderViews = new ArrayList<>();
-        for(Order order : orders){
-            orderViews.add(mapper.orderToOrderViewDto(order));
-        }
-
-        return new ResponseEntity<>(orderViews, HttpStatus.OK);
+        return new ResponseEntity<>(mapper.orderListToOrderViewDtoList(orderService.findAllByAuthor(username)), HttpStatus.OK);
     }
 
     @GetMapping("/findAllByDirector")
@@ -76,12 +69,6 @@ public class OrderController {
 
         String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
 
-        List<Order> orders = orderService.findAllByDirector(username);
-        List<OrderViewDto> orderViews = new ArrayList<>();
-        for(Order order : orders){
-            orderViews.add(mapper.orderToOrderViewDto(order));
-        }
-
-        return new ResponseEntity<>(orderViews, HttpStatus.OK);
+        return new ResponseEntity<>(mapper.orderListToOrderViewDtoList(orderService.findAllByDirector(username)), HttpStatus.OK);
     }
 }

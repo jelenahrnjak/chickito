@@ -5,6 +5,9 @@ import com.ftn.Chickito.mapper.MachineMapper;
 import com.ftn.Chickito.model.Machine;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class MachineMapperImpl implements MachineMapper {
 
@@ -19,5 +22,16 @@ public class MachineMapperImpl implements MachineMapper {
                 .sectorId(machine.getSector().getId())
                 .price(machine.getPrice())
                 .build();
+    }
+
+    @Override
+    public List<MachineDto> machineListToMachineDtoList(List<Machine> machines) {
+
+        List<MachineDto> machinesRet = new ArrayList<>();
+
+        for(Machine machine : machines){
+            machinesRet.add(machineToMachineDto(machine));
+        }
+        return machinesRet;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -45,43 +46,49 @@ public class OrderMapperImpl implements OrderMapper {
     @Override
     public OrderViewDto orderToOrderViewDto(Order order) {
 
-        String formattedDateTime = "";
-        if(order.getCreationDate() != null){
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            formattedDateTime = order.getCreationDate().format(formatter);
-        }
 
-        List<OrderItemDto> items = new ArrayList<>();
-
-        for(Machine machine : order.getMachines()){
-            items.add(machineToOrderItemDto(machine));
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
         return OrderViewDto.builder()
                 .id(order.getId())
-                .orderItems(items)
+                .orderItems(orderItemsToOrderItemsDto(order.getMachines()))
                 .price(order.getPrice())
                 .author(order.getAuthor().getFirstName() + " " + order.getAuthor().getLastName())
                 .reviewer(order.getReviewer().getFirstName() + " " + order.getAuthor().getLastName())
                 .sector(sectorMapper.sectorTypeToString(order.getAuthor().getSector().getType()))
-                .creationDate(formattedDateTime)
+                .creationDate(order.getCreationDate() == null ? "" : order.getCreationDate().format(formatter))
                 .approved(order.getApproved())
                 .build();
     }
 
     @Override
+    public List<OrderViewDto> orderListToOrderViewDtoList(List<Order> orders) {
+        List<OrderViewDto> orderViews = new ArrayList<>();
+        for(Order order : orders){
+            orderViews.add(this.orderToOrderViewDto(order));
+        }
+        return orderViews;
+    }
+
+    List<OrderItemDto> orderItemsToOrderItemsDto(Set<Machine> machines){
+        List<OrderItemDto> items = new ArrayList<>();
+
+        for(Machine machine : machines){
+            items.add(machineToOrderItemDto(machine));
+        }
+
+        return items;
+    }
+
+    @Override
     public OrderItemDto machineToOrderItemDto(Machine machine) {
 
-        String documentation = "";
-        if(machine.getDocumentation() != null){
-            documentation = machine.getDocumentation().getText();
-        }
 
         return OrderItemDto.builder()
                 .name(machine.getName())
                 .model(machine.getModel())
                 .serialNumber(machine.getSerialNumber())
-                .documentation(documentation)
+                .documentation(machine.getDocumentation() == null ? "" : machine.getDocumentation().getText())
                 .price(machine.getPrice())
                 .quantity(machine.getQuantity())
                 .build();
