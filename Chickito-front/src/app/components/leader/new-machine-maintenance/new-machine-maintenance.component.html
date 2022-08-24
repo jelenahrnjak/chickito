@@ -1,5 +1,5 @@
    
-<div class="cardcard-body p-5" style="float: left; width: 50%; margin-top: 10ch;">
+<div class="cardcard-body p-5" style="float: left; width: 50%; margin-top: 15ch;">
         
     <div class="text-center"> 
         <h4 class="text-dark mb-5">Dodavanje mašine u plan održavanja</h4>
@@ -38,6 +38,18 @@
         <h4  style="width:95%; float: left;">Mašine</h4> 
     </div>   
 
+    
+    <form (ngSubmit)="createMachineMaintenance()" [formGroup]="formDates">
+    <div class="input-group mb-3"> 
+        <input class="form-control" formControlName="startDate"  placeholder="Početak važenja"
+        min="{{minDate | date:'yyyy-MM-dd' }}" (change)="checkDates()" onfocus="(this.type='date')"/>  
+    </div>
+    <div class="input-group mb-3"> 
+        <input type="text" class="form-control" formControlName="endDate"  
+            min="{{minDateMax | date:'yyyy-MM-dd' }}" placeholder="Kraj važenja" 
+            onfocus="(this.type='date')" [disabled]="!this.form.get('startDate')"/>  
+    </div>
+
     <div class="table-responsive" style="margin-top : 1ch; height: 53ch;"> 
         <table class="table" style=" margin-bottom: 4ch;">
             <thead>
@@ -61,8 +73,10 @@
     </div>
 
     
-    <button class="btn btn-lg btn-block mb-4 btn-green"  style=" margin-top: 3ch;" [disabled]="items.length == 0" (click)="createMachineMaintenance()">
+    <button class="btn btn-lg btn-block mb-4 btn-green"  type="submit" style=" margin-top: 3ch;" [disabled]="items.length == 0 || !formDates.valid">
         Kreiraj plan održavanja <li class="fa fa-plus"></li></button>
+        
+    </form> 
 </div> 
  
    

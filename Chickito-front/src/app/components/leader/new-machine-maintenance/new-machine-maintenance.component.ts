@@ -18,9 +18,14 @@ export class NewMachineMaintenanceComponent implements OnInit {
   allMachines : Machine[] = []
   items : MachineMaintenanceItem[] = []
   form!: FormGroup;
+  formDates!: FormGroup;
   display = "none";
   selectedItem : any = ''
   selectedMachine : any = ''
+
+  
+  minDate: Date = new Date();
+  minDateMax : Date = new Date(); 
 
   constructor(
     private toastr: ToastrService,  
@@ -37,6 +42,11 @@ export class NewMachineMaintenanceComponent implements OnInit {
     this.form = this.formBuilder.group({
       machine : ['', Validators.compose([Validators.required])],
       plan: ['', Validators.compose([Validators.required])], 
+    }); 
+
+    this.formDates = this.formBuilder.group({
+      startDate : ['',Validators.compose([Validators.required])],
+      endDate : ['',Validators.compose([Validators.required])],
     }); 
   }
 
@@ -86,7 +96,13 @@ export class NewMachineMaintenanceComponent implements OnInit {
 
   createMachineMaintenance(){
 
-    this.machineMaintenanceService.createMachineMaintenance(this.items)
+    var body ={
+      "items" : this.items,
+      "startDate" : this.formDates.get('startDate')?.value,
+      "endDate" : this.formDates.get('endDate')?.value
+    }
+
+    this.machineMaintenanceService.createMachineMaintenance(body)
     .subscribe(data => { 
       this.toastr.success('Novi predlog održavanja uspešno kreirana!')  
       this.router.navigate(['leader/machine-maintenances']);
@@ -95,6 +111,19 @@ export class NewMachineMaintenanceComponent implements OnInit {
         console.log('Adding machine maintenance error');  
         this.toastr.error(error['error'].message)
       });
+  }
+
+  checkDates(){
+
+    if(this.formDates.get('startDate')?.value >= this.formDates.get('endDate')?.value){
+      this.formDates.get('endDate')?.setValue("")
+
+    }
+
+    var currenttimestamp = (new Date(this.formDates.get('startDate')?.value)).getTime(); 
+    var onedayaftertimestamp=currenttimestamp+(86400000);//1 day=86400000 ms; 
+
+    this.minDateMax = new Date(onedayaftertimestamp) 
   }
 
 }

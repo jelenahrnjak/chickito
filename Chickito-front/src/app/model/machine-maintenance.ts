@@ -3,7 +3,9 @@ import MachineMaintenanceItem from './machine-maintenance-item'
 export default interface MachineMaintenance {
 
     id : any;
-    creationDate : string;
+    startDate : string;
+    endDate : string;
     author : string
+    sector : string
     items : MachineMaintenanceItem[];   
 }

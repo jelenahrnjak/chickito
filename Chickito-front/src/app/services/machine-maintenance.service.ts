@@ -13,10 +13,8 @@ export class MachineMaintenanceService {
     private apiService: ApiService, 
     private config: ConfigService,) {}
 
-    createMachineMaintenance(items : any) { 
-      const body = {
-        'items' : items
-      }
+    createMachineMaintenance(body : any) { 
+      
       return this.apiService.post(this.config.machineMaintenance_url, JSON.stringify(body))
         .pipe(map(() => {
           console.log('Creating machine maintenance success');
