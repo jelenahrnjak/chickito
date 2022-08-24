@@ -1,19 +1,29 @@
 package com.ftn.Chickito.service.impl;
 
 import com.ftn.Chickito.dto.order.CreateOrderDto;
+import com.ftn.Chickito.dto.order.OrderReportDto;
 import com.ftn.Chickito.exception.OrderAlreadyProccesedException;
 import com.ftn.Chickito.exception.WrongReviewerException;
+import com.ftn.Chickito.mapper.OrderMapper;
 import com.ftn.Chickito.model.*;
 import com.ftn.Chickito.repository.*;
+import com.ftn.Chickito.service.EmailService;
 import com.ftn.Chickito.service.OrderService;
+import com.sun.istack.ByteArrayDataSource;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import javax.activation.DataSource;
+import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +34,8 @@ public class OrderServiceImpl implements OrderService {
     private final MachineRepository machineRepository;
     private final UserRepository userRepository;
     private final DocumentationRepository documentationRepository;
+    private final OrderMapper mapper;
+    private final EmailService emailService;
 
     private final static String LEADER_ROLE = "LEADER";
 
@@ -65,6 +77,34 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(order);
 
         return order;
+    }
+
+    @Override
+    public String exportOrderReport(String username, Long id) throws FileNotFoundException, JRException, MessagingException {
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("User with username = %s doesn't exist.", username)));
+
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Order with id = %s doesn't exist.", id)));
+        OrderReportDto orderDto = mapper.orderToOrderReportDto(order);
+
+        List<OrderReportDto> orders = new ArrayList<>();
+        orders.add(orderDto);
+        File file = ResourceUtils.getFile("classpath:reportTemplates\\OrderReport.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(orders);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("createdBy", "Java Techie");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
+        DataSource attachment =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
+
+        this.emailService.sendOrderReport(user.getEmail(), attachment, orderDto);
+
+        return "ok";
     }
 
     @Override

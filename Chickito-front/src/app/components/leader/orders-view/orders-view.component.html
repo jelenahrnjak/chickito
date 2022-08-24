@@ -1,8 +1,8 @@
 <div class="card-body">
     
  
-    <h1  style="width:95%; float: left;">Narudžbenice
-        <a class="btn-green btn" style="float: right; width: 15%;"  href="/leader/new-order">Nova narudžbenica <li class="fa fa-plus"></li></a> 
+    <h1  style="width:95%; float: left;">Narudžbine
+        <a class="btn-green btn" style="float: right; width: 15%;"  href="/leader/new-order">Nova narudžbina <li class="fa fa-plus"></li></a> 
     </h1> 
 
 
@@ -16,6 +16,7 @@
                     <th>Mašine</th>
                     <th>Ukupna cena</th> 
                     <th>Odgovor</th> 
+                    <th>/</th> 
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
                     <td *ngIf="item.approved == true"><span class="badge"  style="color: #04664c;" >Odobreno</span></td>
                     <td *ngIf="item.approved == false"><span class="badge" style="color: #b7222f;">Odbijeno</span></td>
                     <td *ngIf="item.approved != true && item.approved != false"><span class="badge" style="color: gray;">Bez odgovora</span></td>
+                    <td><span class="badge btn-green" style="cursor: pointer;" (click)="exportOrderReport(item.id)">Preuzmi pdf</span></td> 
                 
                 </tr>
             </tbody>
@@ -39,7 +41,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Pregled stavki narudžbenice broj #{{selectedOrder}}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Pregled stavki narudžbine broj #{{selectedOrder}}</h5>
         </div>  
         
         <div  class="container"> 

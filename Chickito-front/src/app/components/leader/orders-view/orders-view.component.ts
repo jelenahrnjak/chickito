@@ -33,6 +33,15 @@ export class OrdersViewComponent implements OnInit {
     }); 
   }
 
+  
+  exportOrderReport(id : any){
+    
+    this.orderService.exportOrderReport(id).subscribe((data : string) => {
+      console.log(data)
+    }); 
+  }
+
+
   showMachines(id : any){ 
     this.display =' block'; 
     this.selectedOrder = id

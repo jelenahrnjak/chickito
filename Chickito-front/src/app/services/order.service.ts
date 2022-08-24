@@ -47,11 +47,19 @@ export class OrderService {
         }));
     }
 
-    declineOrder(id : any) { 
+    declineOrder(id : number) { 
       
       return this.apiService.post(this.config.order_url + `/${id}/decline` , {})
         .pipe(map(() => {
           console.log('Approving order success');
         }));
+    }
+
+    exportOrderReport(id : any){
+
+      return this.apiService.get(this.config.order_url + `/exportOrderReport/${id}`)
+      .pipe(map(path => { 
+        return path;
+      }));
     }
 }

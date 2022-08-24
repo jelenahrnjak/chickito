@@ -2,7 +2,7 @@ import OrderItem from "./order-item";
 
 export default interface Order { 
 
-    id: any;
+    id: number;
     creationDate : string,
     price : number;
     author : string,
