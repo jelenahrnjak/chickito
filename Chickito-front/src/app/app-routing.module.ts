@@ -19,6 +19,8 @@ import { HomeLeaderComponent } from './components/leader/home-leader/home-leader
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
 import { OrdersViewComponent } from './components/leader/orders-view/orders-view.component'; 
 import { NewOrderComponent } from './components/leader/new-order/new-order.component'; 
+import { MachineMaintenancesViewComponent } from './components/leader/machine-maintenances-view/machine-maintenances-view.component'; 
+import { NewMachineMaintenanceComponent } from './components/leader/new-machine-maintenance/new-machine-maintenance.component'; 
 
 import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 
@@ -117,6 +119,14 @@ const routes: Routes = [
       {
         path: 'new-order', 
         component: NewOrderComponent,
+      },
+      {
+        path: 'machine-maintenances', 
+        component: MachineMaintenancesViewComponent,
+      },
+      {
+        path: 'new-machine-maintenance', 
+        component: NewMachineMaintenanceComponent,
       },
       
       ]

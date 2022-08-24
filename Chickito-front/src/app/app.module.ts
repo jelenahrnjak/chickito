@@ -40,6 +40,8 @@ import { MyProfileComponent } from './components/shared/my-profile/my-profile.co
 import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
 import { AgmCoreModule } from '@agm/core'; 
 import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
+import { MachineMaintenancesViewComponent } from './components/leader/machine-maintenances-view/machine-maintenances-view.component';
+import { NewMachineMaintenanceComponent } from './components/leader/new-machine-maintenance/new-machine-maintenance.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { MachinesViewDirectorComponent } from './components/director/machines-vi
     MachinesViewComponent,
     MyProfileComponent,
     OrdersViewDirectorComponent,
-    MachinesViewDirectorComponent, 
+    MachinesViewDirectorComponent,
+    MachineMaintenancesViewComponent,
+    NewMachineMaintenanceComponent, 
   ],
   imports: [
     CommonModule,

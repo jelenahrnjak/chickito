@@ -1,17 +1,17 @@
 package com.ftn.Chickito.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name="machineMaintenances")
 public class MachineMaintenance {
@@ -24,14 +24,9 @@ public class MachineMaintenance {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private User author;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Sector sector;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Machine machine;
+    @OneToMany(mappedBy = "machineMaintenance", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<MachineMaintenanceItem> items = new HashSet<>();
 
     private LocalDateTime creationDate;
-
-    private String text;
 
 }

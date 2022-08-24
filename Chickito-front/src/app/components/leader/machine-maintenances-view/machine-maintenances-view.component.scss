@@ -1,0 +1,47 @@
+
+ 
+strong{
+    color: #04664c;
+  }
+   
+  h1{
+    margin-top : 30px;
+    margin-left: 3%;
+    margin-right: 2%;
+    font-size: 30px;
+    color: #04664c
+  }
+  
+  mat-divider{ 
+    margin-left: 3%;
+    margin-right: 2%; 
+  } 
+   
+    input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+   
+  .btn-green{
+    color: #fff698;
+    background-color: #00553e;
+  } 
+  
+  .btn-green:hover{
+    background-color: #076b50;
+  }
+  
+  .btn-red{
+    color: #fff698;
+    background-color: #b7222f; 
+  } 
+  
+  .btn-red:hover{
+    background-color: #ca1d2c;
+  }

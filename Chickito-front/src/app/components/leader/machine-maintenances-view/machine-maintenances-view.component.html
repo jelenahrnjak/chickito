@@ -1,0 +1,94 @@
+<div class="card-body">
+    
+ 
+    <h1  style="width:95%; float: left;">Planovi održavanja
+        <a class="btn-green btn" style="float: right; width: 15%;"  href="/leader/new-machine-maintenance">Novi plan <li class="fa fa-plus"></li></a> 
+    </h1> 
+
+
+    <div class="table-responsive">
+        <hr>
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Broj</th>
+                    <th>Datum kreiranja</th>
+                    <th>Mašine</th>  
+                    <th>/</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allMaintenances"> 
+                    <td>#{{item.id}}</td>
+                    <td>{{item.creationDate}}</td>
+                    <td><span class="badge btn-green" (click)="showItems(item)" style="cursor: pointer;">Prikaži</span></td> 
+                    <td><span class="badge btn-green" style="cursor: pointer;">Preuzmi pdf</span></td> 
+                
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal for seeing all machines -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Pregled plana održavanja broj #{{selectedMaintenance.id}}</h5>
+        </div>  
+        
+        <div  class="container"> 
+            
+            <table class="table">
+                <thead>
+                    <tr> 
+                        <th>Naziv</th>
+                        <th>Model</th> 
+                        <th>Plan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items"> 
+                        <td class="color-primary">{{item.machine.name}}</td>
+                        <td class="color-primary">{{item.machine.model}}</td>  
+                        <td><span class="badge btn-green" style="cursor: pointer;" 
+                            (click)="displayPlan='block'; selectedItem = item; selectedMachine = item.machine.name + ' ' + item.machine.model">Prikaži</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="display = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Modal for documentation view -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayPlan}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Plan održavanja za mašinu {{selectedMachine}}</h5>
+        </div> 
+
+        <div  class="container"> 
+             <p style="color:black; margin: 1%">
+                 {{selectedItem.plan}}
+             </p>
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayPlan = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>
