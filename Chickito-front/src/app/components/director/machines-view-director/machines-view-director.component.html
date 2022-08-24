@@ -1,0 +1,135 @@
+<h1>Mašine iz sektora održavanja i energetike
+    <a class="sidebar-sub-toggle" (click)="showOdrzavanje = !showOdrzavanje" style="cursor: pointer;">
+        <i *ngIf="showOdrzavanje" class="fa fa-angle-double-down"></i>
+        <i *ngIf="!showOdrzavanje" class="fa fa-angle-double-up"></i>
+    </a>  </h1> 
+
+<div class="row" *ngIf="showOdrzavanje"> 
+    <div class="card"  *ngFor="let c of odrzavanjeMachines">
+        
+        <ul class="list-group list-group-flush" >
+            <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
+            <strong>{{c.name}}</strong> 
+            </li>   
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>Model:</strong> {{c.model}}</li>    
+            <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
+            <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
+            <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
+            </li>          
+            <li style="height: 70px;" class="list-group-item">
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+            </li> 
+        </ul> 
+    </div>
+
+</div>
+
+<hr>
+
+<h1>Mašine iz sektora klanice i pakeraja
+    <a class="sidebar-sub-toggle" (click)="showKlanica = !showKlanica" style="cursor: pointer;">
+        <i *ngIf="showKlanica" class="fa fa-angle-double-down"></i>
+        <i *ngIf="!showKlanica" class="fa fa-angle-double-up"></i>
+    </a>  </h1>
+
+<div class="row" *ngIf="showKlanica"> 
+    <div class="card"  *ngFor="let c of klanicaMachines">
+        
+        <ul class="list-group list-group-flush" >
+            <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
+            <strong>{{c.name}}</strong> 
+            </li>   
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>Model:</strong> {{c.model}}</li>    
+            <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
+            <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
+            <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
+            </li>          
+            <li style="height: 70px;" class="list-group-item">
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+            </li> 
+        </ul> 
+    </div>
+
+</div>
+<hr>
+
+<h1>Mašine iz sektora prerade
+    <a class="sidebar-sub-toggle" (click)="showPrerada = !showPrerada" style="cursor: pointer;">
+        <i *ngIf="showPrerada" class="fa fa-angle-double-down"></i>
+        <i *ngIf="!showPrerada" class="fa fa-angle-double-up"></i>
+    </a>  </h1>
+
+<div class="row" *ngIf="showPrerada"> 
+    <div class="card"  *ngFor="let c of preradaMachines">
+        
+        <ul class="list-group list-group-flush" >
+            <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
+            <strong>{{c.name}}</strong> 
+            </li>   
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>Model:</strong> {{c.model}}</li>    
+            <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
+            <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
+            <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
+            </li>          
+            <li style="height: 70px;" class="list-group-item">
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+            </li> 
+        </ul> 
+    </div>
+
+</div>
+<hr>
+
+<h1>Mašine iz sektora kontrole kvaliteta
+    <a class="sidebar-sub-toggle" (click)="showKontrola = !showKontrola" style="cursor: pointer;">
+        <i *ngIf="showKontrola" class="fa fa-angle-double-down"></i>
+        <i *ngIf="!showKontrola" class="fa fa-angle-double-up"></i>
+    </a>  </h1>
+
+<div class="row" *ngIf="showKontrola"> 
+    <div class="card"  *ngFor="let c of kontrolaMachines">
+        
+        <ul class="list-group list-group-flush" >
+            <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
+            <strong>{{c.name}}</strong> 
+            </li>   
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>Model:</strong> {{c.model}}</li>    
+            <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
+            <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
+            <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
+            </li>          
+            <li style="height: 70px;" class="list-group-item">
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+            </li> 
+        </ul> 
+    </div>
+
+</div> 
+
+<!-- Modal for documentation view -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayDescription}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Dokumentacija za mašinu {{selectedMachine.name}} {{selectedMachine.model}}</h5>
+        </div> 
+
+        <div  class="container"> 
+             <p style="color:black; margin: 1%">
+                 {{selectedMachine.documentation}}
+             </p>
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayDescription = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>

@@ -5,4 +5,5 @@ export default interface Machine {
     serialNumber : string;
     documentation : string; 
     quantity : number; 
+    sector : string;
 }

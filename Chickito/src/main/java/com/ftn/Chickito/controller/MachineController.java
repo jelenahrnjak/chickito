@@ -37,4 +37,13 @@ public class MachineController {
 
         return new ResponseEntity<>(mapper.machineListToMachineDtoList(machineService.findAllByLeader(username)), HttpStatus.OK);
     }
+
+    @GetMapping("/findAllByDirector")
+    @PreAuthorize("hasAuthority('DIRECTOR')")
+    public ResponseEntity<List<MachineDto>> findAllByDirector(@RequestHeader("Authorization") String jwtToken) {
+
+        String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
+
+        return new ResponseEntity<>(mapper.machineListToMachineDtoList(machineService.findAllByDirector(username)), HttpStatus.OK);
+    }
 }

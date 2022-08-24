@@ -14,6 +14,7 @@ public class MachineDto {
     private String model;
     private String serialNumber;
     private Long sectorId;
+    private String sector;
     private String documentation;
     private Double price;
     private Integer quantity;

@@ -8,4 +8,5 @@ public interface MachineService {
 
     List<Machine> findAllByLeader(String leaderUsername);
 
+    List<Machine> findAllByDirector(String username);
 }

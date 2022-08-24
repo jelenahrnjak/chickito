@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'; 
 
 import { MyProfileComponent } from './components/shared/my-profile/my-profile.component';
+import { ErrorPageComponent } from './components/core/error-page/error-page.component'; 
 
 import { AddingBuildingComponent } from './components/admin/adding-building/adding-building.component';
 import { AddingCompanyComponent } from './components/admin/adding-company/adding-company.component';
@@ -12,6 +13,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 
 import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
 import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
+import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
 
 import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
@@ -25,14 +27,15 @@ import { RoleguardService as RoleGuard } from './guards/roleguard.service';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent, 
+  },
+  
+  {
     path: '',
     redirectTo : 'login', 
     pathMatch : "full"
-  }, 
-  {
-    path: 'login',
-    component: LoginComponent, 
-  }, 
+  },  
 
   {
     path: 'my-profile',
@@ -85,6 +88,10 @@ const routes: Routes = [
         path: 'orders', 
         component: OrdersViewDirectorComponent,
       },
+      {
+        path: 'machines', 
+        component: MachinesViewDirectorComponent,
+      },
       ]
   },
 
@@ -130,6 +137,10 @@ const routes: Routes = [
   },
   
  
+  {
+    path: '**',
+    component : ErrorPageComponent
+  }, 
 ];
 
 @NgModule({

@@ -1,0 +1,87 @@
+
+.card{
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; 
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 3px outset rgba(175, 167, 167, 0.301);
+  border-radius: 10px;
+  width : 19%;
+  max-width: 19%;
+  min-width: 19%;
+  text-align: center; 
+  margin : 30px;
+  margin-left: 3%;
+  margin-right: 2%;
+}
+
+.card:hover{
+background: linear-gradient(to bottom, #04664ce7 , #00553ee3)
+}
+
+strong{
+color: #04664c;
+}
+
+h1{
+margin-top : 30px;
+margin-left: 3%;
+margin-right: 2%;
+font-size: 30px;
+color: #04664c
+}
+
+mat-divider{ 
+margin-left: 3%;
+margin-right: 2%; 
+}
+
+
+.card-img-top{
+  margin-top: 10px;
+  height: 190px;
+  width: 100%;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.row div{  
+  display: flex;  
+  flex:1 ;  
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+-moz-appearance: textfield;
+}
+
+.btn-green{
+color: #fff698;
+background-color: #00553e;
+} 
+
+.btn-green:hover{
+background-color: #076b50;
+}
+
+.btn-red{
+color: #fff698;
+background-color: #b7222f; 
+} 
+
+.btn-red:hover{
+background-color: #ca1d2c;
+}

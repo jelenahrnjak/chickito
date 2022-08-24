@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("No user found with username '%s'.", username)));
+                .orElse(null);
     }
 
     @Override

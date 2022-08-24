@@ -2,13 +2,16 @@ package com.ftn.Chickito.mapper.impl;
 
 import com.ftn.Chickito.dto.machine.MachineDto;
 import com.ftn.Chickito.mapper.MachineMapper;
+import com.ftn.Chickito.mapper.SectorMapper;
 import com.ftn.Chickito.model.Machine;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class MachineMapperImpl implements MachineMapper {
 
     @Override
@@ -20,6 +23,7 @@ public class MachineMapperImpl implements MachineMapper {
                 .serialNumber(machine.getSerialNumber())
                 .documentation(machine.getDocumentation() == null ? "" : machine.getDocumentation().getText())
                 .sectorId(machine.getSector().getId())
+                .sector(machine.getSector().getType().toString())
                 .price(machine.getPrice())
                 .quantity(machine.getQuantity())
                 .build();

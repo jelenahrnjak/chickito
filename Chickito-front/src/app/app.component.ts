@@ -10,6 +10,7 @@ export class AppComponent implements OnInit{
   title = 'Chickito-front'; 
   role = sessionStorage.getItem('role')
   route = this.router.url
+  currentComponent = ''
 
   constructor( 
     private router: Router, 
@@ -20,7 +21,11 @@ export class AppComponent implements OnInit{
 
   showHeader(){
     
-    return this.router.url !== '/login' && sessionStorage.getItem('role') !== undefined
-  }
+    return this.router.url !== '/login' && this.currentComponent != 'ErrorPageComponent' && sessionStorage.getItem('role') !== undefined
+  } 
   
+  public onRouterOutletActivate(event : any) {
+    this.currentComponent = event.constructor.name
+    console.log(event);
+}
 }

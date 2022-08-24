@@ -30,6 +30,7 @@ export class ErrorPageComponent implements OnInit {
         this.router.navigate(["worker"]);
         break;
       default:
+        console.log('dodje')
           this.router.navigate(["login"])
       } 
   }

@@ -38,10 +38,8 @@ import { OrdersViewComponent } from './components/leader/orders-view/orders-view
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component';
 import { MyProfileComponent } from './components/shared/my-profile/my-profile.component';
 import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
-import { AgmCoreModule } from '@agm/core';
-import {
-  MapsAPILoader
-} from '@agm/core';
+import { AgmCoreModule } from '@agm/core'; 
+import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
 
 
 @NgModule({
@@ -63,7 +61,8 @@ import {
     OrdersViewComponent,
     MachinesViewComponent,
     MyProfileComponent,
-    OrdersViewDirectorComponent, 
+    OrdersViewDirectorComponent,
+    MachinesViewDirectorComponent, 
   ],
   imports: [
     CommonModule,

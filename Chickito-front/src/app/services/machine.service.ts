@@ -21,5 +21,13 @@ export class MachineService {
       return machines;
     }));
   } 
+
+  findAllByDirector() { 
+
+    return this.apiService.get(this.config.machine_url + `/findAllByDirector`)
+    .pipe(map(machines => { 
+      return machines;
+    }));
+  } 
   
 }
