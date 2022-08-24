@@ -3,6 +3,7 @@ package com.ftn.Chickito.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +28,8 @@ public class MachineMaintenance {
     @OneToMany(mappedBy = "machineMaintenance", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<MachineMaintenanceItem> items = new HashSet<>();
 
-    private LocalDateTime creationDate;
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 
 }

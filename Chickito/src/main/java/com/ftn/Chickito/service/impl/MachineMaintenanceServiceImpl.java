@@ -33,7 +33,7 @@ public class MachineMaintenanceServiceImpl implements MachineMaintenanceService 
         Set<MachineMaintenanceItem> items = new HashSet<>();
         User author = getLeader(authorUsername);
 
-        createMaintenanceDto.getMachineMaintenanceItems().forEach(itemDto -> {
+        createMaintenanceDto.getItems().forEach(itemDto -> {
 
             Machine machine = machineRepository.findById(itemDto.getMachine().getId())
                     .orElseThrow(() -> new EntityNotFoundException(String.format("Machine with id = %s doesn't exist.", itemDto.getMachine().getId())));
@@ -49,7 +49,8 @@ public class MachineMaintenanceServiceImpl implements MachineMaintenanceService 
         MachineMaintenance machineMaintenance = MachineMaintenance.builder()
                 .author(author)
                 .items(items)
-                .creationDate(LocalDateTime.now())
+                .startDate(createMaintenanceDto.getStartDate())
+                .endDate(createMaintenanceDto.getEndDate())
                 .build();
 
         items.forEach(item -> item.setMachineMaintenance(machineMaintenance));

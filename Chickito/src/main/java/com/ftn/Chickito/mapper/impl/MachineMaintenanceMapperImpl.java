@@ -30,7 +30,8 @@ public class MachineMaintenanceMapperImpl implements MachineMaintenanceMapper {
                 .items(this.maintenanceItemsToMaintenanceItemsDto(machineMaintenance.getItems()))
                 .author(machineMaintenance.getAuthor().getFirstName() + " " + machineMaintenance.getAuthor().getLastName())
                 .sector(sectorMapper.sectorTypeToString(machineMaintenance.getAuthor().getSector().getType()))
-                .creationDate(machineMaintenance.getCreationDate() == null ? "" : machineMaintenance.getCreationDate().format(formatter))
+                .startDate(machineMaintenance.getStartDate().format(formatter))
+                .endDate(machineMaintenance.getEndDate().format(formatter))
                 .build();
     }
 
