@@ -101,17 +101,17 @@ public class OrderMapperImpl implements OrderMapper {
         Building headOffice = this.buildingRepository.findHeadOfficeOfCompany(order.getAuthor().getSector().getCompany().getId());
 
         return OrderReportDto.builder()
-                .id("#" + order.getId().toString())
+                .id(order.getId())
                 .orderItems(orderItemsToOrderItemsDto(order.getMachines()))
                 .companyName(order.getAuthor().getSector().getCompany().getName())
                 .creationDate(order.getCreationDate() == null ? "" : order.getCreationDate().format(formatter))
                 .price(order.getPrice())
                 .author(order.getAuthor().getFirstName() + " " + order.getAuthor().getLastName())
                 .reviewer(order.getReviewer().getFirstName() + " " + order.getAuthor().getLastName())
-                .sector(sectorMapper.sectorTypeToString(order.getAuthor().getSector().getType()))
+                .sector("Sektor: " + sectorMapper.sectorTypeToString( order.getAuthor().getSector().getType()))
                 .creationDate(order.getCreationDate() == null ? "" : order.getCreationDate().format(formatter))
                 .approved(order.getApproved())
-                .headOffice(headOffice == null ? "" : this.addressMapper.getAddressString(headOffice.getAddress()))
+                .headOffice(headOffice == null ? "" : "Sedište: " + this.addressMapper.getAddressString(headOffice.getAddress()))
                 .build();
     }
 }

@@ -1,7 +1,7 @@
 <div class="card-body">
     
  
-    <h1  style="width:95%; float: left;">Narudžbine</h1> 
+    <h1  style="width:95%; float: left;">Narudžbenice</h1> 
 
 
     <div class="table-responsive">
@@ -16,6 +16,7 @@
                     <th>Mašine</th>
                     <th>Ukupna cena</th>
                     <th>Odgovor</th> 
+                    <th>/</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,8 @@
                     <td *ngIf="item.approved == true"><span class="badge"  style="color: #04664c;" >Odobreno</span></td>
                     <td *ngIf="item.approved == false"><span class="badge" style="color: #b7222f;">Odbijeno</span></td>
                     <td *ngIf="item.approved != true && item.approved != false"><span class="badge btn-green" style="cursor: pointer;" (click)="replyToOrder(item)">Odgovori</span></td>
+                    <td><span *ngIf="item.approved == true" class="badge btn-green" style="cursor: pointer;" (click)="exportOrderReport(item.id)">Preuzmi pdf</span></td> 
+                
                 </tr>
             </tbody>
         </table>
@@ -40,7 +43,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Pregled stavki narudžbine broj #{{selectedOrder.id}}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Pregled stavki narudžbenice broj #{{selectedOrder.id}}</h5>
         </div>  
         
         <div  class="container"> 
@@ -85,7 +88,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Narudžbina broj #{{selectedOrder.id}}</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Narudžbenica broj #{{selectedOrder.id}}</h5>
             </div>  
             
             <div  class="container"> 

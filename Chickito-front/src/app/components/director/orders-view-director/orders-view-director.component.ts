@@ -70,7 +70,7 @@ export class OrdersViewDirectorComponent implements OnInit {
     
     this.orderService.approveOrder(this.selectedOrder.id)
     .subscribe(data => { 
-      this.toastr.success('Uspešno odobrena narudžbina!')  
+      this.toastr.success('Uspešno odobrena narudžbenica!')  
       this.allOrders = []
       this.getAllOrders() 
     },
@@ -85,7 +85,7 @@ export class OrdersViewDirectorComponent implements OnInit {
     
     this.orderService.declineOrder(this.selectedOrder.id)
     .subscribe(data => { 
-      this.toastr.success('Uspešno odbijena narudžbina!')  
+      this.toastr.success('Uspešno odbijena narudžbenica!')  
       this.allOrders = []
       this.getAllOrders() 
     },
@@ -94,4 +94,19 @@ export class OrdersViewDirectorComponent implements OnInit {
         this.toastr.error(error['error'].message)
       });
   }
+
+    
+  exportOrderReport(id : any){
+    
+    this.orderService.exportOrderReport(id).subscribe((data : string) => { 
+      this.toastr.success('Narudžbenica broj #' + id + ' je poslata na vašu email adresu.')  
+      this.allOrders = []
+      this.getAllOrders() 
+    },
+      error => { 
+        console.log('Exporting order error');  
+        this.toastr.error(error['error'].message)
+      }); 
+  }
+
 }

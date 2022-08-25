@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public class OrderReportDto {
 
-    private String id;
+    private Long id;
     private String author;
     private String reviewer;
     private String companyName;

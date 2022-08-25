@@ -52,7 +52,7 @@ export class NewOrderComponent implements OnInit {
 
     this.orderService.createOrder(this.orderItems)
     .subscribe(data => { 
-      this.toastr.success('Nova narudžbina uspešno kreirana!')  
+      this.toastr.success('Nova narudžbenica uspešno kreirana!')  
       this.router.navigate(['leader/orders']);
     },
       error => { 

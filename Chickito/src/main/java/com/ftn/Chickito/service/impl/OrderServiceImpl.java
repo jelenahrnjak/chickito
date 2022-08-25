@@ -80,7 +80,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String exportOrderReport(String username, Long id) throws FileNotFoundException, JRException, MessagingException {
+    public void exportOrderReport(String username, Long id) throws FileNotFoundException, JRException, MessagingException {
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with username = %s doesn't exist.", username)));
@@ -93,18 +93,29 @@ public class OrderServiceImpl implements OrderService {
         orders.add(orderDto);
         File file = ResourceUtils.getFile("classpath:reportTemplates\\OrderReport.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(orders);
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(orderDto.getOrderItems());
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("createdBy", "Java Techie");
+        parameters.put("companyName", orderDto.getCompanyName());
+        parameters.put("sector", orderDto.getSector());
+        parameters.put("headOffice", orderDto.getHeadOffice());
+        parameters.put("id", "#" + orderDto.getId().toString());
+        parameters.put("author", orderDto.getAuthor());
+        parameters.put("reviewer" , orderDto.getReviewer());
+        parameters.put("creationDate" , orderDto.getCreationDate());
+        parameters.put("price", orderDto.getPrice());
+
+//        File fileSubReport = ResourceUtils.getFile("classpath:reportTemplates\\items.jrxml");
+//        JasperReport subReport =JasperCompileManager.compileReport(fileSubReport.getAbsolutePath());
+//        parameters.put("Items.jasper", subReport);
+
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
         DataSource attachment =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
 
-        this.emailService.sendOrderReport(user.getEmail(), attachment, orderDto);
-
-        return "ok";
+        this.emailService.sendOrderReport(user.getEmail(), attachment, orderDto); 
     }
 
     @Override

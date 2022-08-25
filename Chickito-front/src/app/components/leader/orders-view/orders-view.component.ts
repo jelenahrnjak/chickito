@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
 import Order from '../../../model/order';
 import OrderItem from '../../../model/order-item';
+import { ToastrService } from 'ngx-toastr';  
 
 @Component({
   selector: 'app-orders-view',
@@ -20,6 +21,7 @@ export class OrdersViewComponent implements OnInit {
   orderItems : OrderItem[] = []
   constructor(
     private orderService : OrderService,
+    private toastr: ToastrService,  
   ) { }
 
   ngOnInit(): void {
@@ -36,9 +38,15 @@ export class OrdersViewComponent implements OnInit {
   
   exportOrderReport(id : any){
     
-    this.orderService.exportOrderReport(id).subscribe((data : string) => {
-      console.log(data)
-    }); 
+    this.orderService.exportOrderReport(id).subscribe((data : string) => { 
+      this.toastr.success('Narudžbenica broj #' + id + ' je poslata na vašu email adresu.')  
+      this.allOrders = []
+      this.getAllOrders() 
+    },
+      error => { 
+        console.log('Exporting order error');  
+        this.toastr.error(error['error'].message)
+      }); 
   }
 
 

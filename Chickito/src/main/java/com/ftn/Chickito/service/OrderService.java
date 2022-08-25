@@ -11,7 +11,7 @@ import java.util.List;
 public interface OrderService {
 
     Order createOrder(String authorUsername, CreateOrderDto createOrderDto);
-    String exportOrderReport(String username, Long id) throws FileNotFoundException, JRException, MessagingException;
+    void exportOrderReport(String username, Long id) throws FileNotFoundException, JRException, MessagingException;
     boolean approveOrder(String reviewerUsername, Long id);
 
     boolean declineOrder(String reviewerUsername, Long id);

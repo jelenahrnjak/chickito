@@ -42,10 +42,11 @@ public class OrderController {
 
     @GetMapping("/exportOrderReport/{id}")
     @PreAuthorize("hasAuthority('LEADER') || hasAuthority('DIRECTOR')")
-    public ResponseEntity<String> exportOrderReport(@RequestHeader("Authorization") String jwtToken, @PathVariable Long id) throws JRException, IOException, MessagingException {
+    public ResponseEntity exportOrderReport(@RequestHeader("Authorization") String jwtToken, @PathVariable Long id) throws JRException, IOException, MessagingException {
 
         String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
-        return new ResponseEntity<>(orderService.exportOrderReport(username, id), HttpStatus.OK);
+        orderService.exportOrderReport(username, id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping(value = "/{id}/approve")
