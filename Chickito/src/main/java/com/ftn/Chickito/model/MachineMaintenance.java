@@ -28,8 +28,7 @@ public class MachineMaintenance {
     @OneToMany(mappedBy = "machineMaintenance", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<MachineMaintenanceItem> items = new HashSet<>();
 
-    private LocalDate startDate;
-
-    private LocalDate endDate;
+    @Column(nullable = false)
+    private Integer year;
 
 }

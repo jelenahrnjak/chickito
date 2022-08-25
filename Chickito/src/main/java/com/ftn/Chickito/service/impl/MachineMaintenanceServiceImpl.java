@@ -49,8 +49,7 @@ public class MachineMaintenanceServiceImpl implements MachineMaintenanceService 
         MachineMaintenance machineMaintenance = MachineMaintenance.builder()
                 .author(author)
                 .items(items)
-                .startDate(createMaintenanceDto.getStartDate())
-                .endDate(createMaintenanceDto.getEndDate())
+                .year(createMaintenanceDto.getYear())
                 .build();
 
         items.forEach(item -> item.setMachineMaintenance(machineMaintenance));

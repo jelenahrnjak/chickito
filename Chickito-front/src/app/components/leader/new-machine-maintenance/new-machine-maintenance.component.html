@@ -39,16 +39,15 @@
     </div>   
 
     
-    <form (ngSubmit)="createMachineMaintenance()" [formGroup]="formDates">
-    <div class="input-group mb-3"> 
-        <input class="form-control" formControlName="startDate"  placeholder="Početak važenja"
-        min="{{minDate | date:'yyyy-MM-dd' }}" (change)="checkDates()" onfocus="(this.type='date')"/>  
-    </div>
-    <div class="input-group mb-3"> 
-        <input type="text" class="form-control" formControlName="endDate"  
-            min="{{minDateMax | date:'yyyy-MM-dd' }}" placeholder="Kraj važenja" 
-            onfocus="(this.type='date')" [disabled]="!this.form.get('startDate')"/>  
-    </div>
+    <form (ngSubmit)="createMachineMaintenance()" [formGroup]="formDates"> 
+
+
+    <div class="input-group mb-4"> 
+        <select class="form-control" formControlName="year" placeholder="Izaberite godinu važenja" required>
+            <option style="color:gray" value="" disabled selected>Godina važenja</option>
+            <option *ngFor="let item of years" value="{{item}}">{{item}}</option> 
+        </select>
+    </div> 
 
     <div class="table-responsive" style="margin-top : 1ch; height: 53ch;"> 
         <table class="table" style=" margin-bottom: 4ch;">

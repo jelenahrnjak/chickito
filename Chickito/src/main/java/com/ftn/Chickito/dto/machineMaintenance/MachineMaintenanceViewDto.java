@@ -18,6 +18,5 @@ public class MachineMaintenanceViewDto {
     private List<MachineMaintenanceItemDto> items;
     private String creationDate;
     private String sector;
-    private String startDate;
-    private String endDate;
+    private Integer year;
 }

@@ -22,6 +22,7 @@ export class NewMachineMaintenanceComponent implements OnInit {
   display = "none";
   selectedItem : any = ''
   selectedMachine : any = ''
+  years : number[] = []
 
   
   minDate: Date = new Date();
@@ -39,14 +40,17 @@ export class NewMachineMaintenanceComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMachines()
 
+    for(var i=0; i<5 ; i++){
+      this.years.push((new Date()).getFullYear() + i)
+    }
+
     this.form = this.formBuilder.group({
       machine : ['', Validators.compose([Validators.required])],
       plan: ['', Validators.compose([Validators.required])], 
     }); 
 
-    this.formDates = this.formBuilder.group({
-      startDate : ['',Validators.compose([Validators.required])],
-      endDate : ['',Validators.compose([Validators.required])],
+    this.formDates = this.formBuilder.group({ 
+      year : ['',Validators.compose([Validators.required])],
     }); 
   }
 
@@ -98,8 +102,7 @@ export class NewMachineMaintenanceComponent implements OnInit {
 
     var body ={
       "items" : this.items,
-      "startDate" : this.formDates.get('startDate')?.value,
-      "endDate" : this.formDates.get('endDate')?.value
+      "year" : this.formDates.get('year')?.value, 
     }
 
     this.machineMaintenanceService.createMachineMaintenance(body)

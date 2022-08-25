@@ -12,8 +12,7 @@
             <thead>
                 <tr> 
                     <th>Broj</th>
-                    <th>Početak važenja</th>
-                    <th>Kraj važenja</th>
+                    <th>Godina važenja</th> 
                     <th>Mašine</th>  
                     <th>/</th> 
                 </tr>
@@ -21,8 +20,7 @@
             <tbody>
                 <tr *ngFor="let item of allMaintenances"> 
                     <td>#{{item.id}}</td>
-                    <td>{{item.startDate}}</td>
-                    <td>{{item.endDate}}</td>
+                    <td>{{item.year}}</td> 
                     <td><span class="badge btn-green" (click)="showItems(item)" style="cursor: pointer;">Prikaži</span></td> 
                     <td><span class="badge btn-green" style="cursor: pointer;">Preuzmi pdf</span></td> 
                 

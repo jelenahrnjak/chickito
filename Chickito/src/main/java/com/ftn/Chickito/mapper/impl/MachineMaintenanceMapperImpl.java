@@ -10,7 +10,6 @@ import com.ftn.Chickito.model.MachineMaintenanceItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -23,15 +22,13 @@ public class MachineMaintenanceMapperImpl implements MachineMaintenanceMapper {
     private final SectorMapper sectorMapper;
     @Override
     public MachineMaintenanceViewDto maintenanceToMaintenanceDto(MachineMaintenance machineMaintenance) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
         return MachineMaintenanceViewDto.builder()
                 .id(machineMaintenance.getId())
                 .items(this.maintenanceItemsToMaintenanceItemsDto(machineMaintenance.getItems()))
                 .author(machineMaintenance.getAuthor().getFirstName() + " " + machineMaintenance.getAuthor().getLastName())
                 .sector(sectorMapper.sectorTypeToString(machineMaintenance.getAuthor().getSector().getType()))
-                .startDate(machineMaintenance.getStartDate().format(formatter))
-                .endDate(machineMaintenance.getEndDate().format(formatter))
+                .year(machineMaintenance.getYear())
                 .build();
     }
 

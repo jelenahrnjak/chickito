@@ -11,6 +11,5 @@ import java.util.List;
 public class CreateMachineMaintenanceDto {
 
     private List<MachineMaintenanceItemDto> items;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Integer year;
 }
