@@ -3,14 +3,22 @@ INSERT INTO ROLES (id, name) VALUES (2, 'DIRECTOR');
 INSERT INTO ROLES (id, name) VALUES (3, 'LEADER');
 INSERT INTO ROLES (id, name) VALUES (4, 'WORKER');
 
+INSERT INTO COUNTRIES (id, name) VALUES (111, 'Serbia');
+INSERT INTO CITIES ( id, name, postal_code, country_id) VALUES (111, 'Subotica', '24000', 111);
+INSERT INTO ADDRESSES (id, latitude, longitude, "number", street, city_id)
+VALUES(111, 46.09984041288659, 19.6614071369724, 3, 'Ištvana Sečenjija', 111);
+
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender)
 VALUES (111,true,false,'admin@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'admin', 1, 1);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender)
-VALUES (222,true,false,'direktor@gmail.com','Janko', 'Ratkov', null, '$2a$10$I1rJ7EiiGwH/phEllVzAAelcVv3Rrbu7oXc2PfmEO6r/b88p9gd7S', 'direktor', 2, 1);
+VALUES (222,true,false,'jelenahrnjak99+1@gmail.com','Janko', 'Ratkov', null, '$2a$10$I1rJ7EiiGwH/phEllVzAAelcVv3Rrbu7oXc2PfmEO6r/b88p9gd7S', 'direktor', 2, 1);
 
 INSERT INTO COMPANIES (id, establishment_date, name, pib, deleted, director_id)
 VALUES (111, '2022-07-31 20:21:07.253468' , 'PP-TOPIKO' , '24124142', false, 222);
+
+INSERT INTO public.buildings(id, deleted, head_office, address_id, company_id)
+VALUES (111, false, true, 111, 111);
 
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (111, 0 , 111, false);  -- INSERT INTO SECTORS (id, type,leader_id, company_id)
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (222, 1 , 111, false);
@@ -18,9 +26,27 @@ INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (333, 2 , 111, false)
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (444, 3 , 111, false);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id)
-VALUES (333,true,false,'leader@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'leader', 3, 1, 111);
+VALUES (333,true,false,'jelenahrnjak99@gmail.com','Dragan', 'Hrnjak', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'leader', 3, 1, 111);
 
--- insert into countries (name) values (?)
--- insert into cities (country_id, name, postal_code) values (?, ?, ?)
--- insert into addresses (city_id, latitude, longitude, number, street) values (?, ?, ?, ?, ?)
--- insert into buildings (address_id, company_id, head_office) values (?, ?, ?)
+INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
+VALUES (111, true, '2022-08-15 20:21:07.253468', 5000, 333, 222);
+INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
+VALUES (222, null, '2022-08-21 20:21:07.253468', 7000, 333, 222);
+
+INSERT INTO DOCUMENTATIONS (id, text) VALUES (111, 'Mašina se koristi na niskim temperaturama.');
+INSERT INTO DOCUMENTATIONS (id, text) VALUES (222, 'Mašinu ne držati upaljenom duže od 2 sata.');
+
+INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)
+VALUES (111, true, 'CNC', 'Pilerica', 2000, 3, '12345', 111, 111, 111);
+INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)
+VALUES (222, true, '2CP3', 'Ljuštilica', 3000, 1, '1233', null, 111, 111);
+INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)
+VALUES (333, false, 'POP', 'Grebalica', 7000, 1, '12333', 222, 222, 111);
+
+INSERT INTO MACHINE_MAINTENANCES (id, year, author_id) VALUES (111, 2022, 333);
+INSERT INTO MACHINE_MAINTENANCES (id, year, author_id) VALUES (222, 2022, 333);
+
+INSERT INTO MACHINE_MAINTENANCE_ITEMS ( id, plan, machine_id, machine_maintenance_id)
+VALUES (111, 'Menjati ventil na mesec dana.', 111, 111);
+INSERT INTO MACHINE_MAINTENANCE_ITEMS ( id, plan, machine_id, machine_maintenance_id)
+VALUES (222, 'Pratiti temperaturu redovno.', 222, 222);

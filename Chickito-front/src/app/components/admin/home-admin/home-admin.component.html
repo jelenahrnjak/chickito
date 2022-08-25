@@ -52,7 +52,7 @@
                     <td>{{item.address.city.postalCode}}</td>
                     <td>{{item.address.city.country}}</td>                    
                     <td *ngIf="item.address.longitude == ''"><span class="badge"  style="color: gray;">Ručno uneta adresa</span></td>
-                    <td *ngIf="item.address.longitude != ''"><span class="badge btn-green" (click)="showMap(item.address)" style="cursor: pointer;">Prikaži na mapi</span></td>
+                    <td *ngIf="item.address.longitude != ''"><span class="badge btn-green" (click)="showMap(item.address, item.address.city)" style="cursor: pointer;">Prikaži na mapi</span></td>
                     <td *ngIf="item.headOffice != false"><span class="badge btn-red" (click)="changeHeadOffice(item.id)" style="float:right; cursor: pointer;">Ukloni kao sedište</span></td>
                     <td *ngIf="item.headOffice == false"><span class="badge btn-green" (click)="changeHeadOffice(item.id)" style="float:right; cursor: pointer;">Postavi za sedište</span></td>
                     <td><span class="badge btn-red" (click)="deleteBuilding(item.id)" style="cursor: pointer;">Obriši</span></td>
@@ -68,13 +68,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">{{selectedAddress.street}}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">{{selectedAddress}}</h5>
         </div> 
 
         <div  class="container"> 
 
-            <agm-map [latitude]="selectedAddress.latitude" [longitude]="selectedAddress.longitude" [zoom]="0">
-                <agm-marker [latitude]="selectedAddress.latitude" [longitude]="selectedAddress.longitude"></agm-marker>
+            <agm-map [latitude]="lat" [longitude]="long" [zoom]="0">
+                <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
               </agm-map>
  
 

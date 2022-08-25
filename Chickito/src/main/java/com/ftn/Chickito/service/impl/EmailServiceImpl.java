@@ -23,13 +23,13 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendOrderReport(String email, DataSource attachment, OrderReportDto order) throws MessagingException {
 
-        String text = "<br>U prilogu se nalazi narudžbenica broj "+ order.getId() + ".";
+        String text = "<br>U prilogu se nalazi narudžbenica broj #"+ order.getId() + ".";
 
         MimeMessage mail = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail, true);
         helper.setTo(email);
         helper.setFrom(env.getProperty("spring.mail.username"));
-        helper.setSubject("Narudžbenica broj " + order.getId());
+        helper.setSubject("Narudžbenica broj #" + order.getId());
         helper.setText("Poštovani," + text, true);
 
         helper.addAttachment("narudzbenica" + order.getId() + ".pdf",attachment);

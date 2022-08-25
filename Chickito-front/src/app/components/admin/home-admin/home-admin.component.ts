@@ -19,6 +19,8 @@ export class HomeAdminComponent implements OnInit {
   currentCompanyId : any = ""
   display = 'none'
   selectedAddress : any = ''; 
+  lat =0
+  long = 0
   constructor(
     private toastr: ToastrService, 
     private companyService: CompanyService,
@@ -88,8 +90,10 @@ export class HomeAdminComponent implements OnInit {
 
   }
 
-  showMap(address){
-    this.selectedAddress = address
+  showMap(address, city){
+    this.selectedAddress = address.street + ' ' + address.number + ', ' + city.name + ' ' + city.postalCode + ', ' + city.country
+    this.lat = address.latitude
+    this.long = address.longitude
     this.display = 'block'
     
   }
