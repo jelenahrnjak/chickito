@@ -36,4 +36,12 @@ export class MachineMaintenanceService {
         return maintenances;
       }));
     } 
+
+    generateMaintenancePdf(year : number){
+
+      return this.apiService.get(this.config.machineMaintenance_url + `/generateMaintenancePdf/${year}`)
+      .pipe(map(path => { 
+        return path;
+      }));
+    }
 }

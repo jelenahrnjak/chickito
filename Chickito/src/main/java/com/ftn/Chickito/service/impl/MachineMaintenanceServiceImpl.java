@@ -1,29 +1,42 @@
 package com.ftn.Chickito.service.impl;
 
 import com.ftn.Chickito.dto.machineMaintenance.CreateMachineMaintenanceDto;
+import com.ftn.Chickito.dto.machineMaintenance.MaintenanceReportDto;
+import com.ftn.Chickito.dto.order.OrderReportDto;
+import com.ftn.Chickito.mapper.MachineMaintenanceMapper;
+import com.ftn.Chickito.mapper.SectorMapper;
 import com.ftn.Chickito.model.*;
-import com.ftn.Chickito.repository.CompanyRepository;
-import com.ftn.Chickito.repository.MachineMaintenanceRepository;
-import com.ftn.Chickito.repository.MachineRepository;
-import com.ftn.Chickito.repository.UserRepository;
+import com.ftn.Chickito.model.enums.SectorType;
+import com.ftn.Chickito.repository.*;
+import com.ftn.Chickito.service.EmailService;
 import com.ftn.Chickito.service.MachineMaintenanceService;
+import com.sun.istack.ByteArrayDataSource;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import javax.activation.DataSource;
+import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class MachineMaintenanceServiceImpl implements MachineMaintenanceService {
 
     private final MachineMaintenanceRepository machineMaintenanceRepository;
-    private final CompanyRepository companyRepository;
+    private final MachineMaintenanceItemRepository machineMaintenanceItemRepository;
     private final UserRepository userRepository;
     private final MachineRepository machineRepository;
+    private final SectorRepository sectorRepository;
+    private final EmailService emailService;
+    private final MachineMaintenanceMapper mapper;
     private final static String LEADER_ROLE = "LEADER";
 
     @Override
@@ -71,7 +84,50 @@ public class MachineMaintenanceServiceImpl implements MachineMaintenanceService 
 
     @Override
     public List<MachineMaintenance> findAllByDirector(String directorUsername) {
-        Company company = this.companyRepository.findByDirector(directorUsername);
-        return this.machineMaintenanceRepository.findAllByCompany(company.getId());
+        return this.machineMaintenanceRepository.findAllByDirector(directorUsername);
     }
+
+    @Override
+    public void generateMaintenancePdfLeader(String username, Integer year) throws FileNotFoundException, JRException, MessagingException {
+
+        this.generateMaintenancePdf(username,this.machineMaintenanceItemRepository.findAllByYearAndAuthor(username, year));
+    }
+
+    @Override
+    public void generateMaintenancePdfDirector(String username, Integer year, String sectorType) throws JRException, MessagingException, FileNotFoundException {
+
+        Sector sector = sectorRepository.findByDirectorAndType(username, SectorType.valueOf(sectorType));
+        this.generateMaintenancePdf(username,this.machineMaintenanceItemRepository.findAllByYearAndSector(sector.getId(), year));
+    }
+
+    private void generateMaintenancePdf(String username, List<MachineMaintenanceItem> maintenanceItems) throws FileNotFoundException, JRException, MessagingException {
+
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("User with username = %s doesn't exist.", username)));
+
+        File file = ResourceUtils.getFile("classpath:reportTemplates\\MaintenancePlan.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(maintenanceItems);
+
+        MaintenanceReportDto reportDto = mapper.maintenanceToMaintenanceReportDto(maintenanceItems.get(0).getMachineMaintenance());
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("companyName", reportDto.getCompanyName());
+        parameters.put("sector", reportDto.getSector());
+        parameters.put("headOffice", reportDto.getHeadOffice());
+        parameters.put("author", reportDto.getAuthor());
+        parameters.put("title" , reportDto.getTitle());
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, byteArrayOutputStream);
+        DataSource attachment =  new ByteArrayDataSource(byteArrayOutputStream.toByteArray(), "application/pdf");
+
+        this.emailService.sendMachineMaintenancePdf(user.getEmail(), attachment, reportDto.getYear());
+
+    }
+
+
 }

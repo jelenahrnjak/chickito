@@ -55,9 +55,9 @@ export class OrderService {
         }));
     }
 
-    exportOrderReport(id : any){
+    generateOrderPdf(id : any){
 
-      return this.apiService.get(this.config.order_url + `/exportOrderReport/${id}`)
+      return this.apiService.get(this.config.order_url + `/generateOrderPdf/${id}`)
       .pipe(map(path => { 
         return path;
       }));

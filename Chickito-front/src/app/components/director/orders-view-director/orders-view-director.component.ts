@@ -96,9 +96,9 @@ export class OrdersViewDirectorComponent implements OnInit {
   }
 
     
-  exportOrderReport(id : any){
+  generateOrderPdf(id : any){
     
-    this.orderService.exportOrderReport(id).subscribe((data : string) => { 
+    this.orderService.generateOrderPdf(id).subscribe((data : string) => { 
       this.toastr.success('Narudžbenica broj #' + id + ' je poslata na vašu email adresu.')  
       this.allOrders = []
       this.getAllOrders() 

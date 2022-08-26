@@ -44,7 +44,10 @@ public class CompanyMapperImpl implements CompanyMapper {
         if(headOffice!=null){
             dto.setHeadOfficeId(headOffice.getId());
             dto.setHeadOfficeAddress(this.addressMapper.getAddressString(headOffice.getAddress()));
+        }else{
+            dto.setHeadOfficeAddress("");
         }
+
         dto.setSectors(new ArrayList<>());
         for(Sector s : this.sectorRepository.findByCompany(company.getId())){
             dto.getSectors().add(this.sectorMapper.sectorToSectorDto(s));

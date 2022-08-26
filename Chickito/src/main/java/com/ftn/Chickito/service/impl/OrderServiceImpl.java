@@ -30,7 +30,6 @@ import java.util.*;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private final CompanyRepository companyRepository;
     private final MachineRepository machineRepository;
     private final UserRepository userRepository;
     private final DocumentationRepository documentationRepository;
@@ -80,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void exportOrderReport(String username, Long id) throws FileNotFoundException, JRException, MessagingException {
+    public void generateOrderPdf(String username, Long id) throws FileNotFoundException, JRException, MessagingException {
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with username = %s doesn't exist.", username)));
@@ -104,10 +103,6 @@ public class OrderServiceImpl implements OrderService {
         parameters.put("creationDate" , orderDto.getCreationDate());
         parameters.put("price", orderDto.getPrice());
 
-//        File fileSubReport = ResourceUtils.getFile("classpath:reportTemplates\\items.jrxml");
-//        JasperReport subReport =JasperCompileManager.compileReport(fileSubReport.getAbsolutePath());
-//        parameters.put("Items.jasper", subReport);
-
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
 
@@ -115,7 +110,7 @@ public class OrderServiceImpl implements OrderService {
         JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
         DataSource attachment =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
 
-        this.emailService.sendOrderReport(user.getEmail(), attachment, orderDto); 
+        this.emailService.sendOrderPdf(user.getEmail(), attachment, orderDto);
     }
 
     @Override
@@ -190,7 +185,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findAllByDirector(String directorUsername) {
 
-        Company company = companyRepository.findByDirector(directorUsername);
-        return this.orderRepository.findAllByCompany(company.getId());
+        return this.orderRepository.findAllByDirector(directorUsername);
     }
 }

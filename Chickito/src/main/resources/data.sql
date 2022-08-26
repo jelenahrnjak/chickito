@@ -20,13 +20,13 @@ VALUES (111, '2022-07-31 20:21:07.253468' , 'PP-TOPIKO' , '24124142', false, 222
 INSERT INTO public.buildings(id, deleted, head_office, address_id, company_id)
 VALUES (111, false, true, 111, 111);
 
-INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (111, 0 , 111, false);  -- INSERT INTO SECTORS (id, type,leader_id, company_id)
+INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (111, 0 , 111, false);
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (222, 1 , 111, false);
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (333, 2 , 111, false);
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (444, 3 , 111, false);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id)
-VALUES (333,true,false,'jelenahrnjak99@gmail.com','Dragan', 'Hrnjak', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'leader', 3, 1, 111);
+VALUES (333,true,false,'jelenahrnjak99@gmail.com','Dragan', 'Hrnjak', null, '$2a$10$s4cBPBON540yp30i7i2ZQ.hybr3EX2x9GbVd2PzPUYcUyHFAlNWe2', 'rukovodilac', 3, 1, 111);
 
 INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
 VALUES (111, true, '2022-08-15 20:21:07.253468', 5000, 333, 222);

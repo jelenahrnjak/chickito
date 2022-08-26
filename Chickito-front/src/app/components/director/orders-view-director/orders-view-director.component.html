@@ -30,7 +30,7 @@
                     <td *ngIf="item.approved == true"><span class="badge"  style="color: #04664c;" >Odobreno</span></td>
                     <td *ngIf="item.approved == false"><span class="badge" style="color: #b7222f;">Odbijeno</span></td>
                     <td *ngIf="item.approved != true && item.approved != false"><span class="badge btn-green" style="cursor: pointer;" (click)="replyToOrder(item)">Odgovori</span></td>
-                    <td><span *ngIf="item.approved == true" class="badge btn-green" style="cursor: pointer;" (click)="exportOrderReport(item.id)">Preuzmi pdf</span></td> 
+                    <td><span *ngIf="item.approved == true" class="badge btn-green" style="cursor: pointer;" (click)="generateOrderPdf(item.id)">Preuzmi pdf</span></td> 
                 
                 </tr>
             </tbody>

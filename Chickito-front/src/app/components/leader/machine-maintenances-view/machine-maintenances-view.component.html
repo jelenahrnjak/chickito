@@ -1,8 +1,10 @@
 <div class="card-body">
     
  
-    <h1  style="width:95%; float: left;">Planovi održavanja
-        <a class="btn-green btn" style="float: right; width: 15%;"  href="/leader/new-machine-maintenance">Novi plan <li class="fa fa-plus"></li></a> 
+    <h1  style="width:95%; float: left;">
+        Planovi održavanja 
+        <button class="btn-green btn" style=" right: 17%; position: fixed; width: 15%;"  (click)="displayYear = 'block'; selectedYear = 0"> Preuzmi pdf  <li class="fa fa-download"></li></button>  
+        <a class="btn-green btn" style="float: right; position: fixed; right:1%; width: 15%;"  href="/leader/new-machine-maintenance">Novi plan <li class="fa fa-plus"></li></a> 
     </h1> 
 
 
@@ -13,17 +15,14 @@
                 <tr> 
                     <th>Broj</th>
                     <th>Godina važenja</th> 
-                    <th>Mašine</th>  
-                    <th>/</th> 
+                    <th>Mašine</th>   
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of allMaintenances"> 
                     <td>#{{item.id}}</td>
                     <td>{{item.year}}</td> 
-                    <td><span class="badge btn-green" (click)="showItems(item)" style="cursor: pointer;">Prikaži</span></td> 
-                    <td><span class="badge btn-green" style="cursor: pointer;">Preuzmi pdf</span></td> 
-                
+                    <td><span class="badge btn-green" (click)="showItems(item)" style="cursor: pointer;">Prikaži</span></td>  
                 </tr>
             </tbody>
         </table>
@@ -88,6 +87,33 @@
           
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayPlan = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Modal for year select -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayYear}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Izaberite godinu važenja plana održavanja</h5>
+        </div> 
+
+        <div  class="container">  
+            <br>
+            <select class="form-control"  [(ngModel)]="selectedYear" placeholder="Izaberite godinu važenja" required>
+                <option style="color:gray" value="0" disabled selected>Godina važenja</option>
+                <option *ngFor="let item of years" value="{{item}}">{{item}}</option> 
+            </select> 
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayYear = 'none'">Odustani</button>
+            <button type="button" class="btn btn-green" style="width: 35%;" (click)="displayYear = 'none'; generateMaintenancePdf()" [disabled]="selectedYear == 0">Potvrdi</button>
         </div>
     </div>
     </div>
