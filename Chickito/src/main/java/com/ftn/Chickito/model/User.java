@@ -1,6 +1,7 @@
 package com.ftn.Chickito.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -11,6 +12,8 @@ import javax.persistence.*;
 import com.ftn.Chickito.model.enums.GenderType;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -45,7 +48,7 @@ public class User implements UserDetails {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    private String phoneNumber; 
+    private String phoneNumber;
 
     @Column(nullable = false)
     private GenderType gender;
@@ -68,6 +71,12 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Sector sector;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<VacationDay> vacationDays;
+
+    private int availableVacationDays;
+
     public User(User u) {
         this.username = u.getUsername();
         this.password = u.getPassword();
@@ -82,6 +91,8 @@ public class User implements UserDetails {
         this.lastPasswordResetDate = u.getLastPasswordResetDate();
         this.role = u.getRole();
         this.sector = u.getSector();
+        this.availableVacationDays = u.getAvailableVacationDays();
+        this.vacationDays = u.getVacationDays();
     }
 
     public User() {

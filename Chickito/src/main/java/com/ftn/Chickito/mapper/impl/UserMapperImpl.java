@@ -1,13 +1,14 @@
 package com.ftn.Chickito.mapper.impl;
 
-import com.ftn.Chickito.dto.user.UserDto;
 import com.ftn.Chickito.dto.auth.UserRequest;
+import com.ftn.Chickito.dto.user.UserDto;
 import com.ftn.Chickito.dto.user.UserViewDto;
 import com.ftn.Chickito.mapper.AddressMapper;
 import com.ftn.Chickito.mapper.SectorMapper;
 import com.ftn.Chickito.mapper.UserMapper;
 import com.ftn.Chickito.model.Role;
 import com.ftn.Chickito.model.User;
+import com.ftn.Chickito.model.VacationDay;
 import com.ftn.Chickito.model.WorkerOnMachine;
 import com.ftn.Chickito.model.enums.GenderType;
 import com.ftn.Chickito.repository.WorkerOnMachineRepository;
@@ -16,8 +17,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -44,6 +47,8 @@ public class UserMapperImpl implements UserMapper {
         u.setRole(role);
         u.setGender(GenderType.values()[userRequest.getGender()]);
         u.setPhoneNumber(userRequest.getPhoneNumber());
+        u.setAvailableVacationDays(calculateVacationDaysForThisYear());
+        u.setVacationDays(new ArrayList<>());
 
         return u;
     }
@@ -59,6 +64,8 @@ public class UserMapperImpl implements UserMapper {
                 .gender(user.getGender())
                 .phoneNumber(user.getPhoneNumber())
                 .address(addressMapper.addressToAddressDto(user.getAddress()))
+                .availableVacationDays(user.getAvailableVacationDays())
+                .vacationDays(user.getVacationDays().stream().map(VacationDay::getDate).collect(Collectors.toList()))
                 .build();
     }
 
@@ -114,9 +121,13 @@ public class UserMapperImpl implements UserMapper {
         return workersDto;
     }
 
-    private String translatingRole(String roleName){
+    private int calculateVacationDaysForThisYear() {
+        return (12 - LocalDate.now().getMonthValue()) * 20 / 12;
+    }
 
-        switch (roleName){
+    private String translatingRole(String roleName) {
+
+        switch (roleName) {
             case "DIRECTOR":
                 return "DIREKTOR";
             case "LEADER":

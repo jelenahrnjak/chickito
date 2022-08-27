@@ -5,6 +5,9 @@ import com.ftn.Chickito.model.enums.GenderType;
 import com.ftn.Chickito.model.enums.SectorType;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -24,5 +27,6 @@ public class UserDto {
     private String role;
     private GenderType gender;
     private String sector;
-
+    private int availableVacationDays;
+    private List<LocalDate> vacationDays;
 }

@@ -2,11 +2,17 @@ package com.ftn.Chickito.service.impl;
 
 import com.ftn.Chickito.dto.order.CreateOrderDto;
 import com.ftn.Chickito.dto.order.OrderReportDto;
-import com.ftn.Chickito.exception.OrderAlreadyProccesedException;
+import com.ftn.Chickito.exception.OrderAlreadyProcessedException;
 import com.ftn.Chickito.exception.WrongReviewerException;
 import com.ftn.Chickito.mapper.OrderMapper;
-import com.ftn.Chickito.model.*;
-import com.ftn.Chickito.repository.*;
+import com.ftn.Chickito.model.Documentation;
+import com.ftn.Chickito.model.Machine;
+import com.ftn.Chickito.model.Order;
+import com.ftn.Chickito.model.User;
+import com.ftn.Chickito.repository.DocumentationRepository;
+import com.ftn.Chickito.repository.MachineRepository;
+import com.ftn.Chickito.repository.OrderRepository;
+import com.ftn.Chickito.repository.UserRepository;
 import com.ftn.Chickito.service.EmailService;
 import com.ftn.Chickito.service.OrderService;
 import com.sun.istack.ByteArrayDataSource;
@@ -99,8 +105,8 @@ public class OrderServiceImpl implements OrderService {
         parameters.put("headOffice", orderDto.getHeadOffice());
         parameters.put("id", "#" + orderDto.getId().toString());
         parameters.put("author", orderDto.getAuthor());
-        parameters.put("reviewer" , orderDto.getReviewer());
-        parameters.put("creationDate" , orderDto.getCreationDate());
+        parameters.put("reviewer", orderDto.getReviewer());
+        parameters.put("creationDate", orderDto.getCreationDate());
         parameters.put("price", orderDto.getPrice());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
@@ -108,7 +114,7 @@ public class OrderServiceImpl implements OrderService {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
-        DataSource attachment =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
+        DataSource attachment = new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
 
         this.emailService.sendOrderPdf(user.getEmail(), attachment, orderDto);
     }
@@ -156,7 +162,7 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Order with id = %s doesn't exist.", id)));
 
         if (order.getApproved() != null) {
-            throw new OrderAlreadyProccesedException(id);
+            throw new OrderAlreadyProcessedException(id);
         }
 
         return order;
@@ -178,7 +184,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAllByAuthor(String authorUsername){
+    public List<Order> findAllByAuthor(String authorUsername) {
         return this.orderRepository.findAllByAuthor(authorUsername);
     }
 

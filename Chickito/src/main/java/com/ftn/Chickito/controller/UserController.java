@@ -1,7 +1,5 @@
 package com.ftn.Chickito.controller;
 
-import java.util.List;
-
 import com.ftn.Chickito.dto.auth.UserRequest;
 import com.ftn.Chickito.dto.user.UserDto;
 import com.ftn.Chickito.dto.user.UserViewDto;
@@ -12,11 +10,12 @@ import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.service.UserService;
 import com.ftn.Chickito.util.TokenUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/users")
@@ -28,20 +27,19 @@ public class UserController {
     private final TokenUtils tokenUtils;
     private static final String WHITESPACE = " ";
 
-
     @GetMapping("/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public User loadById(@PathVariable Long userId) {
         return this.userService.findById(userId);
     }
 
-    @GetMapping()
+    @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<User> loadAll() {
         return this.userService.findAll();
     }
 
-    @PostMapping()
+    @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest) {
 

@@ -2,9 +2,14 @@ package com.ftn.Chickito.service.impl;
 
 import com.ftn.Chickito.dto.auth.UserRequest;
 import com.ftn.Chickito.mapper.UserMapper;
-import com.ftn.Chickito.model.*;
+import com.ftn.Chickito.model.Company;
+import com.ftn.Chickito.model.Sector;
+import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.model.enums.SectorType;
-import com.ftn.Chickito.repository.*;
+import com.ftn.Chickito.repository.CompanyRepository;
+import com.ftn.Chickito.repository.SectorRepository;
+import com.ftn.Chickito.repository.UserRepository;
+import com.ftn.Chickito.repository.VacationRequestRepository;
 import com.ftn.Chickito.service.UserService;
 import com.ftn.Chickito.service.WorkerOnMachineService;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +21,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final WorkerOnMachineService workerOnMachineService;
     private final SectorRepository sectorRepository;
     private final CompanyRepository companyRepository;
+    private final VacationRequestRepository vacationRequestRepository;
     public final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final static String WORKER_ROLE = "WORKER";
@@ -55,7 +61,7 @@ public class UserServiceImpl implements UserService{
         User u = this.userMapper.userRequestToUser(userRequest);
 
 
-        if(userRequest.getRole() != 2){
+        if (userRequest.getRole() != 2) {
 
             Sector sector = this.sectorRepository.findByCompanyAndType(userRequest.getCompanyId(), SectorType.values()[userRequest.getSector()]);
             u.setSector(sector);
@@ -64,13 +70,13 @@ public class UserServiceImpl implements UserService{
 
         User newUser = this.userRepository.save(u);
 
-        if(userRequest.getRole() == 3){
+        if (userRequest.getRole() == 3) {
             Sector sector = this.sectorRepository.findById(newUser.getSector().getId()).orElse(null);
             sector.setLeader(u);
             this.sectorRepository.save(sector);
         }
 
-        if(userRequest.getRole() == 2) {
+        if (userRequest.getRole() == 2) {
 
             Company company = this.companyRepository.findById(userRequest.getCompanyId()).orElseGet(null);
             company.setDirector(newUser);

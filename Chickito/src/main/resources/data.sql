@@ -8,11 +8,11 @@ INSERT INTO CITIES ( id, name, postal_code, country_id) VALUES (111, 'Subotica',
 INSERT INTO ADDRESSES (id, latitude, longitude, "number", street, city_id)
 VALUES(111, 46.09984041288659, 19.6614071369724, 3, 'Ištvana Sečenjija', 111);
 
-INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender)
-VALUES (111,true,false,'admin@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'admin', 1, 1);
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender, available_vacation_days)
+VALUES (111,true,false,'admin@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'admin', 1, 1, 5);
 
-INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender)
-VALUES (222,true,false,'jelenahrnjak99+1@gmail.com','Janko', 'Ratkov', null, '$2a$10$I1rJ7EiiGwH/phEllVzAAelcVv3Rrbu7oXc2PfmEO6r/b88p9gd7S', 'direktor', 2, 1);
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender, available_vacation_days)
+VALUES (222,true,false,'jelenahrnjak99+1@gmail.com','Janko', 'Ratkov', null, '$2a$10$I1rJ7EiiGwH/phEllVzAAelcVv3Rrbu7oXc2PfmEO6r/b88p9gd7S', 'direktor', 2, 1, 5);
 
 INSERT INTO COMPANIES (id, establishment_date, name, pib, deleted, director_id)
 VALUES (111, '2022-07-31 20:21:07.253468' , 'PP-TOPIKO' , '24124142', false, 222);
@@ -25,17 +25,17 @@ INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (222, 1 , 111, false)
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (333, 2 , 111, false);
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (444, 3 , 111, false);
 
-INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id)
-VALUES (333,true,false,'jelenahrnjak99@gmail.com','Dragan', 'Hrnjak', null, '$2a$10$s4cBPBON540yp30i7i2ZQ.hybr3EX2x9GbVd2PzPUYcUyHFAlNWe2', 'rukovodilac', 3, 1, 111);
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, available_vacation_days)
+VALUES (333,true,false,'jelenahrnjak99@gmail.com','Dragan', 'Hrnjak', null, '$2a$10$s4cBPBON540yp30i7i2ZQ.hybr3EX2x9GbVd2PzPUYcUyHFAlNWe2', 'rukovodilac', 3, 1, 111, 5);
 
-INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number)
-VALUES (411,true,false,'jelenahrnjak99+2@gmail.com','Jovana', 'Hrnjak', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik1', 4, 0, 111, '0683293843');
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number, available_vacation_days)
+VALUES (411,true,false,'jelenahrnjak99+2@gmail.com','Jovan', 'Hrnjak', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik1', 4, 0, 111, '0683293843', 5);
 
-INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number)
-VALUES (422,true,false,'jelenahrnjak99+3@gmail.com','Marko', 'Savić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik2', 4, 1, 111, '063928384');
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number, available_vacation_days)
+VALUES (422,true,false,'jelenahrnjak99+3@gmail.com','Marko', 'Savić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik2', 4, 1, 111, '063928384', 5);
 
-INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number)
-VALUES (433,true,false,'jelenahrnjak99+4@gmail.com','Dragana', 'Tubić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik3', 4, 0, 222, '0628231234');
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number, available_vacation_days)
+VALUES (433,true,false,'jelenahrnjak99+4@gmail.com','Dragana', 'Tubić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik3', 4, 0, 222, '0628231234', 5);
 
 INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
 VALUES (111, true, '2022-08-15 20:21:07.253468', 5000, 333, 222);
@@ -61,3 +61,15 @@ INSERT INTO MACHINE_MAINTENANCE_ITEMS ( id, plan, machine_id, machine_maintenanc
 VALUES (222, 'Pratiti temperaturu redovno.', 222, 222);
 
 INSERT INTO WORKERS_ON_MACHINES (worker_id, machine_id, main_worker) VALUES (411, 111, true);
+
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (1, '2022-09-05');
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (2, '2022-09-06');
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (3, '2022-09-07');
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (4, '2022-09-08');
+
+INSERT INTO VACATION_REQUESTS (id, approved, request_expiration_date, user_id) VALUES (1, null, '2022-09-05', 411);
+
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 1);
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 2);
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 3);
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 4);
