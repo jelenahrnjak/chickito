@@ -11,5 +11,6 @@ export default interface User {
     role : string;
     gender : any;
     fullName : string;
+    sector : string;
     mainWorker : boolean;
 }

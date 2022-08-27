@@ -87,6 +87,13 @@ public class WorkerOnMachineServiceImpl implements WorkerOnMachineService {
         this.workerOnMachineRepository.delete(workerOnMachineRepository.findByWorkerIdAndMachineId(workerId, machineId));
     }
 
+    @Override
+    public void deleteWorker(Long workerId) {
+        findAllMachinesByWorker(workerId).forEach(machine -> {
+            delete(machine.getId(), workerId);
+        });
+    }
+
     private User getWorker(Long id) {
         return userRepository.findByIdAndRoleName(id, WORKER_ROLE)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Worker with id = %s doesn't exist.", id)));

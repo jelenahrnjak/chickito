@@ -3,7 +3,10 @@ package com.ftn.Chickito.controller;
 import java.util.List;
 
 import com.ftn.Chickito.dto.auth.UserRequest;
+import com.ftn.Chickito.dto.user.UserDto;
+import com.ftn.Chickito.dto.user.UserViewDto;
 import com.ftn.Chickito.exception.ResourceConflictException;
+import com.ftn.Chickito.mapper.UserMapper;
 import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper mapper;
 
 
     @GetMapping("/{userId}")
@@ -53,4 +57,29 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping("/findAllWorkersBySector/{sectorId}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    public ResponseEntity<List<UserViewDto>> findAllWorkersBySector(@PathVariable Long sectorId){
+        return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllWorkersBySector(sectorId)), HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllBySector/{sectorId}")
+    @PreAuthorize("hasAuthority('DIRECTOR')")
+    public ResponseEntity<List<UserViewDto>> findAllBySector(@PathVariable Long sectorId){
+        return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllBySector(sectorId)), HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllByCompany/{companyId}")
+    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('DIRECTOR')")
+    public ResponseEntity<List<UserViewDto>> findAllByCompany(@PathVariable Long companyId){
+        return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllByCompany(companyId)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('DIRECTOR')")
+    public void delete(@PathVariable Long id) {
+        this.userService.delete(id);
+    }
+
 }

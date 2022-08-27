@@ -19,4 +19,6 @@ public interface WorkerOnMachineService {
     List<User> findAllWorkersNotOnMachine(Long machineId);
 
     void delete(Long machineId, Long workerId);
+
+    void deleteWorker(Long id);
 }

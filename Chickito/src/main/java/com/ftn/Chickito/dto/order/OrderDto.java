@@ -1,6 +1,6 @@
 package com.ftn.Chickito.dto.order;
 
-import com.ftn.Chickito.dto.UserDto;
+import com.ftn.Chickito.dto.user.UserDto;
 import com.ftn.Chickito.dto.machine.MachineDto;
 import lombok.*;
 

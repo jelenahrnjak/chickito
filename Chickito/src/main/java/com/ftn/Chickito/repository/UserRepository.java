@@ -15,6 +15,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByIdAndRoleName(Long id, String workerRole);
 
-    @Query("select u from User u where u.sector.id = :sectorId and u.role.name = :workerRole")
-    List<User> findAllBySectorAndRole(Long sectorId, String workerRole);
+    @Query("select u from User u where u.sector.id = :sectorId and u.role.name = :roleName and u.deleted = false")
+    List<User> findAllBySectorAndRole(Long sectorId, String roleName);
+
+    @Query("select u from User u where u.sector.id = :sectorId and u.role.name not like 'ADMIN' and u.deleted = false ")
+    List<User> findAllBySector(Long sectorId);
+
+    @Query("select u from User u where u.sector.company.id = :companyId and u.role.name not like 'ADMIN' and u.deleted = false")
+    List<User> findAllByCompany(Long companyId);
 }

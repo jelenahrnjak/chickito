@@ -1,16 +1,12 @@
 package com.ftn.Chickito.controller;
 
-import com.ftn.Chickito.dto.UserDto;
+import com.ftn.Chickito.dto.user.UserDto;
 import com.ftn.Chickito.dto.machine.MachineDto;
-import com.ftn.Chickito.dto.order.OrderDto;
 import com.ftn.Chickito.dto.workerOnMachine.AddWorkerOnMachineDto;
-import com.ftn.Chickito.dto.workerOnMachine.WorkerDto;
+import com.ftn.Chickito.dto.user.UserViewDto;
 import com.ftn.Chickito.dto.workerOnMachine.WorkerOnMachineDto;
 import com.ftn.Chickito.mapper.MachineMapper;
 import com.ftn.Chickito.mapper.UserMapper;
-import com.ftn.Chickito.model.Machine;
-import com.ftn.Chickito.model.User;
-import com.ftn.Chickito.model.WorkerOnMachine;
 import com.ftn.Chickito.service.WorkerOnMachineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,8 +27,8 @@ public class WorkerOnMachineController {
 
     @GetMapping("/findAllWorkersByMachine/{machineId}")
     @PreAuthorize("hasAuthority('LEADER') || hasAuthority('DIRECTOR')")
-    public ResponseEntity<List<WorkerDto>> findAllWorkersByMachine(@PathVariable Long machineId) {
-        return new ResponseEntity<>(userMapper.userListToWorkerDtoList(workerOnMachineService.findAllWorkersByMachine(machineId), machineId), HttpStatus.OK);
+    public ResponseEntity<List<UserViewDto>> findAllWorkersByMachine(@PathVariable Long machineId) {
+        return new ResponseEntity<>(userMapper.userListToWorkerOnMachineDtoList(workerOnMachineService.findAllWorkersByMachine(machineId), machineId), HttpStatus.OK);
     }
 
     @GetMapping("/findAllMachinesByWorker/{workerId}")

@@ -29,4 +29,36 @@ export class UserService {
       }));
   }
 
+  findAllWorkersBySector(sectorId : any) { 
+
+    return this.apiService.get(this.config.user_url + `/findAllWorkersBySector/${sectorId}`)
+    .pipe(map(users => { 
+      return users;
+    }));
+  } 
+
+  findAllBySector(sectorId : any) { 
+
+    return this.apiService.get(this.config.user_url + `/findAllBySector/${sectorId}`)
+    .pipe(map(users => { 
+      return users;
+    }));
+  } 
+ 
+  findAllByCompany(companyId : any) { 
+
+    return this.apiService.get(this.config.user_url + `/findAllByCompany/${companyId}`)
+    .pipe(map(users => { 
+      return users;
+    }));
+  }  
+
+  deleteUser(id : any) { 
+
+    return this.apiService.delete(this.config.user_url + "/" + id)
+      .pipe(map(() => {
+        console.log('Deleting user success');
+      }));
+  }
+
 }

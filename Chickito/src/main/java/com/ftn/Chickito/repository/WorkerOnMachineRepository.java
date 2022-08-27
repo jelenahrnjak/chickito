@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface WorkerOnMachineRepository extends JpaRepository<WorkerOnMachine, Long> {
 
-    @Query("select u.worker from  WorkerOnMachine u where u.machine.id = :machineId")
+    @Query("select u.worker from  WorkerOnMachine u where u.machine.id = :machineId and u.worker.deleted = false")
     List<User> findAllWorkersByMachine(Long machineId);
 
     @Query("select u.machine from  WorkerOnMachine u where u.worker.id = :workerId and u.machine.active = true")
     List<Machine> findAllMachinesByWorker(Long workerId);
 
 
-    @Query("select u from  WorkerOnMachine u where u.worker.id = :workerId and u.machine.id = :machineId and u.machine.active = true")
+    @Query("select u from  WorkerOnMachine u where u.worker.id = :workerId and u.machine.id = :machineId and u.machine.active = true and u.worker.deleted = false")
     WorkerOnMachine findByWorkerIdAndMachineId(Long workerId, Long machineId);
 }

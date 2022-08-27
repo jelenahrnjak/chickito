@@ -1,1 +1,57 @@
-<p>users-view works!</p>
+<h1>Preduzeća</h1>
+<hr>
+
+<div class="row"> 
+    <div class="card"  *ngFor="let c of allCompanies">
+        <!-- <img :src="assets/Images/{{c.coverImage}}" class="card-img-top" sty alt="Missing image"> -->
+        <ul class="list-group list-group-flush" >
+            <li class = "list-group-item"  style="cursor: pointer;" (click)="selectCompany(c)">
+            <strong>{{c.name}}</strong> 
+            </li> 
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}€</li>    
+            <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
+            <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li> 
+            <li style="height: 70px;" class="list-group-item">
+                <a class="btn-green btn" href="admin/new-user" style=" margin-top: 3%; width: 80%;">Dodaj korisnika</a>  
+            </li>            
+            <!-- <li style="height: 70px;" class="list-group-item">
+                <button class="btn-red btn" style=" margin-top: 3%; width: 80%;" (click)="deleteCompany(c.id, c.name)">Obriši</button>  
+            </li>  -->
+        </ul> 
+    </div>
+
+</div>
+ 
+<div class="card-body" *ngIf="showUsers">
+    
+
+    <h1>Korisnici {{currentCompany.name}}</h1>
+    <hr>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Ime i prezime</th>
+                    <th>Email</th>
+                    <th>Broj telefona</th>
+                    <th>Vrstu zaposlenog</th>
+                    <th>Radna jedinica</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allUsers"> 
+                    <td>{{item.fullName}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td>{{item.role}}</td>
+                    <td>{{item.sector}}</td>
+                    <td><span class="badge btn-red" (click)="deleteUser(item)" style="cursor: pointer;">Obriši</span></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

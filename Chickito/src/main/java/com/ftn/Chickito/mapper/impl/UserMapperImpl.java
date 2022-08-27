@@ -1,9 +1,10 @@
 package com.ftn.Chickito.mapper.impl;
 
-import com.ftn.Chickito.dto.UserDto;
+import com.ftn.Chickito.dto.user.UserDto;
 import com.ftn.Chickito.dto.auth.UserRequest;
-import com.ftn.Chickito.dto.workerOnMachine.WorkerDto;
+import com.ftn.Chickito.dto.user.UserViewDto;
 import com.ftn.Chickito.mapper.AddressMapper;
+import com.ftn.Chickito.mapper.SectorMapper;
 import com.ftn.Chickito.mapper.UserMapper;
 import com.ftn.Chickito.model.Role;
 import com.ftn.Chickito.model.User;
@@ -15,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class UserMapperImpl implements UserMapper {
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
     private final AddressMapper addressMapper;
+    private final SectorMapper sectorMapper;
     private final WorkerOnMachineRepository workerOnMachineRepository;
 
     @Override
@@ -74,28 +75,56 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public WorkerDto userToWorkerDto(User user) {
-        return WorkerDto.builder()
+    public UserViewDto userToUserViewDto(User user) {
+        return UserViewDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .fullName(user.getFirstName() + " " + user.getLastName())
                 .email(user.getEmail())
-                .phoneNumber(user.getPhoneNumber())
+                .phoneNumber(user.getPhoneNumber() == null ? "/" : user.getPhoneNumber())
+                .role(translatingRole(user.getRole().getName()))
+                .sector(sectorMapper.sectorTypeToString(user.getSector().getType()))
                 .build();
     }
 
     @Override
-    public List<WorkerDto> userListToWorkerDtoList(List<User> users, Long machineId) {
+    public List<UserViewDto> userListToWorkerOnMachineDtoList(List<User> users, Long machineId) {
 
-        List<WorkerDto> workersDto = new ArrayList<>();
+        List<UserViewDto> workersDto = new ArrayList<>();
 
         users.forEach(user -> {
-            WorkerDto dto = userToWorkerDto(user);
+            UserViewDto dto = userToUserViewDto(user);
             WorkerOnMachine workerOnMachine = workerOnMachineRepository.findByWorkerIdAndMachineId(user.getId(), machineId);
             dto.setMainWorker(workerOnMachine.isMainWorker());
             workersDto.add(dto);
         });
 
         return workersDto;
+    }
+
+    @Override
+    public List<UserViewDto> userListToUserViewDtoList(List<User> users) {
+
+        List<UserViewDto> workersDto = new ArrayList<>();
+
+        users.forEach(user -> {
+            workersDto.add(userToUserViewDto(user));
+        });
+
+        return workersDto;
+    }
+
+    private String translatingRole(String roleName){
+
+        switch (roleName){
+            case "DIRECTOR":
+                return "DIREKTOR";
+            case "LEADER":
+                return "RUKOVODILAC";
+            case "WORKER":
+                return "RADNIK";
+            default:
+                return "ADMIN";
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.ftn.Chickito.repository.CompanyRepository;
 import com.ftn.Chickito.repository.SectorRepository;
 import com.ftn.Chickito.service.BuildingService;
 import com.ftn.Chickito.service.CompanyService;
+import com.ftn.Chickito.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class CompanyServiceImpl implements CompanyService{
 
     private final CompanyRepository companyRepository;
     private final BuildingService buildingService;
+    private final UserService userService;
     private final SectorRepository sectorRepository;
     private final CompanyMapper mapper;
 
@@ -70,6 +72,7 @@ public class CompanyServiceImpl implements CompanyService{
         }
 
         this.buildingService.deleteCompanyBuildings(id);
+        this.userService.deleteCompanyUsers(id);
         toDelete.setDeleted(true);
         this.companyRepository.save(toDelete);
 

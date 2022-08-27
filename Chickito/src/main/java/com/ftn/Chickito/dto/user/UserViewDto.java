@@ -1,7 +1,5 @@
-package com.ftn.Chickito.dto.workerOnMachine;
+package com.ftn.Chickito.dto.user;
 
-import com.ftn.Chickito.dto.AddressDto;
-import com.ftn.Chickito.model.enums.GenderType;
 import lombok.*;
 
 @Getter
@@ -9,13 +7,15 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WorkerDto {
+public class UserViewDto {
 
     private Long id;
     private String username;
     private String fullName;
     private String email;
     private String phoneNumber;
+    private String sector;
+    private String role;
     private boolean mainWorker;
 
 }

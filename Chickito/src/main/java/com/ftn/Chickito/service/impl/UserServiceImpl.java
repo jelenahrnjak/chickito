@@ -6,8 +6,8 @@ import com.ftn.Chickito.model.*;
 import com.ftn.Chickito.model.enums.SectorType;
 import com.ftn.Chickito.repository.*;
 import com.ftn.Chickito.service.UserService;
+import com.ftn.Chickito.service.WorkerOnMachineService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +18,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final WorkerOnMachineService workerOnMachineService;
     private final SectorRepository sectorRepository;
     private final CompanyRepository companyRepository;
     public final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final static String WORKER_ROLE = "WORKER";
 
     @Override
     public User findById(Long id) {
@@ -72,5 +74,39 @@ public class UserServiceImpl implements UserService{
             this.companyRepository.save(company);
         }
         return newUser;
+    }
+
+    @Override
+    public List<User> findAllWorkersBySector(Long sectorId) {
+        return userRepository.findAllBySectorAndRole(sectorId, WORKER_ROLE);
+    }
+
+    @Override
+    public List<User> findAllBySector(Long sectorId) {
+        return userRepository.findAllBySector(sectorId);
+    }
+
+    @Override
+    public List<User> findAllByCompany(Long companyId) {
+        return userRepository.findAllByCompany(companyId);
+    }
+
+    @Override
+    public void delete(Long id) {
+        User toDelete = this.userRepository.findById(id).orElseGet(null);
+        if(toDelete == null){
+            return;
+        }
+        toDelete.setDeleted(true);
+        this.userRepository.save(toDelete);
+
+    }
+
+    @Override
+    public void deleteCompanyUsers(Long id) {
+        this.userRepository.findAllByCompany(id).forEach(user -> {
+            workerOnMachineService.deleteWorker(user.getId());
+            deleteCompanyUsers(user.getId());
+        });
     }
 }
