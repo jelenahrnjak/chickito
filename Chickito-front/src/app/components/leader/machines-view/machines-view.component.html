@@ -12,14 +12,52 @@
             <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
             <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
             <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
+                <button class="btn-green btn" style=" margin-top: 3%; width: 80%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
             </li>          
             <li style="height: 70px;" class="list-group-item">
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+                <button class="btn-green btn" style=" margin-top: 3%;width: 80%;" (click)="showWorkers(c)">Prikaži radnike</button>  
             </li> 
         </ul> 
     </div>
 
+</div>
+
+
+<div class="card-body" *ngIf="showWorkersForMachine">
+    
+
+    <h1>Radnici na mašini {{selectedMachine.name}} {{selectedMachine.model}}        
+        <button class="btn-green btn" style="float: right; width: 15%;" (click)="getWorkersAvailableForMachine()">Dodaj radnika <li class="fa fa-plus"></li></button> 
+    </h1>
+    <hr>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Ime i prezime</th>
+                    <th>Email</th>
+                    <th>Broj telefona</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allWorkers">  
+                    <td>{{item.fullName}}</td>             
+                    <td>{{item.email}}</td>           
+                    <td>{{item.phoneNumber}}</td>                  
+                    <td><span *ngIf="item.mainWorker" class="badge" style="color: #04664c;" style="cursor: pointer;">Poslovođa</span></td>
+                    <td *ngIf="item.mainWorker"><span class="badge btn-red" (click)="changeMainWorker(item)" style="float:right; cursor: pointer;">Ukloni sa mesta poslovođe</span></td>
+                    <td *ngIf="!item.mainWorker"><span class="badge btn-green" (click)="changeMainWorker(item)" style="float:right; cursor: pointer;">Postavi za poslovođu</span></td>
+                    <td><span class="badge btn-red" (click)="deleteWorkerFromMachine(item)" style="cursor: pointer;">Ukloni</span></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Modal for documentation view -->
@@ -41,6 +79,38 @@
           
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayDescription = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Modal for addingUser view --> 
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayAddingWorker}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Dodavanje radnika na mašinu {{selectedMachine.name}} {{selectedMachine.model}}</h5>
+        </div> 
+
+        <div  class="container">  
+            <br>
+            <div class="input-group mb-4">
+                <select class="form-control"  [(ngModel)]="selectedNewWorker" required>
+                    <option style="color:gray" value="0" disabled selected>Radnik</option>
+                    <option *ngFor="let item of workersForAdding" value="{{item.id}}">{{item.firstName}} {{item.lastName}}</option> 
+                </select> 
+            </div> 
+            <div class="input-group mb-4" style="margin-left: 1%; ">
+                <label for="roleCheck">Da li je poslovođa?</label>
+                <input id="roleCheck" type="checkbox" style="margin-left: 10px; accent-color: #00553e" [(ngModel)]="isNewWorkerMain">
+            </div> 
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayAddingWorker = 'none'">Odustani</button>
+            <button type="button" class="btn btn-green" style="width: 35%;" (click)="displayAddingWorker = 'none'; addNewUser()" [disabled]="selectedNewWorker == 0">Potvrdi</button>
         </div>
     </div>
     </div>

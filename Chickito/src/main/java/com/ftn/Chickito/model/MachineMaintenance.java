@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="machineMaintenances")
+@Table(name="machine_maintenances")
 public class MachineMaintenance {
 
     @Id

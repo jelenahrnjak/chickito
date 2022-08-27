@@ -15,6 +15,7 @@ export class ConfigService {
   private _order_url = this._api_url + '/api/orders';
   private _machineMaintenace_url = this._api_url + '/api/machineMaintenances';
   private _machine_url = this._api_url + '/api/machines';
+  private _workerOnMachines_url = this._api_url + '/api/workerOnMachines';
 
   private _login_url = this._auth_url + '/login';
 
@@ -48,5 +49,9 @@ export class ConfigService {
 
   get machineMaintenance_url(): string {
     return this._machineMaintenace_url;
+  } 
+
+  get workerOnMachines_url(): string {
+    return this._workerOnMachines_url;
   } 
 }

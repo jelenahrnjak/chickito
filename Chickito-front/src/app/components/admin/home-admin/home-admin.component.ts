@@ -70,7 +70,7 @@ export class HomeAdminComponent implements OnInit {
   }
 
   deleteBuilding(id : any){ 
-    if (confirm('Da li ste sigurn da želite da obrišete objekat?')) { //TODO modal 
+    if (confirm('Da li ste sigurni da želite da obrišete objekat?')) { //TODO modal 
       this.buildingService.deleteBuilding(id).subscribe(data => { 
         this.reset()
         this.selectCompany(this.currentCompanyId, this.currentCompany)
@@ -80,7 +80,7 @@ export class HomeAdminComponent implements OnInit {
   }
 
   changeHeadOffice(id:any){
-    if (confirm('Da li ste sigurn da želite da promenite sedište?')) { //TODO modal 
+    if (confirm('Da li ste sigurni da želite da promenite sedište?')) { //TODO modal 
       this.buildingService.changeHeadOffice(id).subscribe(data => { 
         this.reset()
         this.selectCompany(this.currentCompanyId, this.currentCompany)

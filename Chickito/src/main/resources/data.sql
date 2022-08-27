@@ -28,6 +28,15 @@ INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (444, 3 , 111, false)
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id)
 VALUES (333,true,false,'jelenahrnjak99@gmail.com','Dragan', 'Hrnjak', null, '$2a$10$s4cBPBON540yp30i7i2ZQ.hybr3EX2x9GbVd2PzPUYcUyHFAlNWe2', 'rukovodilac', 3, 1, 111);
 
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number)
+VALUES (411,true,false,'jelenahrnjak99+2@gmail.com','Jovan', 'Hrnjak', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik1', 4, 0, 111, '0683293843');
+
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number)
+VALUES (422,true,false,'jelenahrnjak99+3@gmail.com','Marko', 'Savić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik2', 4, 1, 111, '063928384');
+
+INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number)
+VALUES (433,true,false,'jelenahrnjak99+4@gmail.com','Dragan', 'Tubić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik3', 4, 0, 222, '0628231234');
+
 INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
 VALUES (111, true, '2022-08-15 20:21:07.253468', 5000, 333, 222);
 INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
@@ -50,3 +59,5 @@ INSERT INTO MACHINE_MAINTENANCE_ITEMS ( id, plan, machine_id, machine_maintenanc
 VALUES (111, 'Menjati ventil na mesec dana.', 111, 111);
 INSERT INTO MACHINE_MAINTENANCE_ITEMS ( id, plan, machine_id, machine_maintenance_id)
 VALUES (222, 'Pratiti temperaturu redovno.', 222, 222);
+
+INSERT INTO WORKERS_ON_MACHINES (worker_id, machine_id, main_worker) VALUES (411, 111, true);
