@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import Company from '../../../model/company'
 import User from '../../../model/user'
 import { CompanyService } from '../../../services/company.service';
@@ -12,7 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UsersViewComponent implements OnInit {
 
-
+  termCompany = '';
+  termUser = ''
 
   allCompanies : Company[] = [] 
   showUsers = false;
@@ -23,6 +25,7 @@ export class UsersViewComponent implements OnInit {
     private toastr: ToastrService, 
     private companyService: CompanyService,
     private userService : UserService,
+    private http: HttpClient
     ) { }
 
   ngOnInit(): void {

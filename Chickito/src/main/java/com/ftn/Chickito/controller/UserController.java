@@ -6,9 +6,11 @@ import com.ftn.Chickito.dto.auth.UserRequest;
 import com.ftn.Chickito.dto.user.UserDto;
 import com.ftn.Chickito.dto.user.UserViewDto;
 import com.ftn.Chickito.exception.ResourceConflictException;
+import com.ftn.Chickito.mapper.OrderMapper;
 import com.ftn.Chickito.mapper.UserMapper;
 import com.ftn.Chickito.model.User;
 import com.ftn.Chickito.service.UserService;
+import com.ftn.Chickito.util.TokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ public class UserController {
 
     private final UserService userService;
     private final UserMapper mapper;
+    private final TokenUtils tokenUtils;
+    private static final String WHITESPACE = " ";
 
 
     @GetMapping("/{userId}")
@@ -58,20 +62,26 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/findAllWorkersBySector/{sectorId}")
+    @GetMapping("/findAllWorkersByLeader")
     @PreAuthorize("hasAuthority('LEADER')")
-    public ResponseEntity<List<UserViewDto>> findAllWorkersBySector(@PathVariable Long sectorId){
-        return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllWorkersBySector(sectorId)), HttpStatus.OK);
+    public ResponseEntity<List<UserViewDto>> findAllWorkersByLeader(@RequestHeader("Authorization") String jwtToken){
+
+        String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
+
+        return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllWorkersByLeader(username)), HttpStatus.OK);
     }
 
-    @GetMapping("/findAllBySector/{sectorId}")
+    @GetMapping("/findAllByDirector")
     @PreAuthorize("hasAuthority('DIRECTOR')")
-    public ResponseEntity<List<UserViewDto>> findAllBySector(@PathVariable Long sectorId){
-        return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllBySector(sectorId)), HttpStatus.OK);
+    public ResponseEntity<List<UserViewDto>> findAllByDirector(@RequestHeader("Authorization") String jwtToken){
+
+        String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
+
+        return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllByDirector(username)), HttpStatus.OK);
     }
 
     @GetMapping("/findAllByCompany/{companyId}")
-    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('DIRECTOR')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<UserViewDto>> findAllByCompany(@PathVariable Long companyId){
         return new ResponseEntity<>(mapper.userListToUserViewDtoList(userService.findAllByCompany(companyId)), HttpStatus.OK);
     }

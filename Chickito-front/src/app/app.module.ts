@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatIconModule } from '@angular/material/icon'; 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
@@ -42,6 +43,8 @@ import { AgmCoreModule } from '@agm/core';
 import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
 import { MachineMaintenancesViewComponent } from './components/leader/machine-maintenances-view/machine-maintenances-view.component';
 import { NewMachineMaintenanceComponent } from './components/leader/new-machine-maintenance/new-machine-maintenance.component';
+import { UsersLeaderComponent } from './components/leader/users-leader/users-leader.component';
+import { UsersDirectorComponent } from './components/director/users-director/users-director.component';
 
 
 @NgModule({
@@ -66,7 +69,9 @@ import { NewMachineMaintenanceComponent } from './components/leader/new-machine-
     OrdersViewDirectorComponent,
     MachinesViewDirectorComponent,
     MachineMaintenancesViewComponent,
-    NewMachineMaintenanceComponent, 
+    NewMachineMaintenanceComponent,
+    UsersLeaderComponent,
+    UsersDirectorComponent, 
   ],
   imports: [
     CommonModule,
@@ -79,6 +84,7 @@ import { NewMachineMaintenanceComponent } from './components/leader/new-machine-
     MatFormFieldModule,
     MatIconModule,
     NgbModule,
+    Ng2SearchPipeModule,
     AgmCoreModule.forRoot({
       apiKey : 'AIzaSyCX5DQFPxHlQlEeFkkWzTJ41PU6FehGzVs'
     })

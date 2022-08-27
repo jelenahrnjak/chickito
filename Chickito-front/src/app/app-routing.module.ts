@@ -14,6 +14,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
 import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
 import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
+import { UsersDirectorComponent } from './components/director/users-director/users-director.component'; 
 
 import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
@@ -21,6 +22,7 @@ import { OrdersViewComponent } from './components/leader/orders-view/orders-view
 import { NewOrderComponent } from './components/leader/new-order/new-order.component'; 
 import { MachineMaintenancesViewComponent } from './components/leader/machine-maintenances-view/machine-maintenances-view.component'; 
 import { NewMachineMaintenanceComponent } from './components/leader/new-machine-maintenance/new-machine-maintenance.component'; 
+import { UsersLeaderComponent } from './components/leader/users-leader/users-leader.component'; 
 
 import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 
@@ -94,6 +96,10 @@ const routes: Routes = [
         path: 'machines', 
         component: MachinesViewDirectorComponent,
       },
+      {
+        path: 'users',
+        component: UsersDirectorComponent
+      }, 
       ]
   },
 
@@ -128,6 +134,10 @@ const routes: Routes = [
         path: 'new-machine-maintenance', 
         component: NewMachineMaintenanceComponent,
       },
+      {
+        path: 'workers',
+        component: UsersLeaderComponent
+      }, 
       
       ]
   },

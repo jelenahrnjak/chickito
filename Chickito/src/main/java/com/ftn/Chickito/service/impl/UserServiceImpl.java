@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -24,6 +25,8 @@ public class UserServiceImpl implements UserService{
     public final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final static String WORKER_ROLE = "WORKER";
+    private final static String LEADER_ROLE = "LEADER";
+    private final static String DIRECTOR_ROLE = "DIRECTOR";
 
     @Override
     public User findById(Long id) {
@@ -77,13 +80,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> findAllWorkersBySector(Long sectorId) {
-        return userRepository.findAllBySectorAndRole(sectorId, WORKER_ROLE);
+    public List<User> findAllWorkersByLeader(String username) {
+
+        User leader = getLeader(username);
+        return userRepository.findAllBySectorAndRole(leader.getSector().getId(), WORKER_ROLE);
     }
 
     @Override
-    public List<User> findAllBySector(Long sectorId) {
-        return userRepository.findAllBySector(sectorId);
+    public List<User> findAllByDirector(String username) {
+        Company company = companyRepository.findByDirector(username);
+        return userRepository.findAllByCompany(company.getId());
     }
 
     @Override
@@ -109,4 +115,19 @@ public class UserServiceImpl implements UserService{
             deleteCompanyUsers(user.getId());
         });
     }
+    private User getWorker(String username) {
+        return userRepository.findByUsernameAndRoleName(username, WORKER_ROLE)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Worker with username = %s doesn't exist.", username)));
+    }
+    private User getLeader(String username) {
+        return userRepository.findByUsernameAndRoleName(username, LEADER_ROLE)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Leader with username = %s doesn't exist.", username)));
+    }
+
+
+    private User getDirector(String username) {
+        return userRepository.findByUsernameAndRoleName(username, DIRECTOR_ROLE)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Director with username = %s doesn't exist.", username)));
+    }
+
 }

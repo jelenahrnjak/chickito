@@ -29,17 +29,17 @@ export class UserService {
       }));
   }
 
-  findAllWorkersBySector(sectorId : any) { 
+  findAllWorkersByLeader() { 
 
-    return this.apiService.get(this.config.user_url + `/findAllWorkersBySector/${sectorId}`)
+    return this.apiService.get(this.config.user_url + `/findAllWorkersByLeader`)
     .pipe(map(users => { 
       return users;
     }));
   } 
 
-  findAllBySector(sectorId : any) { 
+  findAllByDirector() { 
 
-    return this.apiService.get(this.config.user_url + `/findAllBySector/${sectorId}`)
+    return this.apiService.get(this.config.user_url + `/findAllByDirector`)
     .pipe(map(users => { 
       return users;
     }));

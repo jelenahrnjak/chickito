@@ -12,8 +12,8 @@ public interface UserService {
     User findByEmail(String email);
     List<User> findAll ();
     User save(UserRequest userRequest);
-    List<User> findAllWorkersBySector(Long sectorId);
-    List<User> findAllBySector(Long sectorId);
+    List<User> findAllWorkersByLeader(String username);
+    List<User> findAllByDirector(String username);
     List<User> findAllByCompany(Long companyId);
     void delete(Long id);
 
