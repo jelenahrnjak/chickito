@@ -18,4 +18,5 @@ public class MachineDto {
     private String documentation;
     private Double price;
     private Integer quantity;
+    private boolean mainWorker;
 }

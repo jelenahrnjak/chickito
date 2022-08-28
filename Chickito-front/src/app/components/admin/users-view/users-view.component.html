@@ -1,5 +1,5 @@
 <h1>Preduzeća
-    <input style="float: right; width: 15%;"
+    <input style="float: right; width: 20%;"
       type="text"
       [(ngModel)]="termCompany"
       class="form-control"
@@ -18,10 +18,10 @@
             <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
             <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li> 
             <li style="height: 70px;" class="list-group-item">
-                <a class="btn-green btn" href="admin/new-user" style=" margin-top: 3%; width: 80%;">Dodaj korisnika</a>  
+                <a class="btn-green btn" href="admin/new-user" style=" margin-top: 3%;">Dodaj korisnika</a>  
             </li>            
             <!-- <li style="height: 70px;" class="list-group-item">
-                <button class="btn-red btn" style=" margin-top: 3%; width: 80%;" (click)="deleteCompany(c.id, c.name)">Obriši</button>  
+                <button class="btn-red btn" style=" margin-top: 3%;" (click)="deleteCompany(c.id, c.name)">Obriši</button>  
             </li>  -->
         </ul> 
     </div>
@@ -32,7 +32,7 @@
     
 
     <h1>Korisnici {{currentCompany.name}} 
-        <input style="float: right; width: 15%;"
+        <input style="float: right; width: 20%;"
           type="text"
           [(ngModel)]="termUser"
           class="form-control"

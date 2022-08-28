@@ -1,8 +1,15 @@
-<h1>Mašine</h1>
+<h1>Mašine
+    <input   
+    style="float: right; width: 20%;"
+    type="text"
+    [(ngModel)]="termMachine"
+    class="form-control"
+    placeholder="Pretražite mašine"
+    />    </h1>
 <hr>
 
 <div class="row"> 
-    <div class="card"  *ngFor="let c of allMachines">
+    <div class="card"  *ngFor="let c of allMachines | filter: termMachine">
         
         <ul class="list-group list-group-flush" >
             <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
@@ -12,10 +19,10 @@
             <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
             <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
             <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
-                <button class="btn-green btn" style=" margin-top: 3%; width: 80%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
+                <button class="btn-green btn" style=" margin-top: 3%; " (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
             </li>          
             <li style="height: 70px;" class="list-group-item">
-                <button class="btn-green btn" style=" margin-top: 3%;width: 80%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
             </li> 
         </ul> 
     </div>

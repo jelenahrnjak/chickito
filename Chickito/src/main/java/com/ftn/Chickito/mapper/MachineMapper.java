@@ -9,4 +9,6 @@ public interface MachineMapper {
 
     MachineDto machineToMachineDto(Machine machine);
     List<MachineDto> machineListToMachineDtoList(List<Machine> machines);
+    List<MachineDto> machineListToMachineDtoListWithWorker(List<Machine> machines, String workerUsername);
+
 }

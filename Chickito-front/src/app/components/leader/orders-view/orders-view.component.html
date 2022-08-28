@@ -2,12 +2,18 @@
     
  
     <h1  style="width:95%; float: left;">Narudžbenice
-        <a class="btn-green btn" style="float: right; width: 15%;"  href="/leader/new-order">Nova narudžbenica <li class="fa fa-plus"></li></a> 
+        <a class="btn-green btn" style="float: right; width: 20%;"  href="/leader/new-order">Nova narudžbenica <li class="fa fa-plus"></li></a> 
     </h1> 
 
 
     <div class="table-responsive">
         <hr>
+        <input style="float: right; width: 20%; margin-right: 1%; "
+        type="text"
+        [(ngModel)]="termOrders"
+        class="form-control"
+        placeholder="Pretražite narudžbenice"
+      />
         <table class="table">
             <thead>
                 <tr> 
@@ -20,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of allOrders"> 
+                <tr *ngFor="let item of allOrders | filter: termOrders"> 
                     <td>#{{item.id}}</td>
                     <td>{{item.creationDate}}</td>
                     <td><span class="badge btn-green" (click)="showMachines(item.id)" style="cursor: pointer;">Prikaži</span></td>

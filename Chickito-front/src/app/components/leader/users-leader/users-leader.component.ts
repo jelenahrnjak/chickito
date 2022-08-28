@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
+import { Component, OnInit } from '@angular/core'; 
 import User from '../../../model/user' 
 import { UserService } from '../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';   
@@ -10,8 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./users-leader.component.scss']
 })
 export class UsersLeaderComponent implements OnInit {
-
-
+  
   termUser = ''
 
   showUsers = false;
@@ -20,8 +18,7 @@ export class UsersLeaderComponent implements OnInit {
   
   constructor(
     private toastr: ToastrService,  
-    private userService : UserService,
-    private http: HttpClient
+    private userService : UserService, 
     ) { }
 
   ngOnInit(): void {

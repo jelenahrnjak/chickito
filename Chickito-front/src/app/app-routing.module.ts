@@ -15,6 +15,7 @@ import { HomeDirectorComponent } from './components/director/home-director/home-
 import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
 import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
 import { UsersDirectorComponent } from './components/director/users-director/users-director.component'; 
+import { MahcineMaintenancesDirectorComponent } from './components/director/mahcine-maintenances-director/mahcine-maintenances-director.component'
 
 import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
@@ -25,6 +26,9 @@ import { NewMachineMaintenanceComponent } from './components/leader/new-machine-
 import { UsersLeaderComponent } from './components/leader/users-leader/users-leader.component'; 
 
 import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
+import { MyMachinesComponent } from './components/worker/my-machines/my-machines.component';
+import { VacationRequestComponent } from './components/worker/vacation-request/vacation-request.component'
+import { MachineMaintenancesWorkerComponent } from './components/worker/machine-maintenances-worker/machine-maintenances-worker.component'
 
 import { AuthentificationGuard } from './guards/authentification.guard'
 import { RoleguardService as RoleGuard } from './guards/roleguard.service'; 
@@ -100,6 +104,10 @@ const routes: Routes = [
         path: 'users',
         component: UsersDirectorComponent
       }, 
+      {
+        path: 'machine-maintenances',
+        component: MahcineMaintenancesDirectorComponent
+      }
       ]
   },
 
@@ -153,6 +161,18 @@ const routes: Routes = [
         path: '', 
         component: HomeWorkerComponent,
       },
+      {
+        path: 'my-machines', 
+        component: MyMachinesComponent,
+      },
+      {
+        path: 'vacation-request', 
+        component: VacationRequestComponent,
+      },
+      {
+        path: 'machine-maintenances',
+        component: MachineMaintenancesWorkerComponent
+      }
       ]
   },
   

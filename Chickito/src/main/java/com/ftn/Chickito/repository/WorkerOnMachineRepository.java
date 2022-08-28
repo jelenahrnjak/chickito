@@ -13,8 +13,8 @@ public interface WorkerOnMachineRepository extends JpaRepository<WorkerOnMachine
     @Query("select u.worker from  WorkerOnMachine u where u.machine.id = :machineId and u.worker.deleted = false")
     List<User> findAllWorkersByMachine(Long machineId);
 
-    @Query("select u.machine from  WorkerOnMachine u where u.worker.id = :workerId and u.machine.active = true")
-    List<Machine> findAllMachinesByWorker(Long workerId);
+    @Query("select u.machine from  WorkerOnMachine u where u.worker.username = :workerUsername and u.machine.active = true")
+    List<Machine> findAllMachinesByWorker(String workerUsername);
 
 
     @Query("select u from  WorkerOnMachine u where u.worker.id = :workerId and u.machine.id = :machineId and u.machine.active = true and u.worker.deleted = false")

@@ -22,6 +22,8 @@ export class OrdersViewDirectorComponent implements OnInit {
   selectedMachine = "";
   selectedOrder : any = "";
   orderItems : OrderItem[] = []
+  termOrders = ""
+  
   constructor(
     private orderService : OrderService,
     private toastr: ToastrService,  

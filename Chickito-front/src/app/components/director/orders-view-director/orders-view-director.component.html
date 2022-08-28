@@ -1,7 +1,13 @@
 <div class="card-body">
     
  
-    <h1  style="width:95%; float: left;">Narudžbenice</h1> 
+    <h1  style="width:95%; float: left;">Narudžbenice
+        <input style="float: right; width: 20%;"
+          type="text"
+          [(ngModel)]="termOrders"
+          class="form-control"
+          placeholder="Pretražite narudžbenice"
+        /></h1> 
 
 
     <div class="table-responsive">
@@ -20,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of allOrders"> 
+                <tr *ngFor="let item of allOrders | filter : termOrders"> 
                     <td>#{{item.id}}</td>
                     <td>{{item.creationDate}}</td>
                     <td>{{item.author}}</td>

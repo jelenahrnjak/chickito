@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Machine from '../../../model/machine'
 import { MachineService } from '../../../services/machine.service';
+import User from '../../../model/user'
+import { WorkerOnMachineService } from '../../../services/worker-on-machine.service';
 
 @Component({
   selector: 'app-machines-view-director',
@@ -16,13 +18,19 @@ export class MachinesViewDirectorComponent implements OnInit {
   odrzavanjeMachines : Machine[] = []
   displayDescription = 'none'
   selectedMachine : any = ''
+  sector = -1;
+  showWorkersForMachine = false;
+  allWorkers : User[] = []
+  termUser = ""
+  termMachine = ""
 
   showPrerada = false;
   showKlanica = false;
   showKontrola = false;
   showOdrzavanje = false;
   constructor(
-    private machineService : MachineService
+    private machineService : MachineService,
+    private workerOnMachineService : WorkerOnMachineService,
   ) { }
 
   ngOnInit(): void {
@@ -48,8 +56,31 @@ export class MachinesViewDirectorComponent implements OnInit {
     }); 
   }
 
-  showWorkers(machine : Machine){
+  changedSector(){
+    this.allMachines = [] 
+    this.showWorkersForMachine = false
+    this.selectedMachine = ''
+    
+    if(this.sector == 0){ 
+      this.allMachines = this.odrzavanjeMachines
+    }else if(this.sector == 1){
+      this.allMachines = this.klanicaMachines
+    }else if(this.sector == 2){
+      this.allMachines = this.preradaMachines
+    } else if(this.sector == 3){
+      this.allMachines = this.kontrolaMachines
+    }
+  }
+
+  showWorkers(machine : Machine){ 
+    this.showWorkersForMachine = true
     this.selectedMachine = machine;
+
+    this.workerOnMachineService.findAllWorkersByMachine(machine.id).subscribe((data : User[]) => {
+      console.dir(data)
+      this.allWorkers = []
+      this.allWorkers = data.sort((a, b) => Number(b.mainWorker) - Number(a.mainWorker));
+    });  
   }
 
 }

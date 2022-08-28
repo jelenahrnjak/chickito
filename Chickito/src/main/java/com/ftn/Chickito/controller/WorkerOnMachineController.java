@@ -31,10 +31,10 @@ public class WorkerOnMachineController {
         return new ResponseEntity<>(userMapper.userListToWorkerOnMachineDtoList(workerOnMachineService.findAllWorkersByMachine(machineId), machineId), HttpStatus.OK);
     }
 
-    @GetMapping("/findAllMachinesByWorker/{workerId}")
-    @PreAuthorize("hasAuthority('LEADER') || hasAuthority('DIRECTOR')")
-    public ResponseEntity<List<MachineDto>> findAllMachinesByWorker(@PathVariable  Long workerId) {
-        return new ResponseEntity<>(machineMapper.machineListToMachineDtoList(workerOnMachineService.findAllMachinesByWorker(workerId)), HttpStatus.OK);
+    @GetMapping("/findAllMachinesByWorker/{workerUsername}")
+    @PreAuthorize("hasAuthority('LEADER') || hasAuthority('DIRECTOR') || hasAuthority('WORKER')")
+    public ResponseEntity<List<MachineDto>> findAllMachinesByWorker(@PathVariable  String workerUsername) {
+        return new ResponseEntity<>(machineMapper.machineListToMachineDtoListWithWorker(workerOnMachineService.findAllMachinesByWorker(workerUsername), workerUsername), HttpStatus.OK);
     }
 
     @PostMapping

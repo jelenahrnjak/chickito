@@ -5,21 +5,21 @@ import MachineMaintenanceItem from '../../../model/machine-maintenance-item';
 import { ToastrService } from 'ngx-toastr';  
 
 @Component({
-  selector: 'app-machine-maintenances-view',
-  templateUrl: './machine-maintenances-view.component.html',
-  styleUrls: ['./machine-maintenances-view.component.scss']
+  selector: 'app-mahcine-maintenances-director',
+  templateUrl: './mahcine-maintenances-director.component.html',
+  styleUrls: ['./mahcine-maintenances-director.component.scss']
 })
-export class MachineMaintenancesViewComponent implements OnInit {
+export class MahcineMaintenancesDirectorComponent implements OnInit {
 
-  
   allMaintenances : MachineMaintenance[] = [] 
   years : number[] = []
   displayYear = 'none'
   selectedYear = 0;
-  termMaintenances = ''
+  selectedSector = '';
 
   display = "none";
   displayPlan = "none"
+  termMaintenances = ''
   
   selectedItem :any = "";
   selectedMachine : any = ''
@@ -38,7 +38,7 @@ export class MachineMaintenancesViewComponent implements OnInit {
 
   getAllMaintenances(){
     
-    this.mahcineMaintenanceService.findAllByAuthor().subscribe((data : MachineMaintenance[]) => {
+    this.mahcineMaintenanceService.findAllByDirector().subscribe((data : MachineMaintenance[]) => {
       this.allMaintenances = data;
       data.forEach(element => {
         if(!this.years.includes(element.year)){
@@ -58,7 +58,7 @@ export class MachineMaintenancesViewComponent implements OnInit {
 
   generateMaintenancePdf(){ 
     
-    this.mahcineMaintenanceService.generateMaintenancePdfLeader(this.selectedYear).subscribe((data : string) => { 
+    this.mahcineMaintenanceService.generateMaintenancePdfDirector(this.selectedYear, this.selectedSector).subscribe((data : string) => { 
       this.toastr.success('Plan održavanja za ' + this.selectedYear.toString() + '. godinu je poslat na vašu email adresu.')   
     },
       error => { 

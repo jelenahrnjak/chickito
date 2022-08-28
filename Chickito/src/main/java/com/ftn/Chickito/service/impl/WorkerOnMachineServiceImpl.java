@@ -31,8 +31,8 @@ public class WorkerOnMachineServiceImpl implements WorkerOnMachineService {
     }
 
     @Override
-    public List<Machine> findAllMachinesByWorker(Long workerId) {
-        return this.workerOnMachineRepository.findAllMachinesByWorker(workerId);
+    public List<Machine> findAllMachinesByWorker(String workerUsername) {
+        return this.workerOnMachineRepository.findAllMachinesByWorker(workerUsername);
     }
 
     @Override
@@ -89,7 +89,10 @@ public class WorkerOnMachineServiceImpl implements WorkerOnMachineService {
 
     @Override
     public void deleteWorker(Long workerId) {
-        findAllMachinesByWorker(workerId).forEach(machine -> {
+
+        User worker = getWorker(workerId);
+
+        findAllMachinesByWorker(worker.getUsername()).forEach(machine -> {
             delete(machine.getId(), workerId);
         });
     }

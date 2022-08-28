@@ -7,4 +7,5 @@ export default interface Machine {
     documentation : string; 
     quantity : number; 
     sector : string;
+    mainWorker : boolean;
 }

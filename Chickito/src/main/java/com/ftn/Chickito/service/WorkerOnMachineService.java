@@ -11,7 +11,7 @@ import java.util.List;
 public interface WorkerOnMachineService {
 
     List<User> findAllWorkersByMachine(Long machineId);
-    List<Machine> findAllMachinesByWorker(Long userId);
+    List<Machine> findAllMachinesByWorker(String workerUsername);
     WorkerOnMachine addWorkerToMachine(AddWorkerOnMachineDto dto);
 
     void changeMainWorker(WorkerOnMachineDto workerOnMachineDto);

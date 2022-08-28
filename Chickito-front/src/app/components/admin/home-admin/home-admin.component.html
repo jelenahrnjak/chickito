@@ -12,10 +12,10 @@
             <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
             <!-- <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li>  -->
             <li *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">
-                <a class="btn-green btn" href="admin/new-building" style=" margin-top: 3%; width: 80%;">Dodaj sedište</a>  
+                <a class="btn-green btn" href="admin/new-building" style=" margin-top: 3%; ">Dodaj sedište</a>  
             </li>            
             <li style="height: 70px;" class="list-group-item">
-                <button class="btn-red btn" style=" margin-top: 3%; width: 80%;" (click)="deleteCompany(c.id, c.name)">Obriši</button>  
+                <button class="btn-red btn" style=" margin-top: 3%;" (click)="deleteCompany(c.id, c.name)">Obriši</button>  
             </li> 
         </ul> 
     </div>

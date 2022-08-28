@@ -1,7 +1,16 @@
-<!-- <div class="card-body" *ngIf="showUsers">
+
+ 
+<div class="card-body">
     
 
-    <h1>Korisnici {{currentCompany.name}}</h1>
+    <h1>Zaposleni 
+        <input style="float: right; width: 20%;"
+          type="text"
+          [(ngModel)]="termUser"
+          class="form-control"
+          placeholder="Pretražite zaposlene"
+        />
+    </h1>
     <hr>
 
 
@@ -12,13 +21,13 @@
                     <th>Ime i prezime</th>
                     <th>Email</th>
                     <th>Broj telefona</th>
-                    <th>Vrstu zaposlenog</th>
+                    <th>Vrsta zaposlenog</th>
                     <th>Radna jedinica</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of allUsers"> 
+                <tr *ngFor="let item of allUsers  | filter: termUser"> 
                     <td>{{item.fullName}}</td>
                     <td>{{item.email}}</td>
                     <td>{{item.phoneNumber}}</td>
@@ -30,4 +39,4 @@
             </tbody>
         </table>
     </div>
-</div> -->
+</div>

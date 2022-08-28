@@ -3,13 +3,19 @@
  
     <h1  style="width:95%; float: left;">
         Planovi održavanja 
-        <button class="btn-green btn" style=" right: 17%; position: fixed; width: 15%;"  (click)="displayYear = 'block'; selectedYear = 0"> Preuzmi pdf  <li class="fa fa-download"></li></button>  
-        <a class="btn-green btn" style="float: right; position: fixed; right:1%; width: 15%;"  href="/leader/new-machine-maintenance">Novi plan <li class="fa fa-plus"></li></a> 
+        <button class="btn-green btn" style=" right: 18%; position: fixed; width: 16%;"  (click)="displayYear = 'block'; selectedYear = 0"> Preuzmi pdf  <li class="fa fa-download"></li></button>  
+        <a class="btn-green btn" style="float: right; position: fixed; right:1%; width: 16%;"  href="/leader/new-machine-maintenance">Novi plan <li class="fa fa-plus"></li></a> 
     </h1> 
 
 
     <div class="table-responsive">
         <hr>
+        <input style="float: right; width: 20%; "
+        type="text"
+        [(ngModel)]="termMaintenances"
+        class="form-control"
+        placeholder="Pretražite planove održavanja"
+      />
         <table class="table">
             <thead>
                 <tr> 
@@ -19,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of allMaintenances"> 
+                <tr *ngFor="let item of allMaintenances | filter: termMaintenances"> 
                     <td>#{{item.id}}</td>
                     <td>{{item.year}}</td> 
                     <td><span class="badge btn-green" (click)="showItems(item)" style="cursor: pointer;">Prikaži</span></td>  

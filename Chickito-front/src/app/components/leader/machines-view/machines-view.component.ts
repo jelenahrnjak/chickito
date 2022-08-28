@@ -22,6 +22,9 @@ export class MachinesViewComponent implements OnInit {
   selectedNewWorker = 0
   isNewWorkerMain = false;
 
+  termMachine = ""
+  termUser = ""
+
   constructor(
     private machineService : MachineService,
     private workerOnMachineService : WorkerOnMachineService,

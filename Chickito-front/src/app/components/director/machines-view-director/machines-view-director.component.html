@@ -1,11 +1,24 @@
-<h1>Mašine iz sektora održavanja i energetike
-    <a class="sidebar-sub-toggle" (click)="showOdrzavanje = !showOdrzavanje" style="cursor: pointer;">
-        <i *ngIf="showOdrzavanje" class="fa fa-angle-double-down"></i>
-        <i *ngIf="!showOdrzavanje" class="fa fa-angle-double-up"></i>
-    </a>  </h1> 
+<div class="input-group mb-4" style="align-items: center; justify-content: center; vertical-align: middle; width: 50%;"> 
+    <h1 for="selectSector">Izaberite radnu jedinicu </h1>   
+    <select class="form-control" [(ngModel)]="sector" (change)="changedSector()" style=" width: 10%; margin-top: 5%;" id="selectSector"> 
+        <option value="-1" disabled selected>Radna jedinica</option>
+        <option value="0">Održavanje i energetika</option>
+        <option value="1">Klanica i pakeraj</option>
+        <option value="2">Prerada</option>
+        <option value="3">Kontrola kvaliteta</option>
+    </select> 
 
-<div class="row" *ngIf="showOdrzavanje"> 
-    <div class="card"  *ngFor="let c of odrzavanjeMachines">
+</div>   
+<hr>
+
+<input *ngIf="sector != -1"  style="float: right; width: 20%;"
+type="text"
+[(ngModel)]="termMachine"
+class="form-control"
+placeholder="Pretražite mašine"
+/>    
+<div class="row" *ngIf="sector != -1" style="margin-top: 5%;"> 
+    <div class="card"  *ngFor="let c of allMachines | filter : termMachine">
         
         <ul class="list-group list-group-flush" >
             <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
@@ -25,90 +38,45 @@
 
 </div>
 
-<hr>
+<div class="card-body" *ngIf="showWorkersForMachine">
+    
 
-<h1>Mašine iz sektora klanice i pakeraja
-    <a class="sidebar-sub-toggle" (click)="showKlanica = !showKlanica" style="cursor: pointer;">
-        <i *ngIf="showKlanica" class="fa fa-angle-double-down"></i>
-        <i *ngIf="!showKlanica" class="fa fa-angle-double-up"></i>
-    </a>  </h1>
+    <h1>Radnici na mašini {{selectedMachine.name}} {{selectedMachine.model}} 
+        <input style="float: right; width: 20%;"
+          type="text"
+          [(ngModel)]="termUser"
+          class="form-control"
+          placeholder="Pretražite radnike"
+        />       
+    </h1>
+    <hr>
 
-<div class="row" *ngIf="showKlanica"> 
-    <div class="card"  *ngFor="let c of klanicaMachines">
-        
-        <ul class="list-group list-group-flush" >
-            <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
-            <strong>{{c.name}}</strong> 
-            </li>   
-            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>Model:</strong> {{c.model}}</li>    
-            <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
-            <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
-            <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
-            </li>          
-            <li style="height: 70px;" class="list-group-item">
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
-            </li> 
-        </ul> 
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Ime i prezime</th>
+                    <th>Email</th>
+                    <th>Broj telefona</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allWorkers | filter : termUser">  
+                    <td>{{item.fullName}}</td>             
+                    <td>{{item.email}}</td>           
+                    <td>{{item.phoneNumber}}</td>                  
+                    <td><span *ngIf="item.mainWorker" class="badge" style="color: #04664c;" style="cursor: pointer;">Poslovođa</span></td> 
+
+                </tr>
+            </tbody>
+        </table>
     </div>
-
 </div>
-<hr>
 
-<h1>Mašine iz sektora prerade
-    <a class="sidebar-sub-toggle" (click)="showPrerada = !showPrerada" style="cursor: pointer;">
-        <i *ngIf="showPrerada" class="fa fa-angle-double-down"></i>
-        <i *ngIf="!showPrerada" class="fa fa-angle-double-up"></i>
-    </a>  </h1>
-
-<div class="row" *ngIf="showPrerada"> 
-    <div class="card"  *ngFor="let c of preradaMachines">
-        
-        <ul class="list-group list-group-flush" >
-            <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
-            <strong>{{c.name}}</strong> 
-            </li>   
-            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>Model:</strong> {{c.model}}</li>    
-            <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
-            <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
-            <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
-            </li>          
-            <li style="height: 70px;" class="list-group-item">
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
-            </li> 
-        </ul> 
-    </div>
-
-</div>
-<hr>
-
-<h1>Mašine iz sektora kontrole kvaliteta
-    <a class="sidebar-sub-toggle" (click)="showKontrola = !showKontrola" style="cursor: pointer;">
-        <i *ngIf="showKontrola" class="fa fa-angle-double-down"></i>
-        <i *ngIf="!showKontrola" class="fa fa-angle-double-up"></i>
-    </a>  </h1>
-
-<div class="row" *ngIf="showKontrola"> 
-    <div class="card"  *ngFor="let c of kontrolaMachines">
-        
-        <ul class="list-group list-group-flush" >
-            <li class = "list-group-item"  style="cursor: pointer;" (click)="showWorkers(c)">
-            <strong>{{c.name}}</strong> 
-            </li>   
-            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>Model:</strong> {{c.model}}</li>    
-            <li style="height: 35px;" class="list-group-item"><strong>Količina:</strong> {{c.quantity}}</li>   
-            <li *ngIf="c.documentation == ''" style="height: 70px;" class="list-group-item"><p style="margin-top: 7%;">Nije uneta dokumentacija</p> </li>       
-            <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
-            </li>          
-            <li style="height: 70px;" class="list-group-item">
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
-            </li> 
-        </ul> 
-    </div>
-
-</div> 
 
 <!-- Modal for documentation view -->
 <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayDescription}" style="background-color: rgba(0, 0, 0, 0.5);">

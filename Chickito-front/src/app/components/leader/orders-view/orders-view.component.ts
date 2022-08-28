@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class OrdersViewComponent implements OnInit {
 
   allOrders : Order[] = [] 
-
+  termOrders = ''
   display = "none";
   displayDescription = "none"
   selectedDocumentation = "";

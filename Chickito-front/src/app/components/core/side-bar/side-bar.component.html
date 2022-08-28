@@ -25,11 +25,11 @@
                 
                 <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/machines"><i class="fa fa-industry"></i> Mašine </a> </li>  
                 <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/orders"><i class="fa fa-shopping-cart "></i> Narudžbenice </a> </li> 
-                <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/machine-maintenance"><i class="ti-files"></i> Predlozi održavanja </a> </li>
+                <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/machine-maintenances"><i class="ti-files"></i> Predlozi održavanja </a> </li>
 
-                <li *ngIf="role == 'DIRECTOR'" class="label">Radnici</li>
+                <li *ngIf="role == 'DIRECTOR'" class="label">Zaposleni</li>
                 
-                <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/users"><i class="fa fa-users"></i> Radnici </a> </li>  
+                <li *ngIf="role == 'DIRECTOR'"><a class="sidebar-sub-toggle" href="/director/users"><i class="fa fa-users"></i> Zaposleni </a> </li>  
 
 
                 <!--LEADER--> 
@@ -45,6 +45,14 @@
                 <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/suggestions"><i class="fa fa-file-text-o  "></i> Predlozi </a> </li> 
                 <li *ngIf="role == 'LEADER'"><a class="sidebar-sub-toggle" href="/leader/worker-reports"><i class="ti-files"></i> Izveštaji </a> </li>
 
+                <!--WORKER--> 
+            
+                <li *ngIf="role == 'WORKER'"><a class="sidebar-sub-toggle" href="/worker/my-machines"><i class="fa fa-industry"></i> Mašine </a> </li>   
+                <li *ngIf="role == 'WORKER'"><a class="sidebar-sub-toggle" href="/worker/machine-maintenances"><i class="ti-files"></i> Predlozi održavanja </a> </li>
+                <li *ngIf="role == 'WORKER'"><a class="sidebar-sub-toggle" href="/worker/vacation-request"><i class="ti-files"></i> Godišnji odmori </a> </li>
+
+
+                  
                 
                 <li style="bottom: 0; position: fixed; width: 100%;">
                     <a href="#" (click)="logout()"><i class="ti-close"></i> Odjava</a>

@@ -30,9 +30,9 @@ export class WorkerOnMachineService {
     }));
   } 
 
-  findAllMachinesByWorker(workerId : any) { 
+  findAllMachinesByWorker(workerUsername : any) { 
 
-    return this.apiService.get(this.config.workerOnMachines_url + `/findAllMachinesByWorker/${workerId}`)
+    return this.apiService.get(this.config.workerOnMachines_url + `/findAllMachinesByWorker/${workerUsername}`)
     .pipe(map(machines => { 
       return machines;
     }));

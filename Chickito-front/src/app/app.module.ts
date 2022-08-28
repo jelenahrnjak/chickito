@@ -45,6 +45,10 @@ import { MachineMaintenancesViewComponent } from './components/leader/machine-ma
 import { NewMachineMaintenanceComponent } from './components/leader/new-machine-maintenance/new-machine-maintenance.component';
 import { UsersLeaderComponent } from './components/leader/users-leader/users-leader.component';
 import { UsersDirectorComponent } from './components/director/users-director/users-director.component';
+import { MahcineMaintenancesDirectorComponent } from './components/director/mahcine-maintenances-director/mahcine-maintenances-director.component';
+import { MyMachinesComponent } from './components/worker/my-machines/my-machines.component';
+import { VacationRequestComponent } from './components/worker/vacation-request/vacation-request.component';
+import { MachineMaintenancesWorkerComponent } from './components/worker/machine-maintenances-worker/machine-maintenances-worker.component';
 
 
 @NgModule({
@@ -71,7 +75,11 @@ import { UsersDirectorComponent } from './components/director/users-director/use
     MachineMaintenancesViewComponent,
     NewMachineMaintenanceComponent,
     UsersLeaderComponent,
-    UsersDirectorComponent, 
+    UsersDirectorComponent,
+    MahcineMaintenancesDirectorComponent,
+    MyMachinesComponent,
+    VacationRequestComponent,
+    MachineMaintenancesWorkerComponent, 
   ],
   imports: [
     CommonModule,

@@ -102,6 +102,10 @@ public class MachineMaintenanceServiceImpl implements MachineMaintenanceService 
 
     private void generateMaintenancePdf(String username, List<MachineMaintenanceItem> maintenanceItems) throws FileNotFoundException, JRException, MessagingException {
 
+        if(maintenanceItems.isEmpty()){
+            throw new EntityNotFoundException(String.format("Nema planova održavanja za zadate kriterijume."));
+        }
+
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with username = %s doesn't exist.", username)));
