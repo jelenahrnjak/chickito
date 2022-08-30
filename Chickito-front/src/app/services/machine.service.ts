@@ -29,5 +29,13 @@ export class MachineService {
       return machines;
     }));
   } 
+
+  addDocumentation(machineId: any ,documentation : any) {  
+
+    return this.apiService.post(this.config.machine_url  + `/addDocumentation/${machineId}`, JSON.stringify(documentation))
+      .pipe(map(() => {
+        console.log('Changing documentation success');
+      }));
+  }
   
 }

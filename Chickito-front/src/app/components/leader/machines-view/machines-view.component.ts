@@ -4,6 +4,8 @@ import { MachineService } from '../../../services/machine.service';
 import { WorkerOnMachineService } from '../../../services/worker-on-machine.service';
 import User from '../../../model/user'
 import { ToastrService } from 'ngx-toastr';   
+import Documentation from '../../../model/documentation';
+import SparePart from '../../../model/spare-part';
 
 @Component({
   selector: 'app-machines-view',
@@ -12,8 +14,22 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MachinesViewComponent implements OnInit {
 
+
+  newDocumentation : Documentation = {
+    workInstructions : '',
+    washingInstructions : '',
+    maintenanceInstructions : '',
+    spareParts : []};
+
+  newSparePart : SparePart = {
+    name : '',
+    stockNumber : '',
+    quantity : 0};
+
   allMachines : Machine[] = []
   displayDescription = 'none'
+  displayEdit = 'none'
+  displayNewPart = 'none'
   selectedMachine : any = ''
   selectedDocumentation: any = ''
   showWorkersForMachine = false;
@@ -36,12 +52,29 @@ export class MachinesViewComponent implements OnInit {
     this.getAllMachines()
   }
 
+  resetNewDocumenation(){
+    
+    this.newDocumentation = { 
+      workInstructions : '',
+      washingInstructions : '',
+      maintenanceInstructions : '',
+      spareParts : []
+    }
+  }  
+  resetSparePart(){
+    
+    this.newSparePart = {
+      name : '',
+      stockNumber : '',
+      quantity : 0};
+  }
+
   getAllMachines(){
     this.allMachines = []
     this.machineService.findAllByLeader().subscribe((data : Machine[]) => {
       this.allMachines = data;
     }); 
-  }
+  } 
 
   showWorkers(machine : Machine){
     this.showWorkersForMachine = true
@@ -120,6 +153,34 @@ export class MachinesViewComponent implements OnInit {
         console.log('Adding worker on machine error');  
         this.toastr.error(error['error'].message)
       });
+  }
+
+  addSparePart(){
+    this.newDocumentation.spareParts.push(this.newSparePart)
+    this.resetSparePart()
+  }
+
+  addDocumentation(){ 
+
+    this.machineService.addDocumentation(this.selectedMachine.id, this.newDocumentation)
+    .subscribe(data => { 
+      this.toastr.success('Uspešno izmenjena dokumentacija!')  
+      this.getAllMachines();
+    },
+      error => { 
+        console.log('Changing documentation error');  
+        this.toastr.error(error['error'].message)
+      });
+  }
+
+  deleteSpare(spare){
+
+    this.newDocumentation.spareParts.forEach((element, index) => {
+      if(element.name == spare.name && element.stockNumber == spare.stockNumber && element.quantity == spare.quantity){
+        this.newDocumentation.spareParts.splice(index,1)
+      }
+      
+    });
   }
  
 }

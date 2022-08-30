@@ -1,6 +1,4 @@
-export default interface SparePart {
-
-    id : any;
+export default interface SparePart { 
     name : string;
     stockNumber : string;   
     quantity : number; 
