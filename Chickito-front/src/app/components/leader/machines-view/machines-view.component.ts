@@ -29,6 +29,7 @@ export class MachinesViewComponent implements OnInit {
   allMachines : Machine[] = []
   displayDescription = 'none'
   displayEdit = 'none'
+  displayEditMachine = 'none'
   displayNewPart = 'none'
   selectedMachine : any = ''
   selectedDocumentation: any = ''
@@ -39,6 +40,8 @@ export class MachinesViewComponent implements OnInit {
   selectedNewWorker = 0
   isNewWorkerMain = false;
 
+  newModel = ''
+  newQuantity : any = ''
   termMachine = ""
   termUser = ""
 
@@ -72,7 +75,7 @@ export class MachinesViewComponent implements OnInit {
   getAllMachines(){
     this.allMachines = []
     this.machineService.findAllByLeader().subscribe((data : Machine[]) => {
-      this.allMachines = data;
+      this.allMachines = data.sort((a, b) => Number(b.name) - Number(a.name));
     }); 
   } 
 
@@ -160,6 +163,18 @@ export class MachinesViewComponent implements OnInit {
     this.resetSparePart()
   }
 
+  showEditMachine(machine : any){
+    this.selectedMachine = machine; 
+    this.displayEditMachine = 'block'
+
+    if(machine.model != 'Nije naveden'){
+      this.newModel = machine.model
+    }else{
+      this.newModel = ''
+    }
+    this.newQuantity = machine.quantity
+  }
+
   addDocumentation(){ 
 
     this.machineService.addDocumentation(this.selectedMachine.id, this.newDocumentation)
@@ -181,6 +196,19 @@ export class MachinesViewComponent implements OnInit {
       }
       
     });
+  }
+
+  editMachine(){ 
+
+    this.machineService.editMachine(this.newModel, this.newQuantity, this.selectedMachine.id)
+    .subscribe(data => { 
+      this.toastr.success('Uspešno izmenjena mašina!')  
+      this.getAllMachines();
+    },
+      error => { 
+        console.log('Editing machine error');  
+        this.toastr.error(error['error'].message)
+      });
   }
  
 }

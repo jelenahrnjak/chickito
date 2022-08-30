@@ -1,6 +1,7 @@
 package com.ftn.Chickito.controller;
 
 import com.ftn.Chickito.dto.machine.DocumentationDto;
+import com.ftn.Chickito.dto.machine.MachineBaseDto;
 import com.ftn.Chickito.dto.machine.MachineDto;
 import com.ftn.Chickito.mapper.MachineMapper;
 import com.ftn.Chickito.service.MachineService;
@@ -46,5 +47,12 @@ public class MachineController {
     public ResponseEntity<MachineDto> addDocumentation(@PathVariable Long machineId, @RequestBody DocumentationDto documentationDto) {
 
         return new ResponseEntity<>(mapper.machineToMachineDto(machineService.addDocumentation(machineId, documentationDto)), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{machineId}")
+    @PreAuthorize("hasAuthority('LEADER')")
+    public ResponseEntity<MachineDto> editMachine(@PathVariable Long machineId, @RequestBody MachineBaseDto editDto) {
+
+        return new ResponseEntity<>(mapper.machineToMachineDto(machineService.editMachine(machineId, editDto)), HttpStatus.CREATED);
     }
 }

@@ -37,5 +37,18 @@ export class MachineService {
         console.log('Changing documentation success');
       }));
   }
+
+  editMachine(model : string, quantity : number, id : any) {  
+
+    const body= {
+      "model" : model,
+      "quantity" : quantity
+    }
+
+    return this.apiService.post(this.config.machine_url  + `/${id}`, JSON.stringify(body))
+      .pipe(map(() => {
+        console.log('Changing documentation success');
+      }));
+  }
   
 }

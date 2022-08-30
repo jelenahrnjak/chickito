@@ -1,6 +1,7 @@
 package com.ftn.Chickito.service.impl;
 
 import com.ftn.Chickito.dto.machine.DocumentationDto;
+import com.ftn.Chickito.dto.machine.MachineBaseDto;
 import com.ftn.Chickito.mapper.MachineMapper;
 import com.ftn.Chickito.model.Company;
 import com.ftn.Chickito.model.Documentation;
@@ -45,6 +46,18 @@ public class MachineServiceImpl implements MachineService {
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Machine with id = %s doesn't exist.", machineId)));
 
         machine.setDocumentation(mapper.documentationDtoToDocumentation(documentationDto));
+        return machineRepository.save(machine);
+    }
+
+    @Override
+    public Machine editMachine(Long machineId, MachineBaseDto editDto) {
+
+        Machine machine = machineRepository.findById(machineId)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Machine with id = %s doesn't exist.", machineId)));
+
+        machine.setModel(editDto.getModel());
+        machine.setQuantity(editDto.getQuantity());
+
         return machineRepository.save(machine);
     }
 }
