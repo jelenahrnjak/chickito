@@ -29,14 +29,23 @@ public class UserController {
 
     @GetMapping("/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public User loadById(@PathVariable Long userId) {
-        return this.userService.findById(userId);
+    public UserDto loadById(@PathVariable Long userId) {
+        return mapper.userToUserDto(this.userService.findById(userId));
     }
+
+    @GetMapping("/getCurrentUser")
+    @PreAuthorize("isAuthenticated()")
+    public UserDto getCurrentUser(@RequestHeader("Authorization") String jwtToken){
+
+        String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
+        return mapper.userToUserDto(this.userService.findByUsername(username));
+    }
+
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<User> loadAll() {
-        return this.userService.findAll();
+    public List<UserDto> loadAll() {
+        return mapper.userListToUserDtoList(this.userService.findAll());
     }
 
     @PostMapping

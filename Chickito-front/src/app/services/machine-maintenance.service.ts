@@ -52,4 +52,13 @@ export class MachineMaintenanceService {
         return path;
       }));
     }
+
+    getCurrentPlan(machineId : any){ 
+
+      return this.apiService.get(this.config.machineMaintenance_url + `/getCurrentPlan/${machineId}`)
+      .pipe(map(maintenances => { 
+        return maintenances;
+      }));    
+     
+    }
 }

@@ -22,11 +22,8 @@ export class NewMachineMaintenanceComponent implements OnInit {
   display = "none";
   selectedItem : any = ''
   selectedMachine : any = ''
-  years : number[] = []
+  years : number[] = [] 
 
-  
-  minDate: Date = new Date();
-  minDateMax : Date = new Date(); 
 
   constructor(
     private toastr: ToastrService,  
@@ -116,17 +113,6 @@ export class NewMachineMaintenanceComponent implements OnInit {
       });
   }
 
-  checkDates(){
 
-    if(this.formDates.get('startDate')?.value >= this.formDates.get('endDate')?.value){
-      this.formDates.get('endDate')?.setValue("")
-
-    }
-
-    var currenttimestamp = (new Date(this.formDates.get('startDate')?.value)).getTime(); 
-    var onedayaftertimestamp=currenttimestamp+(86400000);//1 day=86400000 ms; 
-
-    this.minDateMax = new Date(onedayaftertimestamp) 
-  }
 
 }

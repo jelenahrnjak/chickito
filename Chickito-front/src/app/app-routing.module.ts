@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MyProfileComponent } from './components/shared/my-profile/my-profile.component';
 import { ErrorPageComponent } from './components/core/error-page/error-page.component'; 
+import { NewVacationRequestComponent } from './components/shared/new-vacation-request/new-vacation-request.component'
+import { MyVacationRequestsComponent } from './components/shared/my-vacation-requests/my-vacation-requests.component'
 
 import { AddingBuildingComponent } from './components/admin/adding-building/adding-building.component';
 import { AddingCompanyComponent } from './components/admin/adding-company/adding-company.component';
@@ -16,6 +18,7 @@ import { OrdersViewDirectorComponent } from './components/director/orders-view-d
 import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
 import { UsersDirectorComponent } from './components/director/users-director/users-director.component'; 
 import { MahcineMaintenancesDirectorComponent } from './components/director/mahcine-maintenances-director/mahcine-maintenances-director.component'
+import { VacationRequestsDirectorComponent } from './components/director/vacation-requests-director/vacation-requests-director.component'; 
 
 import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
@@ -27,7 +30,6 @@ import { UsersLeaderComponent } from './components/leader/users-leader/users-lea
 
 import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 import { MyMachinesComponent } from './components/worker/my-machines/my-machines.component';
-import { VacationRequestComponent } from './components/worker/vacation-request/vacation-request.component'
 import { MachineMaintenancesWorkerComponent } from './components/worker/machine-maintenances-worker/machine-maintenances-worker.component'
 
 import { AuthentificationGuard } from './guards/authentification.guard'
@@ -48,6 +50,18 @@ const routes: Routes = [
   {
     path: 'my-profile',
     component: MyProfileComponent, 
+    canActivate:[AuthentificationGuard]
+  },
+
+  {
+    path: 'new-vacation-request', 
+    component: NewVacationRequestComponent,
+    canActivate:[AuthentificationGuard]
+  },
+
+  {
+    path: 'my-vacation-requests', 
+    component: MyVacationRequestsComponent,
     canActivate:[AuthentificationGuard]
   },
 
@@ -107,6 +121,10 @@ const routes: Routes = [
       {
         path: 'machine-maintenances',
         component: MahcineMaintenancesDirectorComponent
+      },
+      {
+        path: 'vacation-requests',
+        component: VacationRequestsDirectorComponent
       }
       ]
   },
@@ -164,10 +182,6 @@ const routes: Routes = [
       {
         path: 'my-machines', 
         component: MyMachinesComponent,
-      },
-      {
-        path: 'vacation-request', 
-        component: VacationRequestComponent,
       },
       {
         path: 'machine-maintenances',

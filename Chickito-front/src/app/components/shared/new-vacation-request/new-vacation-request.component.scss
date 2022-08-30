@@ -1,0 +1,32 @@
+.btn-green{
+    color: #fff698;
+    background-color: #00553e;
+  } 
+
+  .btn-green:hover{
+    background-color: #076b50;
+  }
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 10000 !important;
+  }
+
+.x-btn {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  }
+
+  
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+agm-map {
+  height: 200px;
+  min-width: 100%;
+  
+}

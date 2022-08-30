@@ -1,0 +1,73 @@
+
+ 
+<div class="card-body">
+
+    <h1  style="width:95%; float: left;">Zahtevi za godišnji odmor
+        <a class="btn-green btn" style="float: right; width: 20%;"  href="/new-vacation-request">Novi zahtev <li class="fa fa-plus"></li></a> 
+    </h1>
+
+
+    <div class="table-responsive">
+        <hr>
+        
+        <input style="float: right; width: 19%; margin-right: 2%;"
+          type="text"
+          [(ngModel)]="term"
+          class="form-control"
+          placeholder="Pretražite zahteve"
+        />
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Početak</th>
+                    <th>Kraj</th>
+                    <th>Odgovor</th>
+                    <th></th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allRequests  | filter: term"> 
+                    <td>{{item.startDate}}</td>
+                    <td>{{item.endDate}}</td>
+                    <td *ngIf="item.approved == true"><span class="badge"  style="color: #04664c;" >Odobreno</span></td>
+                    <td *ngIf="item.approved == false"><span class="badge" style="color: #b7222f;">Odbijeno</span></td>
+                    <td *ngIf="item.approved != true && item.approved != false"><span class="badge" style="color: gray;">Bez odgovora</span></td>
+                    <td *ngIf="item.approved == false"><span  class="badge btn-red" (click)="displayModal(item)" style="cursor: pointer;">Razlog odbijanja</span></td>
+                    <td *ngIf="item.approved != true && item.approved != false"><span  class="badge btn-red" (click)="delete(item)" style="cursor: pointer;">Obriši</span></td>
+                    <td *ngIf="item.approved == true"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal for documentation view -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Odgovor na zahtev za godišnji odmor </h5>
+        </div> 
+
+        <div  class="container"> 
+                
+            <div style="margin: 1%; margin-top: 4%; margin-bottom: 4%;">
+                <strong>Početak:</strong><label>&nbsp;&nbsp;&nbsp;{{selectedRequest.startDate}}</label><br> 
+                <strong>Kraj:</strong><label>&nbsp;&nbsp;&nbsp;{{selectedRequest.endDate}}</label><br>  
+               
+            </div> 
+
+            <p style="color:black; margin: 1%">
+                <strong>Razlog:</strong> {{selectedRequest.reasonForRejection}}
+            </p>
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="display = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>

@@ -62,14 +62,15 @@ VALUES (222, 'Pratiti temperaturu redovno.', 222, 222);
 
 INSERT INTO WORKERS_ON_MACHINES (worker_id, machine_id, main_worker) VALUES (411, 111, true);
 
-INSERT INTO REQUESTED_DAYS (id, date) VALUES (1, '2022-09-05');
-INSERT INTO REQUESTED_DAYS (id, date) VALUES (2, '2022-09-06');
-INSERT INTO REQUESTED_DAYS (id, date) VALUES (3, '2022-09-07');
-INSERT INTO REQUESTED_DAYS (id, date) VALUES (4, '2022-09-08');
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (111, '2022-09-05');
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (222, '2022-09-06');
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (333, '2022-09-07');
+INSERT INTO REQUESTED_DAYS (id, date) VALUES (444, '2022-09-08');
 
-INSERT INTO VACATION_REQUESTS (id, approved, request_expiration_date, user_id) VALUES (1, null, '2022-09-05', 411);
+INSERT INTO VACATION_REQUESTS (id, approved, request_expiration_date, user_id, request_reviewer_id)
+VALUES (111, null, '2022-09-05', 411, 222);
 
-INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 1);
-INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 2);
-INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 3);
-INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (1, 4);
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (111, 111);
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (111, 222);
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (111, 333);
+INSERT INTO VACATION_REQUESTS_DATES (vacation_request_id, dates_id) VALUES (111, 444);

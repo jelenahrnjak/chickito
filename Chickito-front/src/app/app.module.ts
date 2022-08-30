@@ -47,8 +47,10 @@ import { UsersLeaderComponent } from './components/leader/users-leader/users-lea
 import { UsersDirectorComponent } from './components/director/users-director/users-director.component';
 import { MahcineMaintenancesDirectorComponent } from './components/director/mahcine-maintenances-director/mahcine-maintenances-director.component';
 import { MyMachinesComponent } from './components/worker/my-machines/my-machines.component';
-import { VacationRequestComponent } from './components/worker/vacation-request/vacation-request.component';
+import { NewVacationRequestComponent } from './components/shared/new-vacation-request/new-vacation-request.component';
 import { MachineMaintenancesWorkerComponent } from './components/worker/machine-maintenances-worker/machine-maintenances-worker.component';
+import { MyVacationRequestsComponent } from './components/shared/my-vacation-requests/my-vacation-requests.component';
+import { VacationRequestsDirectorComponent } from './components/director/vacation-requests-director/vacation-requests-director.component';
 
 
 @NgModule({
@@ -78,8 +80,10 @@ import { MachineMaintenancesWorkerComponent } from './components/worker/machine-
     UsersDirectorComponent,
     MahcineMaintenancesDirectorComponent,
     MyMachinesComponent,
-    VacationRequestComponent,
-    MachineMaintenancesWorkerComponent, 
+    NewVacationRequestComponent,
+    MachineMaintenancesWorkerComponent,
+    MyVacationRequestsComponent,
+    VacationRequestsDirectorComponent, 
   ],
   imports: [
     CommonModule,

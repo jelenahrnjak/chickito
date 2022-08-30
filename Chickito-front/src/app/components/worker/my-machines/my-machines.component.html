@@ -20,6 +20,9 @@
             <li *ngIf="c.documentation != ''" style="height: 70px;" class="list-group-item">     
                 <button class="btn-green btn" style=" margin-top: 3%; " (click)="displayDescription = 'block'; selectedMachine = c">Prikaži dokumentaciju</button>  
             </li>           
+            <li style="height: 70px;" class="list-group-item">     
+                <button class="btn-green btn" style=" margin-top: 3%; " (click)="displayPlan(c)">Prikaži planove</button>  
+            </li>           
         </ul> 
     </div>
 
@@ -44,6 +47,34 @@
           
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayDescription = 'none'">Zatvori</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Modal for documentation view -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Planovi za mašinu {{selectedMachine.name}} {{selectedMachine.model}} za {{currYear}}. godinu</h5>
+        </div> 
+
+        <div  class="container"> 
+             <p style="color:black; margin: 1%" *ngFor="let item of items">
+                 - {{item.plan}}
+             </p>
+
+             <p style="color:black; margin: 1%" *ngIf="items.length == 0">
+                Nema planova za ovu mašinu za ovu godinu.
+             </p>
+
+            <br> 
+        </div>
+ 
+          
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="display = 'none'">Zatvori</button>
         </div>
     </div>
     </div>

@@ -43,6 +43,7 @@ public class VacationRequestServiceImpl implements VacationRequestService {
                 .dates(days.stream().map(day -> RequestedDay.builder().date(day).build()).collect(Collectors.toList()))
                 .requestExpirationDate(days.stream().min(Comparator.naturalOrder()).get())
                 .approved(null)
+                .requestReviewer(user.getRole().getName() == "DIRECTOR" ? user : user.getSector().getCompany().getDirector())
                 .build();
 
         vacationRequestRepository.save(newVacationRequest);
@@ -95,6 +96,43 @@ public class VacationRequestServiceImpl implements VacationRequestService {
         vacationRequestRepository.save(vacationRequest);
 
         return true;
+    }
+
+    @Override
+    public List<VacationRequest> findAllByDirector(String username) {
+        LocalDate today = LocalDate.now();
+        List<VacationRequest> requests = new ArrayList<>();
+        vacationRequestRepository.findAllByDirector(username).forEach(vacationRequest -> {
+            if(today.isBefore(vacationRequest.getRequestExpirationDate())){
+            }
+            requests.add(vacationRequest);
+        });
+        return vacationRequestRepository.findAllByDirector(username);
+    }
+
+    @Override
+    public List<VacationRequest> findAllByUser(String username) {
+        return vacationRequestRepository.findAllByUser(username);
+    }
+
+    @Override
+    public void delete(String currentUser, Long vacationId) throws Exception {
+        VacationRequest vacationRequest = this.vacationRequestRepository.findById(vacationId)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Ne postoji zahtev sa id-jem = %s.", vacationId)));
+
+        if(!vacationRequest.getUser().getUsername().equals(currentUser)){
+            throw new Exception(String.format("Nije moguće obrisati zahtev jer niste autor."));
+        }
+
+        if(vacationRequest.getApproved() != null){
+            if(vacationRequest.getApproved() ==false){
+                throw new Exception(String.format("Nije moguće obrisati zahtev jer je odbijen."));
+            }else{
+                throw new Exception(String.format("Nije moguće obrisati zahtev jer je prihvaćen. Kontaktirajte direktora."));
+            }
+        }
+
+        this.vacationRequestRepository.delete(vacationRequest);
     }
 
     private List<LocalDate> getVacationDaysFromRequest(LocalDate startDate, LocalDate endDate) {

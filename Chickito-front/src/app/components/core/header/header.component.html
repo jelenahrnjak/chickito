@@ -10,7 +10,7 @@
                     </div> -->
                 </div>
                 <div class="float-right">
-                    <div class="dropdown dib">
+                    <!-- <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
                             <i class="ti-bell"></i>
                             <div class="drop-down dropdown-menu dropdown-menu-right">
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
                             
@@ -162,8 +162,15 @@
                                 </div> -->
                                 <div class="dropdown-content-body">
                                     <ul>
+                                        <li *ngIf="role != 'ADMIN'">
+                                            <a href="#" (click)="vacations()">
+                                                <i class="ti-calendar"></i> 
+                                                <span>Godišnji odmori </span>
+                                            </a> 
+                                        </li>
+
                                         <li>
-                                            <a href="/my-profile">
+                                            <a href="#" (click)="myProfile()">
                                                 <i class="ti-user"></i>
                                                 <span>Moj profil</span>
                                             </a>

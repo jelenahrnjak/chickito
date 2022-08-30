@@ -1,8 +1,10 @@
 package com.ftn.Chickito.controller;
 
 import com.ftn.Chickito.dto.machineMaintenance.CreateMachineMaintenanceDto;
+import com.ftn.Chickito.dto.machineMaintenance.MachineMaintenanceItemDto;
 import com.ftn.Chickito.dto.machineMaintenance.MachineMaintenanceViewDto;
 import com.ftn.Chickito.mapper.MachineMaintenanceMapper;
+import com.ftn.Chickito.model.MachineMaintenanceItem;
 import com.ftn.Chickito.service.MachineMaintenanceService;
 import com.ftn.Chickito.util.TokenUtils;
 import lombok.RequiredArgsConstructor;
@@ -70,6 +72,13 @@ public class MachineMaintenanceController {
         String username = tokenUtils.getUsernameFromToken(jwtToken.split(WHITESPACE)[1]);
 
         return new ResponseEntity<>(mapper.maintenanceListToMaintenanceDtoList(machineMaintenanceService.findAllByDirector(username)), HttpStatus.OK);
+    }
+
+    @GetMapping("/getCurrentPlan/{machineId}")
+    @PreAuthorize("hasAuthority('WORKER')")
+    public ResponseEntity<List<MachineMaintenanceItemDto>> getCurrentPlan(@PathVariable Long machineId) {
+
+        return new ResponseEntity<>(mapper.maintenanceItemsToMaintenanceItemsDto(machineMaintenanceService.findAllByMachine(machineId)), HttpStatus.OK);
     }
 
 }

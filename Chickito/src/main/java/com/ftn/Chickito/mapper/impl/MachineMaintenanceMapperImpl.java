@@ -14,6 +14,7 @@ import com.ftn.Chickito.repository.BuildingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,9 @@ public class MachineMaintenanceMapperImpl implements MachineMaintenanceMapper {
                 .build();
     }
 
-    private List<MachineMaintenanceItemDto> maintenanceItemsToMaintenanceItemsDto(Set<MachineMaintenanceItem> items){
+
+    @Override
+    public List<MachineMaintenanceItemDto> maintenanceItemsToMaintenanceItemsDto(Set<MachineMaintenanceItem> items){
         List<MachineMaintenanceItemDto> itemsDto = new ArrayList<>();
 
         for(MachineMaintenanceItem item : items){

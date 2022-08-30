@@ -37,6 +37,15 @@ export class UserService {
     }));
   } 
 
+  getCurrentUser(){
+
+    return this.apiService.get(this.config.user_url + `/getCurrentUser`)
+    .pipe(map(user => { 
+      return user;
+    }));
+
+  }
+
   findAllByDirector() { 
 
     return this.apiService.get(this.config.user_url + `/findAllByDirector`)

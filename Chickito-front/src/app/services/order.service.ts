@@ -51,7 +51,7 @@ export class OrderService {
       
       return this.apiService.post(this.config.order_url + `/${id}/decline` , {})
         .pipe(map(() => {
-          console.log('Approving order success');
+          console.log('Declining order success');
         }));
     }
 
