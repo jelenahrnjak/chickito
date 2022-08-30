@@ -7,5 +7,4 @@ import java.util.Optional;
 
 public interface DocumentationRepository extends JpaRepository<Documentation, Long> {
 
-    Optional<Documentation> findByText(String text);
 }

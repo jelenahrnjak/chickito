@@ -3,6 +3,8 @@ package com.ftn.Chickito.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,5 +20,10 @@ public class Documentation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String text;
+    private String workInstructions;
+    private String washingInstructions;
+    private String maintenanceInstructions;
+
+    @OneToMany(mappedBy = "documentation", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<SparePart> spareParts = new HashSet<>();
 }

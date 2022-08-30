@@ -18,6 +18,7 @@ export class MachinesViewDirectorComponent implements OnInit {
   odrzavanjeMachines : Machine[] = []
   displayDescription = 'none'
   selectedMachine : any = ''
+  selectedDocumentation : any = ''
   sector = -1;
   showWorkersForMachine = false;
   allWorkers : User[] = []

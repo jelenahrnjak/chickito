@@ -1,3 +1,5 @@
+import Documentation from "./documentation";
+
 export default interface Machine {
 
     id : any;
@@ -8,4 +10,5 @@ export default interface Machine {
     quantity : number; 
     sector : string;
     mainWorker : boolean;
+    documentation : Documentation;
 }

@@ -42,15 +42,18 @@ VALUES (111, true, '2022-08-15 20:21:07.253468', 5000, 333, 222);
 INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
 VALUES (222, null, '2022-08-21 20:21:07.253468', 7000, 333, 222);
 
-INSERT INTO DOCUMENTATIONS (id, text) VALUES (111, 'Mašina se koristi na niskim temperaturama.');
-INSERT INTO DOCUMENTATIONS (id, text) VALUES (222, 'Mašinu ne držati upaljenom duže od 2 sata.');
+INSERT INTO DOCUMENTATIONS (id, work_Instructions, washing_instructions)
+VALUES (111, 'Mašina se koristi na niskim temperaturama.', 'Ne prati ventile.');
+
+INSERT INTO SPARE_PARTS (id, stock_number, name, quantity, documentation_id)
+VALUES (111, '324443', 'Ventil', 123, 111);
 
 INSERT INTO MACHINES (id, active, name, price, quantity, serial_number, documentation_id, order_id, sector_id, technical_task)
 VALUES (111, true, 'Pilerica', 2000, 3, '12345', 111, 111, 111, 'Broj obrtaja u minuti: 20');
-INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)
-VALUES (222, true, '2CP3', 'Ljuštilica', 3000, 1, '1233', null, 111, 111);
-INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)
-VALUES (333, false, 'POP', 'Grebalica', 7000, 1, '12333', 222, 222, 111);
+INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, order_id, sector_id)
+VALUES (222, true, '2CP3', 'Ljuštilica', 3000, 1, '1233', 111, 111);
+INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, order_id, sector_id)
+VALUES (333, false, 'POP', 'Grebalica', 7000, 1, '12333', 222, 111);
 
 INSERT INTO MACHINE_MAINTENANCES (id, year, author_id) VALUES (111, 2022, 333);
 INSERT INTO MACHINE_MAINTENANCES (id, year, author_id) VALUES (222, 2022, 333);

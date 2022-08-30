@@ -15,6 +15,7 @@ export class MachinesViewComponent implements OnInit {
   allMachines : Machine[] = []
   displayDescription = 'none'
   selectedMachine : any = ''
+  selectedDocumentation: any = ''
   showWorkersForMachine = false;
   allWorkers : User[] = []
   displayAddingWorker = 'none'

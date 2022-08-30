@@ -16,6 +16,7 @@ public class MachineDto {
     private Long sectorId;
     private String sector;
     private String technicalTask;
+    private DocumentationDto documentation;
     private Double price;
     private Integer quantity;
     private boolean mainWorker;

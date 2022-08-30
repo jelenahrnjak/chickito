@@ -20,6 +20,7 @@ export class MyMachinesComponent implements OnInit {
   display = 'none'
   currYear = new Date().getFullYear();
   items : MachineMaintenanceItem[] = []
+  selectedDocumentation : any = ''
 
   termMachine = ""
 

@@ -5,11 +5,9 @@ import com.ftn.Chickito.dto.order.OrderReportDto;
 import com.ftn.Chickito.exception.OrderAlreadyProcessedException;
 import com.ftn.Chickito.exception.WrongReviewerException;
 import com.ftn.Chickito.mapper.OrderMapper;
-import com.ftn.Chickito.model.Documentation;
 import com.ftn.Chickito.model.Machine;
 import com.ftn.Chickito.model.Order;
 import com.ftn.Chickito.model.User;
-import com.ftn.Chickito.repository.DocumentationRepository;
 import com.ftn.Chickito.repository.MachineRepository;
 import com.ftn.Chickito.repository.OrderRepository;
 import com.ftn.Chickito.repository.UserRepository;
@@ -38,7 +36,6 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final MachineRepository machineRepository;
     private final UserRepository userRepository;
-    private final DocumentationRepository documentationRepository;
     private final OrderMapper mapper;
     private final EmailService emailService;
 
@@ -173,15 +170,6 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Leader with username = %s doesn't exist.", username)));
     }
 
-    private Documentation getDocumentation(String documentation) {
-
-        if (documentation == null || documentation.equals("")) {
-            return null;
-        }
-
-        return documentationRepository.findByText(documentation)
-                .orElse(documentationRepository.save(Documentation.builder().text(documentation).build()));
-    }
 
     @Override
     public List<Order> findAllByAuthor(String authorUsername) {
