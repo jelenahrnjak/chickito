@@ -28,7 +28,7 @@ export class NewOrderComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name : ['', Validators.compose([Validators.required])],
-      model: ['', Validators.compose([Validators.required])],
+      model: [''],
       price: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])],
       quantity: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])],
       technicalTask: [''],  
@@ -36,6 +36,11 @@ export class NewOrderComponent implements OnInit {
   }
 
   onSubmit(){ 
+
+    if(this.form.get('model')?.value == '' && this.form.get('technicalTask')?.value == ''){
+      this.toastr.error('Unesite model ili tehnički zadatak!')  
+      return
+    }
     this.orderItems.push(this.form.value)
     this.form.reset()
   }

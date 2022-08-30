@@ -135,6 +135,12 @@ public class MachineMaintenanceServiceImpl implements MachineMaintenanceService 
             throw new EntityNotFoundException(String.format("Nema planova održavanja za zadate kriterijume."));
         }
 
+        for (MachineMaintenanceItem m: maintenanceItems) {
+            if(m.getMachine().getModel() == null){
+                m.getMachine().setModel("Nije naveden");
+            }
+        }
+
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User with username = %s doesn't exist.", username)));
