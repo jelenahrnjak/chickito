@@ -87,7 +87,7 @@ public class OrderMapperImpl implements OrderMapper {
 
         return OrderItemDto.builder()
                 .name(machine.getName())
-                .model(machine.getModel() == null ? "" : machine.getModel())
+                .model(machine.getModel() == null || machine.getModel() == "" ? "Nije naveden" : machine.getModel())
                 .serialNumber(machine.getSerialNumber())
                 .technicalTask(machine.getTechnicalTask() == null ? "" : machine.getTechnicalTask())
                 .price(machine.getPrice())
