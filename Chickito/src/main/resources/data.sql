@@ -45,8 +45,8 @@ VALUES (222, null, '2022-08-21 20:21:07.253468', 7000, 333, 222);
 INSERT INTO DOCUMENTATIONS (id, text) VALUES (111, 'Mašina se koristi na niskim temperaturama.');
 INSERT INTO DOCUMENTATIONS (id, text) VALUES (222, 'Mašinu ne držati upaljenom duže od 2 sata.');
 
-INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)
-VALUES (111, true, 'CNC', 'Pilerica', 2000, 3, '12345', 111, 111, 111);
+INSERT INTO MACHINES (id, active, name, price, quantity, serial_number, documentation_id, order_id, sector_id, technical_task)
+VALUES (111, true, 'Pilerica', 2000, 3, '12345', 111, 111, 111, 'Broj obrtaja u minuti: 20');
 INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)
 VALUES (222, true, '2CP3', 'Ljuštilica', 3000, 1, '1233', null, 111, 111);
 INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, documentation_id, order_id, sector_id)

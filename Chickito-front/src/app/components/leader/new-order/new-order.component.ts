@@ -16,7 +16,7 @@ export class NewOrderComponent implements OnInit {
   orderItems : OrderItem[] = []
   
   display = "none";
-  selectedDocumentation : any = "";
+  selectedTechnicalTask : any = "";
   selectedMachine : any = ""
 
   constructor( 
@@ -31,7 +31,7 @@ export class NewOrderComponent implements OnInit {
       model: ['', Validators.compose([Validators.required])],
       price: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])],
       quantity: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])],
-      documentation: [''],  
+      technicalTask: [''],  
     }); 
   }
 

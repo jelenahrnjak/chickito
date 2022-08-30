@@ -12,7 +12,7 @@ public class OrderItemDto {
     private String name;
     private String model;
     private String serialNumber;
-    private String documentation;
+    private String technicalTask;
     private Double price;
     private Integer quantity;
 

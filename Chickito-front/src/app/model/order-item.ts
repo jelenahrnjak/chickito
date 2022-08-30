@@ -3,7 +3,7 @@ export default interface OrderItem {
     name : string;
     model : string; 
     serialNumber : string;
-    documentation : string;
+    technicalTask : string;
     price : number; 
     quantity : number; 
     

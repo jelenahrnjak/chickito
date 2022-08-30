@@ -4,7 +4,7 @@ export default interface Machine {
     name : string;
     model : string; 
     serialNumber : string;
-    documentation : string; 
+    technicalTask : string; 
     quantity : number; 
     sector : string;
     mainWorker : boolean;

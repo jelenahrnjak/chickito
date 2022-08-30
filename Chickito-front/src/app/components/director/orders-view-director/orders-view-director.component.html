@@ -61,18 +61,19 @@
                         <th>Model</th>
                         <th>Cena</th> 
                         <th>Količina</th>
-                        <th>Dokumentacija</th>
+                        <th>Tehnički zadatak</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of orderItems"> 
                         <td  style="color: #04664c;">{{item.name}}</td>
-                        <td style="color: #04664c;">{{item.model}}</td>
+                        <td *ngIf="item.model" style="color: #04664c;">{{item.model}}</td>
+                        <td *ngIf="!item.model">{{item.model}}Nije naveden</td>
                         <td>{{item.price}}€</td>
                         <td>{{item.quantity}}</td>  
-                        <td *ngIf="!item.documentation">Nije navedena</td>
-                        <td *ngIf="item.documentation"><span class="badge btn-green" style="cursor: pointer;" 
-                            (click)="displayDescription='block'; selectedDocumentation = item.documentation; selectedMachine= item.name">Prikaži</span></td>
+                        <td *ngIf="!item.technicalTask">Nije naveden</td>
+                        <td *ngIf="item.technicalTask"><span class="badge btn-green" style="cursor: pointer;" 
+                            (click)="displayTechnicalTask='block'; selectedTechnicalTask = item.technicalTask; selectedMachine= item.name">Prikaži</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -121,12 +122,13 @@
                     <tbody>
                         <tr *ngFor="let item of orderItems"> 
                             <td class="color-primary">{{item.name}}</td>
-                            <td class="color-primary">{{item.model}}</td>
+                            <td *ngIf="item.model" style="color: #04664c;">{{item.model}}</td>
+                            <td *ngIf="!item.model">{{item.model}}Nije naveden</td>
                             <td>{{item.price}}€</td>
                             <td>{{item.quantity}}</td>  
-                            <td *ngIf="!item.documentation">Nije navedena</td>
-                            <td *ngIf="item.documentation"><span class="badge btn-green" style="cursor: pointer;" 
-                                (click)="displayDescription='block'; selectedDocumentation = item.documentation; selectedMachine= item.name">Prikaži</span></td>
+                            <td *ngIf="!item.technicalTask">Nije naveden</td>
+                            <td *ngIf="item.technicalTask"><span class="badge btn-green" style="cursor: pointer;" 
+                                (click)="displayTechnicalTask='block'; selectedTechnicalTask = item.technicalTask; selectedMachine= item.name">Prikaži</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -143,17 +145,17 @@
         </div>
     </div>
 
-<!-- Modal for documentation view -->
-<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayDescription}" style="background-color: rgba(0, 0, 0, 0.5);">
+<!-- Modal for technical task view -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayTechnicalTask}" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Dokumentacija za mašinu {{selectedMachine}}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Tehnički zadatak za mašinu {{selectedMachine}}</h5>
         </div> 
 
         <div  class="container"> 
              <p style="color:black; margin: 1%">
-                 {{selectedDocumentation}}
+                 {{selectedTechnicalTask}}
              </p>
 
             <br> 
@@ -161,7 +163,7 @@
  
           
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayDescription = 'none'">Zatvori</button>
+            <button type="button" class="btn btn-primary" style="background-color: #676564; border: #676564; width: 35%;" (click)="displayTechnicalTask = 'none'">Zatvori</button>
         </div>
     </div>
     </div>

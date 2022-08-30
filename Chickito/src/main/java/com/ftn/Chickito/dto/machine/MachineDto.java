@@ -15,7 +15,7 @@ public class MachineDto {
     private String serialNumber;
     private Long sectorId;
     private String sector;
-    private String documentation;
+    private String technicalTask;
     private Double price;
     private Integer quantity;
     private boolean mainWorker;

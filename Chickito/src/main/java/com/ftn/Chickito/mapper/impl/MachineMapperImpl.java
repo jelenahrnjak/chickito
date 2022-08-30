@@ -29,7 +29,7 @@ public class MachineMapperImpl implements MachineMapper {
                 .name(machine.getName())
                 .model(machine.getModel())
                 .serialNumber(machine.getSerialNumber())
-                .documentation(machine.getDocumentation() == null ? "" : machine.getDocumentation().getText())
+                .technicalTask(machine.getTechnicalTask() == null ? "" : machine.getTechnicalTask())
                 .sectorId(machine.getSector().getId())
                 .sector(machine.getSector().getType().toString())
                 .price(machine.getPrice())

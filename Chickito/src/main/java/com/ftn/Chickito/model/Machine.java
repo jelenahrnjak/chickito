@@ -21,7 +21,6 @@ public class Machine {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String model;
 
     @Column( unique = true)
@@ -33,6 +32,7 @@ public class Machine {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Documentation documentation;
 
+    private String technicalTask;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Order order;
 

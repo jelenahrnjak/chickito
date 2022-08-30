@@ -20,7 +20,7 @@
                 <input class="form-control" type="number" formControlName="quantity" placeholder="Količina*">
                 </div>
                 <div class="input-group mb-3">
-                <textarea class="form-control" style="height: 15ch;" type="text"  formControlName="documentation" placeholder="Dokumentacija"></textarea>
+                <textarea class="form-control" style="height: 15ch;" type="text"  formControlName="technicalTask" placeholder="Tehnički zadatak"></textarea>
                 </div>
                 
                 <div class="col-md-12 text-center">
@@ -52,19 +52,20 @@
                     <th>Model</th>
                     <th>Cena</th>
                     <th>Količina</th> 
-                    <th>Dokumentacija</th> 
+                    <th>Tehnički zadatak</th> 
                     <th>/</th>
                 </tr>
             </thead>
             <tbody style="scroll-behavior: auto;">
                 <tr *ngFor="let item of orderItems">  
                     <td  class="color-primary">{{item.name}}</td> 
-                    <td  class="color-primary">{{item.model}}</td> 
+                    <td *ngIf="item.model" style="color: #04664c;">{{item.model}}</td>
+                    <td *ngIf="!item.model">{{item.model}}Nije naveden</td>
                     <td>{{item.price}}€</td>
-                    <td>{{item.quantity}}</td>
-                    <td *ngIf="!item.documentation">Nije navedena</td>
-                    <td *ngIf="item.documentation"><span class="badge btn-green" style="cursor: pointer;" 
-                        (click)="display='block'; selectedDocumentation = item.documentation; selectedMachine= item.name">Prikaži</span></td>
+                    <td>{{item.quantity}}</td>  
+                    <td *ngIf="!item.technicalTask">Nije naveden</td>
+                    <td *ngIf="item.technicalTask"><span class="badge btn-green" style="cursor: pointer;" 
+                        (click)="display='block'; selectedTechnicalTask = item.technicalTask; selectedMachine= item.name">Prikaži</span></td>
                     <td><span class="badge btn-red" style="cursor: pointer;" (click)="removeItem(item.name, item.model)">Ukloni</span></td>
                 </tr>
             </tbody>
@@ -78,17 +79,17 @@
  
    
 
-<!-- Modal for documentation view -->
+<!-- Modal for technical task view -->
 <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Dokumentacija za mašinu {{selectedMachine}}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Tehnički zadatak za mašinu {{selectedMachine}}</h5>
         </div> 
 
         <div  class="container"> 
              <p style="color:black; margin: 1%">
-                 {{selectedDocumentation}}
+                 {{selectedTechnicalTask}}
              </p>
 
             <br> 

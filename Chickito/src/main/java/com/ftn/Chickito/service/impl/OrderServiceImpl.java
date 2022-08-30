@@ -57,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
                     .model(orderItemDto.getModel())
                     .serialNumber(null)
                     .active(false)
-                    .documentation(getDocumentation(orderItemDto.getDocumentation()))
+                    .technicalTask(orderItemDto.getTechnicalTask())
                     .price(orderItemDto.getPrice())
                     .quantity(orderItemDto.getQuantity())
                     .sector(author.getSector())
