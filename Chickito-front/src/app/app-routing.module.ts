@@ -104,7 +104,7 @@ const routes: Routes = [
     children: [
       {
         path: '', 
-        component: HomeDirectorComponent,
+        component: MachinesViewDirectorComponent,
       },
       {
         path: 'orders', 
@@ -138,7 +138,7 @@ const routes: Routes = [
     children: [
       {
         path: '', 
-        component: HomeLeaderComponent,
+        component: MachinesViewComponent,
       },
       {
         path: 'machines', 
@@ -177,7 +177,7 @@ const routes: Routes = [
     children: [
       {
         path: '', 
-        component: HomeWorkerComponent,
+        component: MyMachinesComponent,
       },
       {
         path: 'my-machines', 
