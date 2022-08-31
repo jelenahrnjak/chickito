@@ -63,7 +63,6 @@ public class UserMapperImpl implements UserMapper {
                 .email(user.getEmail())
                 .gender(user.getGender())
                 .phoneNumber(user.getPhoneNumber())
-                .address(addressMapper.addressToAddressDto(user.getAddress()))
                 .availableVacationDays(user.getAvailableVacationDays())
                 .vacationDays(user.getVacationDays().stream().map(VacationDay::getDate).collect(Collectors.toList()))
                 .build();

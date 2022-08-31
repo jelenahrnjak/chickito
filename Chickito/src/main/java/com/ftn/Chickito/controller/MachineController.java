@@ -55,4 +55,10 @@ public class MachineController {
 
         return new ResponseEntity<>(mapper.machineToMachineDto(machineService.editMachine(machineId, editDto)), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') || hasAuthority('DIRECTOR')")
+    public void delete(@PathVariable Long id) {
+        this.machineService.delete(id);
+    }
 }

@@ -53,9 +53,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private GenderType gender;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Address address;
-
     @Column(name = "deleted", nullable = false)
     private boolean deleted;
 
@@ -85,7 +82,6 @@ public class User implements UserDetails {
         this.email = u.getEmail();
         this.phoneNumber = u.getPhoneNumber();
         this.gender = u.getGender();
-        this.address = u.getAddress();
         this.deleted = u.isDeleted();
         this.active = u.isActive();
         this.lastPasswordResetDate = u.getLastPasswordResetDate();

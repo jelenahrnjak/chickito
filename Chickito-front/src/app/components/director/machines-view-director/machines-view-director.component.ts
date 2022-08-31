@@ -3,6 +3,7 @@ import Machine from '../../../model/machine'
 import { MachineService } from '../../../services/machine.service';
 import User from '../../../model/user'
 import { WorkerOnMachineService } from '../../../services/worker-on-machine.service';
+import { ToastrService } from 'ngx-toastr';   
 
 @Component({
   selector: 'app-machines-view-director',
@@ -30,6 +31,7 @@ export class MachinesViewDirectorComponent implements OnInit {
   showKontrola = false;
   showOdrzavanje = false;
   constructor(
+    private toastr: ToastrService,  
     private machineService : MachineService,
     private workerOnMachineService : WorkerOnMachineService,
   ) { }
@@ -84,4 +86,13 @@ export class MachinesViewDirectorComponent implements OnInit {
     });  
   }
 
+  deleteMachine(machine){
+    
+    if (confirm('Da li ste sigurni da želite da obrišete mašinu ' + machine.name + '?')) { //TODO modal 
+      this.machineService.deleteMachine(machine.id).subscribe(data => { 
+        this.getAllMachines() 
+        this.toastr.success('Mašina uspešno obrisana!')  
+      }); 
+    }
+  }
 }

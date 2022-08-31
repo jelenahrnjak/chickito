@@ -31,9 +31,6 @@ import { ApiService } from './services/core/api.service';
 import { AuthService } from './services/core/auth.service'; 
 import { ConfigService } from './services/core/config.service';
 import { AuthguardService } from './guards/authguard.service';
-import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
-import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
-import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 import { NewOrderComponent } from './components/leader/new-order/new-order.component';
 import { OrdersViewComponent } from './components/leader/orders-view/orders-view.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component';
@@ -64,10 +61,7 @@ import { VacationRequestsDirectorComponent } from './components/director/vacatio
     AddingBuildingComponent,
     UsersViewComponent,
     LoginComponent,
-    ErrorPageComponent,
-    HomeLeaderComponent,
-    HomeDirectorComponent,
-    HomeWorkerComponent,
+    ErrorPageComponent, 
     NewOrderComponent,
     OrdersViewComponent,
     MachinesViewComponent,

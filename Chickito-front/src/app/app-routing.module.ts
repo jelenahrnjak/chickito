@@ -13,14 +13,12 @@ import { HomeAdminComponent } from './components/admin/home-admin/home-admin.com
 import { UsersViewComponent } from './components/admin/users-view/users-view.component'; 
 import { LoginComponent } from './components/auth/login/login.component'; 
 
-import { HomeDirectorComponent } from './components/director/home-director/home-director.component';
 import { OrdersViewDirectorComponent } from './components/director/orders-view-director/orders-view-director.component';
 import { MachinesViewDirectorComponent } from './components/director/machines-view-director/machines-view-director.component';
 import { UsersDirectorComponent } from './components/director/users-director/users-director.component'; 
 import { MahcineMaintenancesDirectorComponent } from './components/director/mahcine-maintenances-director/mahcine-maintenances-director.component'
 import { VacationRequestsDirectorComponent } from './components/director/vacation-requests-director/vacation-requests-director.component'; 
 
-import { HomeLeaderComponent } from './components/leader/home-leader/home-leader.component';
 import { MachinesViewComponent } from './components/leader/machines-view/machines-view.component'; 
 import { OrdersViewComponent } from './components/leader/orders-view/orders-view.component'; 
 import { NewOrderComponent } from './components/leader/new-order/new-order.component'; 
@@ -28,7 +26,6 @@ import { MachineMaintenancesViewComponent } from './components/leader/machine-ma
 import { NewMachineMaintenanceComponent } from './components/leader/new-machine-maintenance/new-machine-maintenance.component'; 
 import { UsersLeaderComponent } from './components/leader/users-leader/users-leader.component'; 
 
-import { HomeWorkerComponent } from './components/worker/home-worker/home-worker.component';
 import { MyMachinesComponent } from './components/worker/my-machines/my-machines.component';
 import { MachineMaintenancesWorkerComponent } from './components/worker/machine-maintenances-worker/machine-maintenances-worker.component'
 

@@ -58,7 +58,7 @@ public class MachineMaintenanceMapperImpl implements MachineMaintenanceMapper {
         return MaintenanceReportDto.builder()
                 .companyName(maintenance.getAuthor().getSector().getCompany().getName())
                 .author("Rukovodilac: " + maintenance.getAuthor().getFirstName() + " " + maintenance.getAuthor().getLastName())
-                .sector("Sektor: " + sectorMapper.sectorTypeToString( maintenance.getAuthor().getSector().getType()))
+                .sector("Radna jedinica: " + sectorMapper.sectorTypeToString( maintenance.getAuthor().getSector().getType()))
                 .headOffice(headOffice == null ? "" : "Sedište: " + this.addressMapper.getAddressString(headOffice.getAddress()))
                 .title("Plan održavanja za " + maintenance.getYear().toString() + ". godinu")
                 .year(maintenance.getYear())

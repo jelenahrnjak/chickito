@@ -73,7 +73,7 @@ export class AddingUserComponent implements OnInit {
     }
  
     if(this.form.get('role')?.value != '2' && !this.form.get('sector')?.value){
-      this.toastr.error('Izaberite sektor.')
+      this.toastr.error('Izaberite radnu jedinica.')
       return
 
     }
@@ -85,7 +85,7 @@ export class AddingUserComponent implements OnInit {
         const leader = data.leader;
         
         if(leader != null){
-          this.toastr.error('Rukovodilac sektora već postoji. Trenutni rukovodilac je ' + leader + ".")
+          this.toastr.error('Rukovodilac radne jedinice već postoji. Trenutni rukovodilac je ' + leader + ".")
           return
 
         }else{

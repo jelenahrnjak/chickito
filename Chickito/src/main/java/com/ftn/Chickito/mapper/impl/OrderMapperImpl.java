@@ -108,7 +108,7 @@ public class OrderMapperImpl implements OrderMapper {
                 .price(order.getPrice())
                 .author(order.getAuthor().getFirstName() + " " + order.getAuthor().getLastName())
                 .reviewer(order.getReviewer().getFirstName() + " " + order.getAuthor().getLastName())
-                .sector("Sektor: " + sectorMapper.sectorTypeToString( order.getAuthor().getSector().getType()))
+                .sector("Radna jedinica: " + sectorMapper.sectorTypeToString( order.getAuthor().getSector().getType()))
                 .creationDate(order.getCreationDate() == null ? "" : order.getCreationDate().format(formatter))
                 .approved(order.getApproved())
                 .headOffice(headOffice == null ? "" : "Sedište: " + this.addressMapper.getAddressString(headOffice.getAddress()))

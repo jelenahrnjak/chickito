@@ -104,7 +104,7 @@ export class NewMachineMaintenanceComponent implements OnInit {
 
     this.machineMaintenanceService.createMachineMaintenance(body)
     .subscribe(data => { 
-      this.toastr.success('Novi predlog održavanja uspešno kreirana!')  
+      this.toastr.success('Novi plan održavanja uspešno kreirana!')  
       this.router.navigate(['leader/machine-maintenances']);
     },
       error => { 

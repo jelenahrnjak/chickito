@@ -15,4 +15,6 @@ public interface MachineService {
     Machine addDocumentation(Long machineId, DocumentationDto documentationDto);
 
     Machine editMachine(Long machineId, MachineBaseDto editDto);
+
+    void delete(Long id);
 }

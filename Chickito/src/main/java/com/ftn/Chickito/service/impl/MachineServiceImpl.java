@@ -11,6 +11,7 @@ import com.ftn.Chickito.repository.CompanyRepository;
 import com.ftn.Chickito.repository.MachineRepository;
 import com.ftn.Chickito.repository.UserRepository;
 import com.ftn.Chickito.service.MachineService;
+import com.ftn.Chickito.service.WorkerOnMachineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public class MachineServiceImpl implements MachineService {
     private final CompanyRepository companyRepository;
     private final UserRepository userRepository;
     private final MachineMapper mapper;
+
+    private final WorkerOnMachineService workerOnMachineService;
 
     @Override
     public List<Machine> findAllByLeader(String leaderUsername) {
@@ -59,5 +62,18 @@ public class MachineServiceImpl implements MachineService {
         machine.setQuantity(editDto.getQuantity());
 
         return machineRepository.save(machine);
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        Machine machine = machineRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Machine with id = %s doesn't exist.", id)));
+
+
+        workerOnMachineService.deleteMachine(id);
+
+        machine.setActive(false);
+        machineRepository.save(machine);
     }
 }

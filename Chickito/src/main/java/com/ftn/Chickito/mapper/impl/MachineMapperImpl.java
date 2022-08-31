@@ -29,7 +29,7 @@ public class MachineMapperImpl implements MachineMapper {
         return MachineDto.builder()
                 .id(machine.getId())
                 .name(machine.getName())
-                .model(machine.getModel() == null ? "Nije naveden" : machine.getModel())
+                .model(machine.getModel() == null || machine.getModel() == "" ? "Nije naveden" : machine.getModel())
                 .serialNumber(machine.getSerialNumber())
                 .technicalTask(machine.getTechnicalTask() == null ? "" : machine.getTechnicalTask())
                 .sectorId(machine.getSector().getId())

@@ -31,7 +31,10 @@ placeholder="Pretražite mašine"
                 <button class="btn-green btn" style=" margin-top: 3%;" (click)="displayDescription = 'block'; selectedMachine = c; selectedDocumentation = c.documentation">Prikaži dokumentaciju</button>  
             </li>          
             <li style="height: 70px;" class="list-group-item">
-                <button class="btn-green btn" style=" margin-top: 3%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+                <button class="btn-green btn" style=" margin-top: 3%; width: 100%;" (click)="showWorkers(c)">Prikaži radnike</button>  
+            </li> 
+            <li style="height: 70px;" class="list-group-item">
+                <button class="btn-red btn" style=" margin-top: 3%; width: 100%;" (click)="deleteMachine(c)">Obriši</button>  
             </li> 
         </ul> 
     </div>

@@ -21,4 +21,6 @@ public interface WorkerOnMachineService {
     void delete(Long machineId, Long workerId);
 
     void deleteWorker(Long id);
+
+    void deleteMachine(Long id);
 }

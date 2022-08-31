@@ -50,5 +50,13 @@ export class MachineService {
         console.log('Changing documentation success');
       }));
   }
+
+  deleteMachine(id : any) { 
+
+    return this.apiService.delete(this.config.machine_url + "/" + id)
+      .pipe(map(() => {
+        console.log('Deleting machine success');
+      }));
+  }
   
 }
