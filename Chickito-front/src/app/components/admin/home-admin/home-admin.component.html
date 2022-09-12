@@ -8,7 +8,7 @@
             <li class = "list-group-item"  style="cursor: pointer;" (click)="selectCompany(c.id, c.name)">
             <strong>{{c.name}}</strong> 
             </li> 
-            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}€</li>    
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}</li>    
             <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
             <!-- <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li>  -->
             <li *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">

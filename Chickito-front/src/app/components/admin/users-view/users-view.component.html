@@ -14,7 +14,7 @@
             <li class = "list-group-item"  style="cursor: pointer;" (click)="selectCompany(c)">
             <strong>{{c.name}}</strong> 
             </li> 
-            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}€</li>    
+            <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}</li>    
             <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
             <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li> 
             <li style="height: 70px;" class="list-group-item">
@@ -55,6 +55,15 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- <tr> 
+                    <td>Janko</td>
+                    <td>Sarić</td>
+                    <td>0657382913</td>
+                    <td>DIREKTOR</td>
+                    <td>//</td>
+                    <td><span class="badge btn-red" style="cursor: pointer;">Obriši</span></td>
+
+                </tr> -->
                 <tr *ngFor="let item of allUsers  | filter: termUser"> 
                     <td>{{item.fullName}}</td>
                     <td>{{item.email}}</td>
@@ -64,6 +73,7 @@
                     <td><span class="badge btn-red" (click)="deleteUser(item)" style="cursor: pointer;">Obriši</span></td>
 
                 </tr>
+                
             </tbody>
         </table>
     </div>

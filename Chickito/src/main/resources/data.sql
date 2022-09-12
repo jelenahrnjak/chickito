@@ -12,7 +12,7 @@ INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_re
 VALUES (111,true,false,'admin@gmail.com','Admin', 'Admin', null, '$2a$10$u09ug9/hMunP/jsz4aLIDOcXuJ9IPxaGLNjjU9ozwPQONPzHuYrv.', 'admin', 1, 1, 5);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender, available_vacation_days)
-VALUES (222,true,false,'jelenahrnjak99+1@gmail.com','Janko', 'Ratkov', null, '$2a$10$I1rJ7EiiGwH/phEllVzAAelcVv3Rrbu7oXc2PfmEO6r/b88p9gd7S', 'direktor', 2, 1, 5);
+VALUES (222,true,false,'jelenahrnjak99@gmail.com','Janko', 'Ratkov', null, '$2a$10$I1rJ7EiiGwH/phEllVzAAelcVv3Rrbu7oXc2PfmEO6r/b88p9gd7S', 'direktor', 2, 1, 5);
 
 INSERT INTO COMPANIES (id, establishment_date, name, pib, deleted, director_id)
 VALUES (111, '2022-07-31 20:21:07.253468' , 'PP-TOPIKO' , '24124142', false, 222);
@@ -26,16 +26,16 @@ INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (333, 2 , 111, false)
 INSERT INTO SECTORS (id, type, company_id, deleted) VALUES (444, 3 , 111, false);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, available_vacation_days)
-VALUES (333,true,false,'jelenahrnjak99@gmail.com','Dragan', 'Hrnjak', null, '$2a$10$s4cBPBON540yp30i7i2ZQ.hybr3EX2x9GbVd2PzPUYcUyHFAlNWe2', 'rukovodilac', 3, 1, 111, 5);
+VALUES (333,true,false,'dragansaric@gmail.com','Dragan', 'Saric', null, '$2a$10$s4cBPBON540yp30i7i2ZQ.hybr3EX2x9GbVd2PzPUYcUyHFAlNWe2', 'rukovodilac', 3, 1, 111, 5);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number, available_vacation_days)
-VALUES (411,true,false,'jelenahrnjak99+2@gmail.com','Jovan', 'Hrnjak', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik1', 4, 0, 111, '0683293843', 5);
+VALUES (411,true,false,'jovanperic@gmail.com','Jovan', 'Peric', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik1', 4, 0, 111, '0683293843', 5);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number, available_vacation_days)
-VALUES (422,true,false,'jelenahrnjak99+3@gmail.com','Marko', 'Savić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik2', 4, 1, 111, '063928384', 5);
+VALUES (422,true,false,'markosavic@gmail.com','Marko', 'Savić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik2', 4, 1, 111, '063928384', 5);
 
 INSERT INTO USERS (id,active,deleted,email,first_name,last_name,last_password_reset_date,password,username,role_id, gender,sector_id, phone_number, available_vacation_days)
-VALUES (433,true,false,'jelenahrnjak99+4@gmail.com','Dragana', 'Tubić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik3', 4, 0, 222, '0628231234', 5);
+VALUES (433,true,false,'draganatubic@gmail.com','Dragana', 'Tubić', null, '$2a$10$GQFIf0cvBL86aU4Awv2X4uTys9muPDeN/PPzU6tuo6IhuA7vUub0K', 'radnik3', 4, 0, 222, '0628231234', 5);
 
 INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
 VALUES (111, true, '2022-08-15 20:21:07.253468', 5000, 333, 222);
