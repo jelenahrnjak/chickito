@@ -121,6 +121,27 @@ public class UserServiceImpl implements UserService {
             deleteCompanyUsers(user.getId());
         });
     }
+
+    @Override
+    public void changeVacationDays(String username, Integer numberOfDays) {
+        User user = this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Employee with username = %s doesn't exist.", username)));
+
+//        if(user.getVacationDaysPerYear() < numberOfDays){
+//            user.setAvailableVacationDays(user.getAvailableVacationDays() + (numberOfDays - user.getVacationDaysPerYear()));
+//        }else{
+//            user.setAvailableVacationDays(user.getAvailableVacationDays() - (user.getVacationDaysPerYear() - numberOfDays));
+//        }
+//
+//        if(user.getAvailableVacationDays() < 0 ){
+//            user.setAvailableVacationDays(0);
+//        }
+
+        user.setVacationDaysPerYear(numberOfDays);
+        this.userRepository.save(user);
+
+    }
+
     private User getWorker(String username) {
         return userRepository.findByUsernameAndRoleName(username, WORKER_ROLE)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Worker with username = %s doesn't exist.", username)));

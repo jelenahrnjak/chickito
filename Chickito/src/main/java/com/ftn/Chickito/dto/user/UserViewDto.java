@@ -17,5 +17,6 @@ public class UserViewDto {
     private String sector;
     private String role;
     private boolean mainWorker;
+    private int vacationDaysPerYear;
 
 }

@@ -70,4 +70,14 @@ export class UserService {
       }));
   }
 
+  
+
+  changeVacationDaysPerYear(username : string, numberOfDays : number) {  
+
+    return this.apiService.post(this.config.user_url  + `/changeVacationDays/${username}`, numberOfDays)
+      .pipe(map(() => {
+        console.log('Changing vacation days per year success');
+      }));
+  }
+
 }

@@ -22,5 +22,6 @@ public class UserRequest {
     private Long role;
     private int sector;
     private int gender;
+    private int vacationDaysPerYear;
 
 }

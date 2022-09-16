@@ -16,6 +16,9 @@ export class UsersDirectorComponent implements OnInit {
   showUsers = false;
   allUsers : User[] = [] 
   currentCompany : any = "" 
+  display = "none"
+  selectedUser : any = ''
+  newDays = 0
   
   constructor(
     private toastr: ToastrService,  
@@ -42,4 +45,23 @@ export class UsersDirectorComponent implements OnInit {
       }); 
     }
   }  
+
+  openModal(user){
+    this.selectedUser = user; 
+    this.display = 'block'
+  }
+
+  changeVacationDaysPerYear(){
+
+    this.userService.changeVacationDaysPerYear(this.selectedUser.username, this.selectedUser.vacationDaysPerYear)
+    .subscribe(data => { 
+      this.toastr.success('Uspešno izmenjen broj slobodnih dana!')  
+      this.getUsers();
+    },
+      error => { 
+        console.log('Changing number of vacation days per year error');  
+        this.toastr.error(error['error'].message)
+      });
+
+  }
 }

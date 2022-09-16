@@ -14,5 +14,6 @@ export default interface User {
     sector : string;
     mainWorker : boolean;
     availableVacationDays : number;
+    vacationDaysPerYear : number;
     vacationDays : Date[];
 }

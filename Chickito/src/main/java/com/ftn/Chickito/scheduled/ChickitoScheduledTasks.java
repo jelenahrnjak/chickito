@@ -17,10 +17,19 @@ public class ChickitoScheduledTasks {
 
     private static final String REQUEST_EXPIRED = "Request rejected because it was expired.";
 
+    @Scheduled(cron = "0 0 5 6 1 *")
+    public void removeOldVacationDays() {
+        userRepository.findAll().forEach(user -> {
+            user.setOldVacationDays(0);
+            userRepository.save(user);
+        });
+    }
+
     @Scheduled(cron = "0 0 5 1 1 *")
     public void addVacationDays() {
         userRepository.findAll().forEach(user -> {
-            user.setAvailableVacationDays(user.getAvailableVacationDays() + 20);
+            user.setOldVacationDays(user.getAvailableVacationDays());
+            user.setAvailableVacationDays(user.getVacationDaysPerYear());
             userRepository.save(user);
         });
     }

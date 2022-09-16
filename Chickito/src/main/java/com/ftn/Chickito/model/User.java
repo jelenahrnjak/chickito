@@ -68,11 +68,14 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Sector sector;
 
+    private Integer vacationDaysPerYear;
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = CascadeType.ALL)
     private List<VacationDay> vacationDays;
 
-    private int availableVacationDays;
+    private int oldVacationDays = 0;
+    private int availableVacationDays = 0;
 
     public User(User u) {
         this.username = u.getUsername();
@@ -89,6 +92,7 @@ public class User implements UserDetails {
         this.sector = u.getSector();
         this.availableVacationDays = u.getAvailableVacationDays();
         this.vacationDays = u.getVacationDays();
+        this.oldVacationDays = u.getOldVacationDays();
     }
 
     public User() {

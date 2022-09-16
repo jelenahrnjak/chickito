@@ -21,6 +21,7 @@
                     <th>Zaposleni</th>
                     <th>Početak</th>
                     <th>Kraj</th> 
+                    <th>Broj slobodnih dana godišnje</th>
                     <th>Broj preostalih slobodnih dana</th>
                     <th></th>
                     <th></th>
@@ -31,6 +32,7 @@
                     <td>{{item.user.firstName}} {{item.user.lastName}}</td>
                     <td>{{item.startDate}}</td>
                     <td>{{item.endDate}}</td> 
+                    <td>{{item.user.vacationDaysPerYear}}</td>
                     <td>{{item.user.availableVacationDays}}</td>
                     <td><span *ngIf="item.approved != true && item.approved != false" class="badge btn-red" (click)="displayModal(item, item.user)" style="cursor: pointer;">Odbij</span></td>
                     <td><span *ngIf="item.approved != true && item.approved != false" class="badge btn-green" (click)="accept(item)" style="cursor: pointer;">Prihvati</span></td>

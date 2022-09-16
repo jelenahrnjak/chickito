@@ -39,6 +39,7 @@ export class AddingUserComponent implements OnInit {
       phoneNumber: ['', Validators.compose([Validators.required])],
       role : ['', Validators.compose([Validators.required])],
       gender : ['', Validators.compose([Validators.required])],
+      vacationDaysPerYear : ['', Validators.compose([Validators.required])],
       sector : [''],
     }); 
     

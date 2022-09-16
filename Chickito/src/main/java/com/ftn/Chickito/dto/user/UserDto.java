@@ -28,5 +28,7 @@ public class UserDto {
     private GenderType gender;
     private String sector;
     private int availableVacationDays;
+    private int oldVacationDays;
     private List<LocalDate> vacationDays;
+    private int vacationDaysPerYear;
 }

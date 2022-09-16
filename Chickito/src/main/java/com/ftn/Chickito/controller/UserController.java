@@ -99,4 +99,11 @@ public class UserController {
         this.userService.delete(id);
     }
 
+    @PostMapping("/changeVacationDays/{username}")
+    @PreAuthorize("hasAuthority('DIRECTOR')")
+    public ResponseEntity<?> changeVacationDays(@PathVariable String username, @RequestBody Integer numberOfDays) {
+
+        this.userService.changeVacationDays(username, numberOfDays);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

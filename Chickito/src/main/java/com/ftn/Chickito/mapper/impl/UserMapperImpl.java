@@ -28,7 +28,6 @@ public class UserMapperImpl implements UserMapper {
 
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
-    private final AddressMapper addressMapper;
     private final SectorMapper sectorMapper;
     private final WorkerOnMachineRepository workerOnMachineRepository;
 
@@ -47,7 +46,9 @@ public class UserMapperImpl implements UserMapper {
         u.setRole(role);
         u.setGender(GenderType.values()[userRequest.getGender()]);
         u.setPhoneNumber(userRequest.getPhoneNumber());
-        u.setAvailableVacationDays(calculateVacationDaysForThisYear());
+        u.setAvailableVacationDays(calculateVacationDaysForThisYear(userRequest.getVacationDaysPerYear()));
+        u.setVacationDaysPerYear(userRequest.getVacationDaysPerYear());
+        u.setOldVacationDays(0);
         u.setVacationDays(new ArrayList<>());
 
         return u;
@@ -63,8 +64,9 @@ public class UserMapperImpl implements UserMapper {
                 .email(user.getEmail())
                 .gender(user.getGender())
                 .phoneNumber(user.getPhoneNumber())
-                .availableVacationDays(user.getAvailableVacationDays())
+                .availableVacationDays(user.getAvailableVacationDays() + user.getOldVacationDays())
                 .vacationDays(user.getVacationDays().stream().map(VacationDay::getDate).collect(Collectors.toList()))
+                .vacationDaysPerYear(user.getVacationDaysPerYear() == null ? 0 : user.getVacationDaysPerYear())
                 .build();
     }
 
@@ -90,6 +92,7 @@ public class UserMapperImpl implements UserMapper {
                 .phoneNumber(user.getPhoneNumber() == null ? "/" : user.getPhoneNumber())
                 .role(translatingRole(user.getRole().getName()))
                 .sector(sectorMapper.sectorTypeToString(user.getSector().getType()))
+                .vacationDaysPerYear(user.getVacationDaysPerYear() == null ? 0 : user.getVacationDaysPerYear())
                 .build();
     }
 
@@ -120,8 +123,8 @@ public class UserMapperImpl implements UserMapper {
         return workersDto;
     }
 
-    private int calculateVacationDaysForThisYear() {
-        return (12 - LocalDate.now().getMonthValue()) * 20 / 12;
+    private int calculateVacationDaysForThisYear(int vacationDaysPerYear) {
+        return (12 - LocalDate.now().getMonthValue()) * vacationDaysPerYear / 12;
     }
 
     private String translatingRole(String roleName) {

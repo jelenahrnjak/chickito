@@ -18,4 +18,6 @@ public interface UserService {
     void delete(Long id);
 
     void deleteCompanyUsers(Long id);
+
+    void changeVacationDays(String username, Integer numberOfDays);
 }

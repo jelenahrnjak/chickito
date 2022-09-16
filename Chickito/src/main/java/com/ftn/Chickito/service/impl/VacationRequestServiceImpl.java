@@ -36,7 +36,7 @@ public class VacationRequestServiceImpl implements VacationRequestService {
 
         User user = userService.findByUsername(username);
         List<LocalDate> days = getVacationDaysFromRequest(startDate, endDate);
-        verifyThatUserHaveEnoughVacationDays(user.getAvailableVacationDays(), days.size());
+        verifyThatUserHaveEnoughVacationDays(user.getAvailableVacationDays() + user.getOldVacationDays(), days.size());
 
         VacationRequest newVacationRequest = VacationRequest.builder()
                 .user(user)
@@ -64,7 +64,7 @@ public class VacationRequestServiceImpl implements VacationRequestService {
 
         if (!user.getId().equals(director.getId())) {
             verifyThatDirectorIsSuperiorForUser(user, director);
-            verifyThatUserHaveEnoughVacationDays(user.getAvailableVacationDays(), vacationRequest.getDates().size());
+            verifyThatUserHaveEnoughVacationDays(user.getAvailableVacationDays() + user.getOldVacationDays(), vacationRequest.getDates().size());
         }
 
         vacationRequest.setRequestReviewer(director);
@@ -75,7 +75,19 @@ public class VacationRequestServiceImpl implements VacationRequestService {
                 .build()).collect(Collectors.toList());
 
         user.getVacationDays().addAll(vacationDays);
-        user.setAvailableVacationDays(user.getAvailableVacationDays() - vacationDays.size());
+
+        if(vacationDays.size() <= user.getOldVacationDays()){
+            user.setOldVacationDays(user.getOldVacationDays() - vacationDays.size());
+        }else{
+
+            int oldDays = user.getOldVacationDays();
+            for (int i =0 ; i < oldDays ; i ++){
+                user.setOldVacationDays(user.getOldVacationDays() - 1);
+            }
+
+            user.setAvailableVacationDays(user.getAvailableVacationDays() - vacationDays.size() + oldDays);
+        }
+
         userRepository.save(user);
 
         return true;
