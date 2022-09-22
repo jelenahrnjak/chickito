@@ -43,15 +43,15 @@ INSERT INTO ORDERS (id, approved, creation_date, price, author_id, reviewer_id)
 VALUES (222, null, '2022-08-21 20:21:07.253468', 7000, 333, 222);
 
 INSERT INTO DOCUMENTATIONS (id, work_Instructions, washing_instructions)
-VALUES (111, 'Mašina se koristi na niskim temperaturama.', 'Ne prati ventile.');
+VALUES (111, 'Kapacitet: 500 litara.', 'Ne prati ventile.');
 
 INSERT INTO SPARE_PARTS (id, stock_number, name, quantity, documentation_id)
 VALUES (111, '324443', 'Ventil', 123, 111);
 
-INSERT INTO MACHINES (id, active, name, price, quantity, serial_number, documentation_id, order_id, sector_id, technical_task)
-VALUES (111, true, 'Pilerica', 2000, 3, '12345', 111, 111, 111, 'Broj obrtaja u minuti: 20');
-INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, order_id, sector_id)
-VALUES (222, true, '2CP3', 'Ljuštilica', 3000, 1, '1233', 111, 111);
+INSERT INTO MACHINES (id, active, name,model, price, quantity, serial_number, order_id, sector_id, technical_task)
+VALUES (111, true, 'Injektor','MHM 280', 2000, 3, '12345', 111, 111, 'Broj obrtaja u minuti: 20');
+INSERT INTO MACHINES (id, active, model, name, documentation_id, price, quantity, serial_number, order_id, sector_id)
+VALUES (222, true, 'MKR 130', 'Tumbler', 111, 3000, 1, '1233', 111, 111);
 INSERT INTO MACHINES (id, active, model, name, price, quantity, serial_number, order_id, sector_id)
 VALUES (333, false, 'POP', 'Grebalica', 7000, 1, '12333', 222, 111);
 
@@ -59,9 +59,9 @@ INSERT INTO MACHINE_MAINTENANCES (id, year, author_id) VALUES (111, 2022, 333);
 INSERT INTO MACHINE_MAINTENANCES (id, year, author_id) VALUES (222, 2022, 333);
 
 INSERT INTO MACHINE_MAINTENANCE_ITEMS ( id, plan, machine_id, machine_maintenance_id)
-VALUES (111, 'Menjati ventil na mesec dana.', 111, 111);
+VALUES (111, 'Voditi računa o pritisku ubrizgavanja.', 111, 111);
 INSERT INTO MACHINE_MAINTENANCE_ITEMS ( id, plan, machine_id, machine_maintenance_id)
-VALUES (222, 'Pratiti temperaturu redovno.', 222, 222);
+VALUES (222, 'Beležiti i pratiti ukupnog vremena i promeniti filter vakuumskog sistema.', 222, 222);
 
 INSERT INTO WORKERS_ON_MACHINES (worker_id, machine_id, main_worker) VALUES (411, 111, true);
 

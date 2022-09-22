@@ -9,9 +9,9 @@
             <strong>{{c.name}}</strong> 
             </li> 
             <li style="height: 35px; text-align: center;" class="list-group-item"><strong>PIB:</strong> {{c.pib}}</li>    
-            <li  *ngIf="c.headOfficeId !== null" style="height: 70px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
+            <li  *ngIf="c.headOfficeId !== null" style="height: 80px;" class="list-group-item"><strong>Sedište:</strong> {{c.headOfficeAddress}}</li> 
             <!-- <li  *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">Nije uneto sedište preduzeća.</li>  -->
-            <li *ngIf="c.headOfficeId == null" style="height: 70px;" class="list-group-item">
+            <li *ngIf="c.headOfficeId == null" style="height: 80px;" class="list-group-item">
                 <a class="btn-green btn" href="admin/new-building" style=" margin-top: 3%; ">Dodaj sedište</a>  
             </li>            
             <li style="height: 70px;" class="list-group-item">
@@ -60,7 +60,7 @@
     </div>
 </div>
 
-<!-- Modal for documentation view -->
+<!-- Modal for map view -->
 <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
